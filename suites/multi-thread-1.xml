@@ -1,0 +1,17 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Multi-thread and single-thread tests">
+ 
+ 	<test name="My test A">
+		<classes>
+			<class name="net.sourceforge.report4s.test.MultiThread1"/>
+		</classes>
+	</test>
+ 
+	<test name="My test B" parallel="methods">
+		<classes>
+			<class name="net.sourceforge.report4s.test.MultiThread2"/>
+		</classes>
+	</test>
+
+</suite>

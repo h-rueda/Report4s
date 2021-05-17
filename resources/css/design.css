@@ -1,0 +1,145 @@
+html, body {
+	background-color: #F2F2F2;
+	/*font-family: "Trebuchet MS",Arial,Helvetica,sans-serif;*/
+	font-family: Arial,sans-serif;
+	height: 100%;
+	min-height: 850px;
+	min-width: 1200px;
+	padding: 0;
+	font-size: 18px;
+	margin-top: 20px;
+	margin-left: 15;
+	margin-right: 15;
+}
+h1, h2 {
+	color: blue;
+}
+
+/* Text styles */
+.description {
+	color: green;
+}
+.method {
+	color: maroon;
+}
+.method_name {
+	color: black;
+}
+.parameters {
+	color: maroon;
+}
+.annotation {
+	font-size: 12px;
+	font-family: monospace;
+	color: dimgray;
+}
+.test_failed {
+	color: red;
+}
+.test_failed_pct {
+	color: #FF6600;
+}
+.test_skipped {
+	color: #00A2E8;
+}
+.execution_time {
+	font-size: 15px;
+}
+.multithread {
+	color: red;
+}
+
+/* Table styles */
+#tableStyle {
+	border-collapse: collapse;
+	border-color: #B0B0B0;
+	border-style: solid;
+	border-width: 1px;
+	box-shadow: 0 0 10px #CCCCCC;
+	font-size: 13px;
+	margin: 0px auto 0px;
+	height:50px;
+}
+#tableStyle th {
+	background-color: #DEE3E9;
+	color: #000060;
+	font-family: Segoe UI Light;
+	font-size: 16px;
+	height: 25px;
+	border: 1px solid #CCCCCC;
+}
+#tableStyle td {
+	height: 33px;
+	padding: 4px;
+	border: 1px solid #CCCCCC;
+}
+#tableStyle a:link, a:visited, a:active {
+	color: blue;
+	display: block;
+	text-decoration: none;
+}
+#tableStyle a:hover {
+	color: #0066FF;
+}
+.width_index {
+	width: 85%;
+}
+.width_suite {
+	width: 100%;
+}
+
+/* Table row styles */
+.row_suite {
+	background-color: #E6FFCC;  /*#F2E6D9;*/
+	color: #0D0D0D;
+}
+.row_test {
+	background-color: white;
+	color: #585858;
+}
+.trace {
+	font-family: monospace;
+	display: inline-table;
+    margin: 4px 4px;
+}
+
+/* Table column styles */
+.plusminus {
+	height: 12px;
+	width: 12px;
+	border: none;
+	margin-bottom: -2px;
+}
+.icon {
+	height: 20px;
+	width: 20px;
+	border: none;
+}
+.screenshot {
+	height: 20px;
+	width: 50px;
+	border: 1px solid skyblue;
+}
+
+/* Tooltip styles */
+.ttp {
+	width: 12px;
+	height: 12px;
+	border-radius: 0.5em
+}
+.ttp_text {
+	font-size: 13px;
+}
+.ttp_passed {
+	background-color: #33CC33;
+}
+.ttp_failed {
+	background-color: #FF3333;
+}
+.ttp_failed_pct {
+	background-color: #FFBF00;
+}
+.ttp_skipped {
+	background-color: #66B2FF;
+}
+

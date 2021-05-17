@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Passed test without screenshot">
+	<test name="My test" preserve-order="true">
+		<classes>
+			<class name="net.sourceforge.report4s.test.MyTest5"/>
+		</classes>
+	</test>
+
+
+</suite>
