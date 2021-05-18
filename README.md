@@ -241,6 +241,8 @@ Screenshots work better with Firefox.
 ### Limitations
 No support for multi-threaded tests.
 
+### Precaution for building from source code
+If you want to modify the name of the target jar file, modify the `jarfile` variable in both the `build.xml` ANT buildfile and the `/src/net/sourceforge/report4s/Report4s.java` Java file. 
 ### Sample screenshots
 
 ##### Sample 1 :
