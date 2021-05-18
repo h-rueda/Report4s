@@ -17,22 +17,6 @@ Report4s is a Selenium HTML reporter for the TestNG framework.
 ### Logged browser events
 
 Report4s is able to log the following web browser events :
-* `Select.deselectByIndex(int)`
-* `Select.deselectByValue(java.lang.String)`
-* `Select.deselectByVisibleText(java.lang.String)`
-* `Select.selectByIndex(int)`
-* `Select.selectByValue(java.lang.String)`
-* `Select.selectByVisibleText(java.lang.String)`
-
-* `WebDriver.get(java.lang.String)`
-* `WebDriver.navigate().back()`
-* `WebDriver.navigate().forward()`
-* `WebDriver.navigate().refresh()`
-* `WebDriver.navigate().to(java.lang.String)`
-* `WebDriver.navigate().to(java.net.URL)`
-
-* `WebElement.click()`
-* `WebElement.sendKeys(CharSequence[])`
 ```
 Select.deselectByIndex(int)
 Select.deselectByValue(java.lang.String)
@@ -53,7 +37,7 @@ WebElement.click()
 WebElement.sendKeys(CharSequence[])
 ```
 
-### ZIP file contents
+### The ZIP file contents
 ```
 report4.zip
 |---javadoc                    The API documentation
