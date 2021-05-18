@@ -61,10 +61,11 @@ DO NOT RENAME THE report4s JAR FILE.
 
 ### Installation
 Add the jar files to the classpath.
+
 Add report4s.properties file in your project root folder (optional).
 
 ### TestNG XML file configuration
-Add the following lines before the closing </suite> tag in your testng xml file :
+Add the following lines before the closing `</suite>` tag in your testng xml file :
 ```
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="..." >
