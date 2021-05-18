@@ -7,10 +7,10 @@ Report4s is a Selenium HTML reporter for the TestNG framework.
 
 ### Features
 
-* It allows you to capture screenshots of :
+* Capable to capture screenshots of :
   * Web elements
   * Web pages
-* The stack trace of exceptions are displayed to facilitate you a better error analysis.
+* The stack trace of exceptions are displayed to facilitate a better error analysis.
 * The test report can be exported in Excel `.xlsx` format.
 * It is compatible with both Selenium 2 and Selenium 3.
 
@@ -49,7 +49,7 @@ report4.zip
     |---poi-ooxml-3.14.jar
     |---poi-ooxml-schemas-3.14.jar
     |---xmlbeans-2.6.0.jar
-    |---guava-22.0.jar               Required for selenium 2
+    |---guava-22.0.jar         Required for selenium 2
 ```
 
 ### Requirements
