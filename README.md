@@ -2,6 +2,7 @@
 # Report4s
 
 Simple and yet elegant Selenium HTML report.
+
 Report4s is a Selenium HTML reporter for the TestNG framework.
 
 ### Features
