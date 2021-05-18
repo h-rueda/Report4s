@@ -240,3 +240,18 @@ Screenshots work better with Firefox.
 
 ### Limitations
 No support for multi-threaded tests.
+
+### Sample screenshots
+
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot1.pn)
+
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/image2.png)
+
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot3.png)
+
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/image4.png)
+
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot5.png)
+
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot4.png)
+
