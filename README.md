@@ -11,7 +11,7 @@ Report4s is a Selenium HTML reporter for the TestNG framework.
   * Web elements
   * Web pages
 * The stack trace of exceptions are displayed to facilitate you a better error analysis.
-* The test report can be exported in Excel .xlsx format.
+* The test report can be exported in Excel `.xlsx` format.
 * It is compatible with both Selenium 2 and Selenium 3.
 
 ### Logged browser events
