@@ -5,7 +5,7 @@ import org.testng.*;
 
 /**
  * A holder of suites meta-data.
- * Meta-data is information needed in order to build both the html and the Excel summary reports.
+ * Meta-data is information needed in order to build both the HTML and the Excel summary reports.
  * @author Harmin Parra Rueda
  */
 class Metadata {
@@ -140,7 +140,7 @@ class SuiteMetadata {
 	protected String name;      //The suite name
 	protected String filename;  //The filename of the suite's report
 	protected String time;      //The suite execution time
-	protected Status status;	//The suite execution status
+	protected Status status;    //The suite execution status
 
 	/**
 	 * Whether this suite has multi-threaded tests.
