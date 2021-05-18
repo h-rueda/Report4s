@@ -243,15 +243,21 @@ No support for multi-threaded tests.
 
 ### Sample screenshots
 
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot1.pn)
+##### Sample 1 :
+![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot1.png)
 
+##### Sample 2 :
 ![](https://a.fsdn.com/con/app/proj/report4s/screenshots/image2.png)
 
+##### Sample 3 :
 ![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot3.png)
 
+##### Sample 4 :
 ![](https://a.fsdn.com/con/app/proj/report4s/screenshots/image4.png)
 
+##### Sample 5 :
 ![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot5.png)
 
+##### Sample 6 :
 ![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot4.png)
 
