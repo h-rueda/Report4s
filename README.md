@@ -17,6 +17,10 @@ Report4s is a Selenium HTML reporter for the TestNG framework.
 ### Logged browser events
 
 Report4s is able to log the following web browser events :
+* `Select.deselectByIndex(int)`
+* `Select.deselectByValue(java.lang.String)`
+* `Select.deselectByVisibleText(java.lang.String)`
+
 ```
 Select.deselectByIndex(int)
 Select.deselectByValue(java.lang.String)
