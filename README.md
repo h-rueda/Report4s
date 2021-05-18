@@ -135,7 +135,8 @@ The log levels are :
 
   `Report4s.logMessage(Level.*, description, webdriver, webelement, padding);`
 
-replace `*` by `INFO`, `WARNING` or `DEBUG`
+Replace `*` by `INFO`, `WARNING` or `DEBUG`
+
 No screenshot will be taken if the driver is an instance of HtmlUnitDriver.
 
 ### Sample Java code
