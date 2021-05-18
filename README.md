@@ -7,7 +7,7 @@ Report4s is a Selenium HTML reporter for the TestNG framework.
 
 ### Features
 
-* Capable to capture screenshots of :
+* Can capture screenshots of :
   * Web elements
   * Web pages
 * The stack trace of exceptions are displayed to facilitate a better error analysis.
