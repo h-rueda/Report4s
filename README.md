@@ -116,18 +116,23 @@ The log levels are :
 `PASSED`, `FAILED`, `INFO`, `WARNING` and `DEBUG`
 
 To log a web browser event :
+
 `Report4s.logEvent(String description, boolean screenshot);`
 
 To log a custom message :
+
 `Report4s.logMessage(Level.*, String description);`
 
 To log a custom message with a full page screenshot :
+
 `Report4s.logMessage(Level.*, description, webdriver);`
 
 To log custom message with a WebElement screenshot :
+
 `Report4s.logMessage(Level.*, description, webdriver, webelement);`
 
 For WebElement screenshots you have the possibility to apply an extra padding :
+
 `Report4s.logMessage(Level.*, description, webdriver, webelement, padding);`
 
 replace `*` by `INFO`, `WARNING` or `DEBUG`
@@ -163,6 +168,7 @@ public void test1() {
 You are encouraged to use the description attribute of the `@test` annotation to verbose your reports.
 
 A good tutorial on how to use testng with Selenium can be found here: http://testng.org/doc/selenium.html
+
 The example is for Selenium v1 but the same principles apply also to Selenium v2.
 
 ### report4s.properties file
