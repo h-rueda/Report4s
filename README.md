@@ -115,25 +115,25 @@ public class MyTest {
 The log levels are :
 `PASSED`, `FAILED`, `INFO`, `WARNING` and `DEBUG`
 
-To log a web browser event :
+* To log a web browser event :
 
-`Report4s.logEvent(String description, boolean screenshot);`
+  `Report4s.logEvent(String description, boolean screenshot);`
 
-To log a custom message :
+* To log a custom message :
 
-`Report4s.logMessage(Level.*, String description);`
+  `Report4s.logMessage(Level.*, String description);`
 
-To log a custom message with a full page screenshot :
+* To log a custom message with a full page screenshot :
 
-`Report4s.logMessage(Level.*, description, webdriver);`
+  `Report4s.logMessage(Level.*, description, webdriver);`
 
-To log custom message with a WebElement screenshot :
+* To log custom message with a WebElement screenshot :
 
-`Report4s.logMessage(Level.*, description, webdriver, webelement);`
+  `Report4s.logMessage(Level.*, description, webdriver, webelement);`
 
-For WebElement screenshots you have the possibility to apply an extra padding :
+* For WebElement screenshots you have the possibility to apply an extra padding :
 
-`Report4s.logMessage(Level.*, description, webdriver, webelement, padding);`
+  `Report4s.logMessage(Level.*, description, webdriver, webelement, padding);`
 
 replace `*` by `INFO`, `WARNING` or `DEBUG`
 No screenshot will be taken if the driver is an instance of HtmlUnitDriver.
