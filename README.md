@@ -61,7 +61,7 @@ testng 6.9.4 or later
 Do not rename the report4s JAR file.
 
 ### Installation
-Add the jar files to the classpath.
+Add the JAR files to the classpath.
 
 Add report4s.properties file in your project root folder (optional).
 
