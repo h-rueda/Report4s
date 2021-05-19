@@ -102,8 +102,8 @@ public class MyTest {
 
     @BeforeSuite(alwaysRun=true)
     public void setUp() {
-        . . . . 
-        . . . . 
+        ...
+        ...
         eventDriver = new EventFiringWebDriver(driver);
         EventHandler handler = new EventHandler();
         eventDriver.register(handler);
