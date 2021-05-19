@@ -58,7 +58,7 @@ Java 7 or later
 testng 6.9.4 or later
 
 ### Caution
-DO NOT RENAME THE report4s JAR FILE.
+Do not rename the report4s JAR file.
 
 ### Installation
 Add the jar files to the classpath.
