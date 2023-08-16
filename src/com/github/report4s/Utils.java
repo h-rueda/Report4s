@@ -96,6 +96,15 @@ class Utils {
     }
 
     /**
+     * Return the dependsOnMethods attribute of a test method.
+     * @param result The test under execution.
+     * @return The dependsOnMethods attribute of the @test annotation of the test method.
+     */
+    protected static String[] getDependencies(ITestResult result) {
+        return result.getMethod().getMethodsDependedUpon();
+    }
+
+    /**
      * Return the success percentage of a test method.
      * @param result The test under execution.
      * @return The successPercentage attribute of the @test annotation.

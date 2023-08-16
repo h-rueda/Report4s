@@ -52,6 +52,10 @@ public class TestListener extends TestListenerAdapter {
 
         //Force the test to skip if the necessary conditions are met.
         if (SuiteListener.test_failure && Report4s.skipSuiteAfterTestFailure) {
+            if (Utils.getDependencies(result).length > 0) {
+                startTestReport(result);
+                return;
+            }
             result.setEndMillis(result.getStartMillis());
             result.setStatus(ITestResult.SKIP);
             HtmlWriter.printTestTitle(result);
