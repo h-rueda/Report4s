@@ -1,11 +1,18 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Not logged failed test">
-	<test name="My test" preserve-order="true">
-		<classes>
-			<class name="net.sourceforge.report4s.test.MyTest4"/>
-		</classes>
-	</test>
-
-
+<suite name="Web4 - Passed + skipped test">
+    <test name="My test" preserve-order="true">
+        <classes>
+            <class name="com.github.report4s.test.Web4">
+                <methods>
+                    <include name="search"/>
+                    <include name="setGender"/>
+                    <include name="selectCar"/>
+                    <include name="selectCountry"/>
+                    <include name="selectFruit"/>
+                    <include name="writeTextArea"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
 </suite>

@@ -1,0 +1,11 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test - others">
+	<suite-files>
+        <suite-file path="suites/parameter.xml"/>
+        <suite-file path="suites/percentage.xml"/>
+        <suite-file path="suites/multi-thread-1.xml"/>
+        <suite-file path="suites/multi-thread-2.xml"/>
+        <suite-file path="suites/multi-thread-3.xml"/>
+	</suite-files>
+</suite>

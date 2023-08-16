@@ -1,3 +1,30 @@
+v5.0
+====
+New features:
+* Screenshots can be automatically gathered upon webdriver events.
+  Intercepted events:
+    - clear
+    - click
+    - get
+    - navigate back, forward, to & refresh
+    - sendKeys
+* User can decide which screenshots to gather:
+    - screenshots for all intercepted events.
+    - last screenshot for all test-annotated method executions.
+    - last screenshot on failed tests.
+    - none (user can still gather screenshots manually)
+* Test results table can be filtered by test status.
+* Addition of a brief summary in the test report.
+
+Bug fixes:
+* Header of skipped test-annotated methods display twice.
+
+Changes:
+* Removal of pie charts.
+* Removal of Excel export.
+* Update external dependencies
+
+
 v4.0
 ====
 * The test report has been simplified. It's now displayed in a table of 3 columns instead of 6.
@@ -73,3 +100,7 @@ v1.2
 v1.1
 ====
 * Improvements in the validation of integer property values that are read from the report4s.properties file.
+
+v1.0
+====
+Initial release

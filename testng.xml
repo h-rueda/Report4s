@@ -1,35 +1,19 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Test web">
+<suite name="All Tests">
 
 	<suite-files>
-		<suite-file path="suites/suite-1.xml"/>
-		<suite-file path="suites/suite-2.xml"/>
-		<suite-file path="suites/suite-3.xml"/>
-		<suite-file path="suites/suite-4.xml"/>
-		<suite-file path="suites/suite-5.xml"/>
-		<suite-file path="suites/suite-6.xml"/>
-		<suite-file path="suites/suite-7.xml"/>
-		<suite-file path="suites/suite-8.xml"/>
-		<suite-file path="suites/demo.xml"/>
-		<!--suite-file path="suites/percentage.xml"/-->
-		<suite-file path="suites/conf-1.xml"/>
-		<suite-file path="suites/conf-2.xml"/>
-		<suite-file path="suites/conf-3.xml"/>
-		<suite-file path="suites/multi-thread-1.xml"/>
-		<suite-file path="suites/multi-thread-2.xml"/>
-		<suite-file path="suites/multi-thread-3.xml"/>
-		<suite-file path="suites/dependend-tests-1.xml"/>
-		<suite-file path="suites/dependend-tests-2.xml"/>
-		<suite-file path="suites/all-conf-1.xml"/>
-		<suite-file path="suites/all-conf-2.xml"/>
+        <suite-file path="suites/test-web.xml"/>
+        <suite-file path="suites/test-config.xml"/>
+        <suite-file path="suites/test-others.xml"/>
 	</suite-files>
 	
 	<listeners>
-		<listener class-name="net.sourceforge.report4s.ConfigurationListener" />
-		<listener class-name="net.sourceforge.report4s.TestListener" />
-		<listener class-name="net.sourceforge.report4s.SuiteListener" />
-		<listener class-name="net.sourceforge.report4s.ReportIndex" />
+        <!--listener class-name="com.github.report4s.Listeners" /-->
+		<listener class-name="com.github.report4s.ConfigurationListener" />
+		<listener class-name="com.github.report4s.TestListener" />
+		<listener class-name="com.github.report4s.SuiteListener" />
+		<listener class-name="com.github.report4s.Reporter" />
 	</listeners>
 	
 </suite>

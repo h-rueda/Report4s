@@ -1,11 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Passed multi-thread tests">
- 
-	<test name="My test A" parallel="methods">
-		<classes>
-			<class name="net.sourceforge.report4s.test.MultiThread1"/>
-		</classes>
-	</test>
-
+<suite name="MultiThread2 - Failed" parallel="methods" thread-count="5">
+    <test name="Test">
+        <classes>
+            <class name="com.github.report4s.test.MultiThread2"/>
+        </classes>
+    </test>
 </suite>

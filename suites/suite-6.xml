@@ -1,11 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Failed step test with screenshot on failure">
+<suite name="Web6 - Setup failure">
 	<test name="My test" preserve-order="true">
 		<classes>
-			<class name="net.sourceforge.report4s.test.MyTest6"/>
+			<class name="com.github.report4s.test.Web6"/>
 		</classes>
 	</test>
-
-
 </suite>

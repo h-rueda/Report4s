@@ -1,36 +1,33 @@
 <?xml version="1.0"?>
-<project name="Report4s" default="main" basedir=".">
-	<property name="build.dir"    location="bin" />
-	<property name="test.src.dir" location="test" />
-	<property name="jar.dir"      location="jar" />
-	<property name="lib.dir"      location="lib"/>
+<project name="Report4s Test" default="main" basedir=".">
+    <property name="build.dir"  location="bin" />
+    <property name="test.dir"   location="test" />
+    <property name="jar.dir"    location="jar" />
+    <property name="lib.dir"    location="lib"/>
 
-	<path id="classpath">
-		<fileset dir="${lib.dir}" includes="**/*.jar"/>
-		<pathelement location="${build.dir}"/>
-	</path>
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+        <fileset dir="${jar.dir}" includes="**/*.jar"/>
+        <pathelement location="${build.dir}"/>
+    </path>
 
-	<path id="testng.classpath">
-		<path refid="classpath"/>
-		<fileset dir="${jar.dir}" includes="**/*.jar"/>
-		<pathelement location="${build.dir}"/>
-	</path>
+    <!-- Compile the test java code -->
+    <target name="compile">
+        <delete dir="${build.dir}" quiet="true"/>
+        <mkdir dir="${build.dir}" />
+        <javac srcdir="${test.dir}" destdir="${build.dir}" classpathref="classpath" debug="true" includeantruntime="false"/>
+    </target>
 
-	<!-- Compile the test java code -->
-	<target name="compile">
-		<javac srcdir="${test.src.dir}" destdir="${build.dir}" classpathref="classpath" debug="true"/>
-	</target>
-
-	<taskdef resource="testngtasks" classpath="${lib.dir}/testng-6.10.jar"/>
+    <taskdef resource="testngtasks" classpathref="classpath" />
   
-	<!-- Execute the tests -->
-	<target name="test" depends="compile">
-		<description>Tests Execution</description>
-		<testng classpathref="testng.classpath" useDefaultListeners="false">
-			<xmlfileset file="testng.xml"/>
-		</testng>
-	</target>
+    <!-- Execute the tests -->
+    <target name="test" depends="compile">
+        <description>Tests Execution</description>
+        <testng classpathref="classpath" useDefaultListeners="false">
+            <xmlfileset file="testng.xml"/>
+        </testng>
+    </target>
 
-	<target name="main" depends="test"/>
+    <target name="main" depends="test"/>
 
 </project>

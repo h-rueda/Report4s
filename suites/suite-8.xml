@@ -1,11 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Failed suite test with screenshot on failure without log">
+<suite name="Web8 - Manual logs">
 	<test name="My test" preserve-order="true">
 		<classes>
-			<class name="net.sourceforge.report4s.test.MyTest8"/>
+			<class name="com.github.report4s.test.Web8"/>
 		</classes>
 	</test>
-
-
 </suite>

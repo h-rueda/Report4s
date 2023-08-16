@@ -1,11 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Logged failed step">
+<suite name="Web2 - Failed test with skip">
 	<test name="My test" preserve-order="true">
 		<classes>
-			<class name="net.sourceforge.report4s.test.MyTest2"/>
+			<class name="com.github.report4s.test.Web2"/>
 		</classes>
 	</test>
-
-
 </suite>

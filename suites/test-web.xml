@@ -1,0 +1,14 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Test - web">
+	<suite-files>
+        <suite-file path="suites/suite-1.xml"/>
+        <suite-file path="suites/suite-2.xml"/>
+        <suite-file path="suites/suite-3.xml"/>
+        <suite-file path="suites/suite-4.xml"/>
+        <suite-file path="suites/suite-5.xml"/>
+        <suite-file path="suites/suite-6.xml"/>
+        <suite-file path="suites/suite-7.xml"/>
+        <suite-file path="suites/suite-8.xml"/>
+	</suite-files>
+</suite>

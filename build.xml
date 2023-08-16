@@ -1,63 +1,60 @@
-<?xml version="1.0"?>
 <project name="Report4s" default="main" basedir=".">
-	<property name="src.dir"   location="src" />
-	<property name="build.dir" location="bin" />
-	<property name="temp.dir"  location="temp" />
-	<property name="jar.dir"   location="jar" />
-	<property name="lib.dir"   location="lib"/>
-	<property name="javadoc.dir"   location="javadoc"/>
-	<property name="resources.dir" location="resources"/>
-	<property name="jarfile" value="report4s-4.0"/>
-	<property name="package" value="net/sourceforge/report4s"/>
+    <property name="src.dir"   location="src" />
+    <property name="build.dir" location="bin" />
+    <property name="temp.dir"  location="temp" />
+    <property name="jar.dir"   location="jar" />
+    <property name="lib.dir"   location="lib"/>
+    <property name="javadoc.dir"  location="javadoc"/>
+    <property name="assets.dir"   location="assets"/>
+    <property name="jarfile"  value="report4s"/>
+    <property name="version"  value="5.0"/>
+    <property name="package"  value="com/github/report4s"/>
 
-	<path id="classpath">
-		<fileset dir="${lib.dir}" includes="**/*.jar"/>
-	</path>
+    <path id="classpath">
+        <fileset dir="${lib.dir}" includes="**/*.jar"/>
+    </path>
   
-	<!-- Delete the existing build -->
-	<target name="clean">
-		<delete dir="${build.dir}" quiet="true"/>
-		<delete dir="${javadoc.dir}" quiet="true"/>
-		<delete dir="${temp.dir}" quiet="true"/>
-		<delete dir="${jar.dir}" quiet="true"/>
-	</target>
+    <!-- Delete the existing build -->
+    <target name="clean">
+        <delete dir="${build.dir}" quiet="true"/>
+        <delete dir="${javadoc.dir}" quiet="true"/>
+        <delete dir="${temp.dir}" quiet="true"/>
+        <delete dir="${jar.dir}" quiet="true"/>
+    </target>
 
-	<!-- Create the necessary directories for a build -->
-	<target name="makedir">
-		<mkdir dir="${build.dir}" />
-		<mkdir dir="${javadoc.dir}" />
-		<mkdir dir="${jar.dir}" />
-	</target>
+    <!-- Create the necessary directories for a build -->
+    <target name="makedir">
+        <mkdir dir="${build.dir}" />
+        <mkdir dir="${javadoc.dir}" />
+        <mkdir dir="${jar.dir}" />
+    </target>
 
-	<!-- Compile the java code -->
-	<target name="compile" depends="clean, makedir">
-		<javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" debug="true"/>
-	</target>
+    <!-- Compile the java code -->
+    <target name="compile" depends="clean, makedir">
+        <javac srcdir="${src.dir}" destdir="${build.dir}" classpathref="classpath" debug="true" includeantruntime="false"/>
+    </target>
 
-	<!-- Generate the javadoc -->
-	<target name="javadoc" depends="compile">
-		<!--javadoc stylesheetfile="javadoc-stylesheet.css" destdir="${javadoc.dir}" public="true"-->
-		<javadoc destdir="${javadoc.dir}" public="true" link="https://seleniumhq.github.io/selenium/docs/api/java/">
-			<source file="${src.dir}/${package}/Level.java"/> 
-			<source file="${src.dir}/${package}/Report4s.java"/>
-		</javadoc>
-		<delete dir="${javadoc.dir}/resources" quiet="true"/>
-	</target>
-	
-	<!-- Build the jar file -->
-	<target name="jar" depends="compile, javadoc">
-		<mkdir dir="${temp.dir}" />
-		<copy todir="${temp.dir}/resources">
-			<fileset dir="${resources.dir}"/>
-		</copy>
-		<jar destfile="${jar.dir}/${jarfile}.jar">
-			<fileset dir="${temp.dir}"/>
-			<fileset dir="${build.dir}"/>
-			<fileset file="LICENSE"/>
-		</jar>
-		<delete dir="${temp.dir}" quiet="true"/>
-	</target>
+    <!-- Generate the javadoc -->
+    <target name="javadoc" depends="compile">
+        <javadoc destdir="${javadoc.dir}" classpathref="classpath" sourcepath="${src.dir}"
+          public="true" link="https://www.selenium.dev/selenium/docs/api/java/">
+        </javadoc>
+    </target>
+    
+    <!-- Build the jar file -->
+    <target name="jar" depends="compile">
+        <mkdir dir="${temp.dir}" />
+        <copy todir="${temp.dir}/assets">
+            <fileset dir="${assets.dir}"/>
+        </copy>
+        <jar destfile="${jar.dir}/${jarfile}-${version}.jar">
+            <fileset dir="${temp.dir}"/>
+            <fileset dir="${build.dir}"/>
+            <fileset file="LICENSE"/>
+        </jar>
+        <delete dir="${temp.dir}" quiet="true"/>
+    </target>
 
-	<target name="main" depends="jar"/>
+    <target name="main" depends="jar"/>
 
 </project>

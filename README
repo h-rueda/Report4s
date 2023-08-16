@@ -2,7 +2,7 @@ Thank you for using Report4s.
 Report4s is a Selenium HTML reporter for the TestNG framework.
 It is compatible with both Selenium 2 and Selenium 3.
 
-Report4s is able to log the following web browser events :
+Report4s is able to automatically log the following webdriver events :
 
 * Select.deselectByIndex(int)
 * Select.deselectByValue(java.lang.String)
@@ -20,7 +20,7 @@ Report4s is able to log the following web browser events :
 
 * WebElement.click()
 * WebElement.sendKeys(CharSequence[])
- 
+
 You have also the possibility to log custom messages with either a full web page or a web element screenshot.
 
 
@@ -33,20 +33,18 @@ report4.zip
 |---report4s.properties        Configuration file (optional)
 |---lib
     |---report4s.jar                 The report4s library
-    |---commons-io-2.5.jar           --|
-    |---poi-3.14.jar                   |   Required
-    |---poi-ooxml-3.14.jar             |-- external
-    |---poi-ooxml-schemas-3.14.jar     |   libraries
-    |---xmlbeans-2.6.0.jar           --|
-    |---guava-22.0.jar               Required for selenium 2
+    
+    |---commons-io-2.5.jar           Required external libraries
+    |---common-lang-3-3.12.0.jar     
 
 
 **********************************************************************
 *                            Requirements                            *
 **********************************************************************
 
-- Java 7 or later
-- testng 6.9.4 or later
+- Java 8 or later
+- testng 7.8.0 or later
+- Selenium 4
 
 
 **********************************************************************
@@ -75,11 +73,10 @@ in each TestNG XML file :
    ...
    ...
    <listeners>
-      <listener class-name="net.sourceforge.report4s.ReportIndex" />
-      <listener class-name="net.sourceforge.report4s.SuiteListener" />
-      <listener class-name="net.sourceforge.report4s.TestListener" />
-      <!-- The configuration listener is optional -->
       <listener class-name="net.sourceforge.report4s.ConfigurationListener" />
+      <listener class-name="net.sourceforge.report4s.TestListener" />
+      <listener class-name="net.sourceforge.report4s.SuiteListener" />
+      <listener class-name="net.sourceforge.report4s.ReportIndex" />
    </listeners>
 </suite>
 
@@ -103,20 +100,30 @@ import net.sourceforge.report4s.Level;
 
 We need to wrap the WebDriver into an Event Listener
 
+import com.github.report4s.DriverListener;
+
 public class MyTest {
  
-    private static WebDriver driver;
-    private static EventFiringWebDriver eventDriver;
-	
+    private WebDriver driver;
+    private EventFiringWebDriver driver;
+    
     @BeforeSuite(alwaysRun=true)
-	public void setUp() {
-        . . . . 
-        . . . . 
-        eventDriver = new EventFiringWebDriver(driver);
-		EventHandler handler = new EventHandler();
-		eventDriver.register(handler);
-		eventDriver.manage().window().maximize();
-	}
+    public void setUp() {
+        WebDriver raw_driver;
+        
+        // Initialize raw_driver as instance of FirefoxDriver, or ChromeDriver, or EdgeDriver, etc.
+        
+        DriverListener listener = new DriverListener();
+        this.driver = new EventFiringDecorator<WebDriver>(listener).decorate(raw_driver);
+        this.driver.manage().window().maximize();
+    }
+
+    // Your test methods go here.
+    
+    @AfterSuite
+    public void tearDown() {
+        this.driver.quit();
+    }   
 }
 
 
@@ -126,71 +133,63 @@ public class MyTest {
 
 The log levels are :
 
-PASSED, FAILED, INFO, WARNING, DEBUG, ERROR and TRACE
+PASSED, FAILED, SKIPPED, INFO, WARNING, ERROR, DEBUG and TRACE
 
 ----------------------------------------------------------------------
 
-To log a web browser event
-
-Report4s.logEvent(String description, boolean screenshot);
-
-----------------------------------------------------------------------
-
-To log a custom message :
+To log a custom message without screenshot:
 
 Report4s.logMessage(Level.*, description);
 
 ----------------------------------------------------------------------
 
-To log a custom message with a full page screenshot :
+To log a custom message with a page screenshot :
 
-Report4s.logMessage(Level.*, description, webdriver);
+Report4s.logMessage(Level.*, description, driver);
 
 ----------------------------------------------------------------------
 
 To log custom message with a WebElement screenshot :
 
-Report4s.logMessage(Level.*, description, webdriver, webelement);
+Report4s.logMessage(Level.*, description, driver, webelement);
 
 ----------------------------------------------------------------------
 
 For WebElement screenshots you have the possibility to apply an extra padding
 
-Report4s.logMessage(Level.*, description, webdriver, webelement, padding);
+Report4s.logMessage(Level.*, description, driver, webelement, padding);
 
 
-replace * by INFO, WARNING or DEBUG
-No screenshot will be taken if the driver is an instance of HtmlUnitDriver.
+replace * by PASSED, FAILED, SKIPPED, INFO, WARNING, ERROR, DEBUG or TRACE
 
 
 **********************************************************************
 *                          Sample Java code                          *
 **********************************************************************
 
-The Report4s.logEvent method should be called right before
-the call of the event you want to log.
+The Report4s logs screenshots upon webdriver events.
+
+If the screenshots gathering is deactivated, screenshots can still
+be taken by making explicit class to Report4s.LogMessage method.
 
 @Test(description = "My test description")
 public void test1() {
 
-	Report4s.logEvent("Open web site", true);
-	eventDriver.get("http://www.example.com");
+    this.driver.get("http://www.example.com");
+    Report4s.logMessage(Level.PASSED, "Log with screenshot", this.driver);
 
-	WebElement elem;
-	elem = eventDriver.findElement(By.name("xxxx"));
-	Report4s.logEvent("send keys", true);
-	elem.sendKeys("Hello World !!");
+    WebElement elem;
+    elem = this.driver.findElement(By.name("xxxx"));
+    elem.sendKeys("Hello World !!");
 
-	elem = eventDriver.findElement(By.id("xxxx"));
-	Report4s.logEvent("click on button", true);
-	elem.click();
+    elem = this.driver.findElement(By.id("xxxx"));
+    elem.click();
 
-	Select sel = new Select(eventDriver.findElement(By.name("xxxx")));
-	Report4s.logEvent("click on select", true);
-	sel.selectByValue("xxxx");
+    Select sel = new Select(this.driver.findElement(By.name("xxxx")));
+    sel.selectByValue("xxxx");
+    Report4s.logMessage(Level.INFO, "Log without screenshot");
 
-	Report4s.logEvent("Navigate back", true);
-	eventDriver.navigate().back();
+    this.driver.navigate().back();
 }
 
 
@@ -202,8 +201,8 @@ public void test1() {
 #UNCOMMENT THE APPROPRIATE LINE AND SET THE VALUE OF YOUR CHOICE.
 
 
-#The report directory relative to the workspace (working directory)
-#It is advisable to avoid using the same TestNG default report directory (test-output)
+#The report directory relative to the workspace (working directory).
+#It is advisable to avoid using the same TestNG default report directory (test-output).
 #report4s.report.dir=report
 
 
@@ -215,18 +214,19 @@ public void test1() {
 #report4s.report.title=Test Execution Summary
 
 
-#The excel report filename.
-#report4s.report.excel=Test report.xlsx
+#The screenshots to gather.
+#Values: all, last, failed or none.
+#report4s.screenshots.enabled=all
 
 
-#Whether to enable screenshots.
-#Regardless its value, a screenshot is taken right after a test failure whenever possible.
-#report4s.screenshots.enabled=true
+#Whether to take screenshots of WebElements or pages.
+#Values: page or element.
+#report4s.screenshots.target=page
 
 
 #Padding in pixels to be applied to WebElement screenshots.
 #Defines the area around the WebElement to be included in the screenshot.
-#report4s.screenshots.padding=0
+#report4s.screenshots.padding=10
 
 
 #The number of decimals of precision to be displayed in execution time labels.
@@ -234,37 +234,19 @@ public void test1() {
 #report4s.time.precision=0
 
 
-#The pie chart aggregation to be plotted.
-#Possible values: suite, test or both.
-#report4s.piechart.aggregation=suite
-
-
 #Whether to display tooltips with the execution result for each individual suite.
 #report4s.suite.tooltips.enabled=true
 
 
-#Whether to display a test result piechart or a status icon for each individual suite.
-#Possible values: piechart or icon. (The icons are: PASSED, FAILED or SKIPPED)
-#report4s.suite.status.content=icon
-
-
-#The width and height values in pixels for the piecharts in the status column.
-#This property will be ignored if report4s.suite.status.content is set to "icon".
-#report4s.suite.status.size=35px
-
-
-#Whether to skip the remaining steps of the current test execution
-#if a step is logged with the FAILED level.
-#report4s.execution.skipTestAfterStepFailure=false
-
-
 #Whether to skip the remaining tests of the current suite if a test fails.
-#report4s.execution.skipSuiteAfterTestFailure=false
+#report4s.execution.skipSuiteAfterTestFailure=true
 
 
 **********************************************************************
 *                            Limitations                             *
 **********************************************************************
+
+No support for HtmlUnitDriver webdriver.
 
 No support for multi-threaded tests.
 
