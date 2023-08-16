@@ -164,7 +164,7 @@ class HtmlWriter {
             "            <tr>" + "\n" +
             "                <th style=\"width:100px\">Status</th>" + "\n" +
             "                <th>Description</th>" + "\n" +
-            "                <th style=\"width:100px\" name=\"screenshot_test_" + SuiteListener.methodCount + "\">Screenshot</th>" + "\n" +
+            "                <th style=\"width:130px\" name=\"screenshot_test_" + SuiteListener.methodCount + "\">Screenshot</th>" + "\n" +
             "            </tr>";
     }
 
