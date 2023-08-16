@@ -7,7 +7,7 @@ Report4s is a Selenium HTML reporter for the TestNG framework.
 
 It is only compatible with Selenium 4.
 
-### Features
+## Features
 
  + Can automatically log screenshots upon the following webdriver events:
     + `Select.deselectByIndex(int)`
@@ -28,12 +28,12 @@ It is only compatible with Selenium 4.
  + The stack trace of exceptions are also logged in order to facilitate the error analysis.
 
  + Different screenshot gathering modes are supported:
-    + `all`     All screenshots upon webdriver events.
+    + `all`     All screenshots for intercepted webdriver events.
     + `last`    The screenshot of the last step for each `@Test` annotated method.
-    + `failed`  The last screenshot before test failure.
+    + `failed`  The last screenshot of each test failure.
     + `none`    Deactivation of automatic screenshot gathering.
 
-### The ZIP file contents
+## The ZIP file contents
 
 ```
 report4.zip
@@ -45,22 +45,22 @@ report4.zip
     |---commons-lang3-3.12.0.jar
 ```
 
-### Requirements
+## Requirements
 Java 8 or later
 
 testng 7.8.0 or later
 
 Selenium 4.10.0 or later
 
-### Caution
+## Caution
 Do not rename the report4s JAR file.
 
-### Installation
+## Installation
 Add the JAR files to the classpath.
 
 Add `report4s.properties` file in your project root folder (optional).
 
-### TestNG XML file configuration
+## TestNG XML file configuration
 Add the following lines before the closing `</suite>` tag in your testng XML file :
 
 ```
@@ -77,7 +77,7 @@ Add the following lines before the closing `</suite>` tag in your testng XML fil
 </suite> 
 ```
 
-### The packages to import
+## The packages to import
 
 ```
 import com.github.report4s.*;
@@ -91,7 +91,7 @@ import com.github.report4s.Report4s;
 import com.github.report4s.Level;
 ```
 
-### The test configuration
+## The test configuration
 
 The WebDriver needs to be decorated with a WebDriver listener.
 
@@ -117,12 +117,13 @@ public class MyTest {
     
     @AfterSuite
     public void tearDown() {
-        this.driver.quit();
+        try { this.driver.quit(); }
+        catch (Exception e) { }
     }   
 }
 ```
 
-### How to log
+## How to log
 
 
 The log levels are :
@@ -151,7 +152,7 @@ The log levels are :
 Replace `*` by `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 
 
-### Sample Java code
+## Sample Java code
 
 The Report4s is able to log screenshots automatically upon webdriver events.
 
@@ -187,7 +188,7 @@ A good tutorial on how to use testng with Selenium can be found here: http://tes
 The example is for Selenium v1 but the same principles also apply to Selenium v4.
 
 
-### Limitations
+## Limitations
 
 Several FAILED screenshots are logged when using Waiting strategies (implicit, explicit or fluent wait)
 
@@ -196,7 +197,7 @@ No support for HtmlUnitDriver webdriver.
 No support for multi-threaded tests.
 
 
-### Good Practices
+## Good Practices
 
 Use the description attribute of the @test annotation to verbose your reports.
 
@@ -234,7 +235,7 @@ Set the order of execution of methods directly in the testng XML files.
 ```
 
 
-### report4s.properties file
+## report4s.properties file
 
 ```
 #IF YOU WANT TO MODIFY A PROPERTY DEFAULT VALUE,
@@ -283,7 +284,7 @@ Set the order of execution of methods directly in the testng XML files.
 ```
 
 
-### Sample screenshots
+## Sample screenshots
 
 ##### Sample 1 :
 ![](docs/image-1.png)

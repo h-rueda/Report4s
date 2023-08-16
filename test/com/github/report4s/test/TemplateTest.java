@@ -55,6 +55,7 @@ public class TemplateTest {
 	
 	@AfterSuite
 	public void tearDown() {
-		try { this.driver.quit(); } catch (Exception e) { }
+		try { this.driver.quit(); }
+		catch (Exception e) { }
 	}
 }
