@@ -4,6 +4,8 @@ javadoc/
 report/
 webdrivers/
 
+report4s-*.zip
+
 .classpath
 .project
 .settings/
