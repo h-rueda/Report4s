@@ -1,0 +1,10 @@
+bin/
+jar/
+javadoc/
+report/
+webdrivers/
+
+.classpath
+.project
+.settings/
+
