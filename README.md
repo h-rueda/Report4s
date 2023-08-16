@@ -5,57 +5,52 @@ Simple and yet elegant Selenium HTML report.
 
 Report4s is a Selenium HTML reporter for the TestNG framework.
 
+It is only compatible with Selenium 4.
+
 ### Features
 
-* Can capture screenshots of :
-  * Web elements
-  * Web pages
-* The stack trace of exceptions are displayed to facilitate a better error analysis.
-* The test report can be exported in Excel `.xlsx` format.
-* It is compatible with both Selenium 2 and Selenium 3.
+ + Can automatically log screenshots upon the following webdriver events:
+    + `Select.deselectByIndex(int)`
+    + `Select.deselectByValue(java.lang.String)`
+    + `Select.deselectByVisibleText(java.lang.String)`
+    + `Select.selectByIndex(int)`
+    + `Select.selectByValue(java.lang.String)`
+    + `Select.selectByVisibleText(java.lang.String)`
+    + `WebDriver.get(java.lang.String)`
+    + `WebDriver.navigate().back()`
+    + `WebDriver.navigate().forward()`
+    + `WebDriver.navigate().refresh()`
+    + `WebDriver.navigate().to(java.lang.String)`
+    + `WebDriver.navigate().to(java.net.URL)`
+    + `WebElement.click()`
+    + `WebElement.sendKeys(CharSequence[])`
 
-### Logged browser events
+ + The stack trace of exceptions are also logged in order to facilitate the error analysis.
 
-Report4s is able to log the following web browser events :
-```
-Select.deselectByIndex(int)
-Select.deselectByValue(java.lang.String)
-Select.deselectByVisibleText(java.lang.String)
-
-Select.selectByIndex(int)
-Select.selectByValue(java.lang.String)
-Select.selectByVisibleText(java.lang.String)
-
-WebDriver.get(java.lang.String)
-WebDriver.navigate().back()
-WebDriver.navigate().forward()
-WebDriver.navigate().refresh()
-WebDriver.navigate().to(java.lang.String)
-WebDriver.navigate().to(java.net.URL)
-
-WebElement.click()
-WebElement.sendKeys(CharSequence[])
-```
+ + Different screenshot gathering modes are supported:
+    + `all`     All screenshots upon webdriver events.
+    + `last`    The screenshot of the last step for each `@Test` annotated method.
+    + `failed`  The last screenshot before test failure.
+    + `none`    Deactivation of automatic screenshot gathering.
 
 ### The ZIP file contents
+
 ```
 report4.zip
 |---javadoc                    The API documentation
 |---report4s.properties        Configuration file (optional)
 |---lib                        Required external libraries
     |---report4s.jar
-    |---commons-io-2.5.jar
-    |---poi-3.14.jar
-    |---poi-ooxml-3.14.jar
-    |---poi-ooxml-schemas-3.14.jar
-    |---xmlbeans-2.6.0.jar
-    |---guava-22.0.jar         Required for selenium 2
+    |---commons-io-2.12.0.jar
+    |---commons-lang3-3.12.0.jar
 ```
 
 ### Requirements
-Java 7 or later
+Java 8 or later
 
-testng 6.9.4 or later
+testng 7.8.0 or later
+
+Selenium 4.10.0 or later
 
 ### Caution
 Do not rename the report4s JAR file.
@@ -63,10 +58,11 @@ Do not rename the report4s JAR file.
 ### Installation
 Add the JAR files to the classpath.
 
-Add report4s.properties file in your project root folder (optional).
+Add `report4s.properties` file in your project root folder (optional).
 
 ### TestNG XML file configuration
 Add the following lines before the closing `</suite>` tag in your testng XML file :
+
 ```
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 <suite name="..." >
@@ -76,45 +72,61 @@ Add the following lines before the closing `</suite>` tag in your testng XML fil
         <listener class-name="net.sourceforge.report4s.ReportIndex" />
         <listener class-name="net.sourceforge.report4s.TestListener" />
         <listener class-name="net.sourceforge.report4s.SuiteListener" />
-        <!-- The configuration listener is optional -->
         <listener class-name="net.sourceforge.report4s.ConfigurationListener" />
     </listeners>
 </suite> 
 ```
 
 ### The packages to import
+
 ```
-import net.sourceforge.report4s.*;
+import com.github.report4s.*;
 ```
+
 or
+
 ```
-import net.sourceforge.report4s.EventHandler;
-import net.sourceforge.report4s.Report4s;
-import net.sourceforge.report4s.Level;
+import com.github.report4s.DriverListener;
+import com.github.report4s.Report4s;
+import com.github.report4s.Level;
 ```
 
 ### The test configuration
-We need to wrap the WebDriver into an Event Listener
-```
-public class MyTest {
-    private static WebDriver driver;
-    private static EventFiringWebDriver eventDriver;
 
+The WebDriver needs to be decorated with a WebDriver listener.
+
+```
+import com.github.report4s.DriverListener;
+
+public class MyTest {
+ 
+    private WebDriver driver;
+    
     @BeforeSuite(alwaysRun=true)
     public void setUp() {
-        ...
-        ...
-        eventDriver = new EventFiringWebDriver(driver);
-        EventHandler handler = new EventHandler();
-        eventDriver.register(handler);
-        eventDriver.manage().window().maximize();
+        WebDriver raw_driver;
+        
+        // Initialize raw_driver as instance of FirefoxDriver, or ChromeDriver, or EdgeDriver, etc.
+        
+        DriverListener listener = new DriverListener();
+        this.driver = new EventFiringDecorator<WebDriver>(listener).decorate(raw_driver);
+        this.driver.manage().window().maximize();
     }
+
+    // Your test methods go here.
+    
+    @AfterSuite
+    public void tearDown() {
+        this.driver.quit();
+    }   
 }
 ```
 
 ### How to log
+
+
 The log levels are :
-`PASSED`, `FAILED`, `INFO`, `WARNING` and `DEBUG`
+`PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 
 * To log a web browser event :
 
@@ -136,34 +148,35 @@ The log levels are :
 
   `Report4s.logMessage(Level.*, description, webdriver, webelement, padding);`
 
-Replace `*` by `INFO`, `WARNING` or `DEBUG`
+Replace `*` by `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 
-No screenshot will be taken if the driver is an instance of HtmlUnitDriver.
 
 ### Sample Java code
-The `Report4s.logEvent` method should be called right before the call of the event you want to log.
+
+The Report4s is able to log screenshots automatically upon webdriver events.
+
+If the screenshots gathering is deactivated, screenshots can still
+be taken by making explicit class to `Report4s.LogMessage` methods.
+
 ```
 @Test(description = "My test description")
 public void test1() {
 
-    Report4s.logEvent("Open web site", true);
-    eventDriver.get("http://www.example.com");
+    this.driver.get("http://www.example.com");
+    Report4s.logMessage(Level.PASSED, "Manual log with screenshot", this.driver);
 
     WebElement elem;
-    elem = eventDriver.findElement(By.name("xxxx"));
-    Report4s.logEvent("send keys", true);
+    elem = this.driver.findElement(By.name("xxxx"));
     elem.sendKeys("Hello World !!");
 
-    elem = eventDriver.findElement(By.id("xxxx"));
-    Report4s.logEvent("click on button", true);
+    elem = this.driver.findElement(By.id("xxxx"));
     elem.click();
 
-    Select sel = new Select(eventDriver.findElement(By.name("xxxx")));
-    Report4s.logEvent("click on select", true);
+    Select sel = new Select(this.driver.findElement(By.name("xxxx")));
     sel.selectByValue("xxxx");
+    Report4s.logMessage(Level.INFO, "Manual log without screenshot");
 
-    Report4s.logEvent("Navigate back", true);
-    eventDriver.navigate().back();
+    this.driver.navigate().back();
 }
 ```
 
@@ -171,96 +184,112 @@ You are encouraged to use the description attribute of the `@test` annotation to
 
 A good tutorial on how to use testng with Selenium can be found here: http://testng.org/doc/selenium.html
 
-The example is for Selenium v1 but the same principles apply also to Selenium v2.
+The example is for Selenium v1 but the same principles also apply to Selenium v4.
+
+
+### Limitations
+
+Several FAILED screenshots are logged when using Waiting strategies (implicit, explicit or fluent wait)
+
+No support for HtmlUnitDriver webdriver.
+
+No support for multi-threaded tests.
+
+
+### Good Practices
+
+Use the description attribute of the @test annotation to verbose your reports.
+
+` @Test(description = "Sign in")`
+
+To avoid several FAILED logs when using Waiting strategies,
+deactivate the automatic screenshot gathering before the wait,
+then reactivate it after the wait.
+
+```
+    Report4s.screenshots = "none";
+    WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("my-id")));
+    this.driver.findElement(By.id("my-id")).click();
+    Report4s.screenshots = "all";   // or "last" or "failed".
+```
+
+One annoying thing of unit test frameworks, is that tests are executed in random order.
+Set the order of execution of methods directly in the testng XML files.
+
+```
+<suite name="My test suite">
+    <test name="My Test" preserve-order="true">
+        <classes>
+            <class name="mypackage.MyTest"/>
+                <methods>
+                    <include name="method1"/>
+                    <include name="method2"/>
+                    <include name="method3"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
+```
+
 
 ### report4s.properties file
+
 ```
 #IF YOU WANT TO MODIFY A PROPERTY DEFAULT VALUE,
 #UNCOMMENT THE APPROPRIATE LINE AND SET THE VALUE OF YOUR CHOICE.
+
 
 #The report directory relative to the workspace (working directory).
 #It is advisable to avoid using the same TestNG default report directory (test-output).
 #report4s.report.dir=report
 
+
 #The file name of the report homepage.
 #report4s.report.homepage=index.html
+
 
 #The title of the report home page.
 #report4s.report.title=Test Execution Summary
 
-#The excel report filename.
-#report4s.report.excel=Test report.xlsx
 
-#Whether to enable screenshots.
-#Regardless its value, a screenshot is taken right after a test failure whenever possible.
-#report4s.screenshots.enabled=true
+#The screenshots to gather.
+#Values: all, last, failed or none.
+#report4s.screenshots.enabled=all
+
+
+#Whether to take screenshots of WebElements or pages.
+#Values: page or element.
+#report4s.screenshots.target=page
+
 
 #Padding in pixels to be applied to WebElement screenshots.
 #Defines the area around the WebElement to be included in the screenshot.
-#report4s.screenshots.padding=0
+#report4s.screenshots.padding=10
+
 
 #The number of decimals of precision to be displayed in execution time labels.
 #The value should be an integer between 0 and 3.
 #report4s.time.precision=0
 
-#The pie chart aggregation to be plotted.
-#Possible values: suite, test or both.
-#report4s.piechart.aggregation=test
 
 #Whether to display tooltips with the execution result for each individual suite.
 #report4s.suite.tooltips.enabled=true
 
-#Whether to display a test result piechart or a status icon for each individual suite.
-#Possible values: piechart or icon. (The icons are: PASSED, FAILED or SKIPPED)
-#report4s.suite.status.content=piechart
-
-#The width and height in pixels for the piecharts in the status column.
-#This property will be ignored if report4s.suite.status.content is set to "icon".
-#report4s.suite.status.size=35px
-
-#Whether to skip the remaining steps of the current test execution
-#if a step is logged with the FAILED level.
-#report4s.execution.skipTestAfterStepFailure=false
 
 #Whether to skip the remaining tests of the current suite if a test fails.
-#report4s.execution.skipSuiteAfterTestFailure=false
+#report4s.execution.skipSuiteAfterTestFailure=true
 ```
 
-### Browser Compatibility
-Report4s has been successfully tested in Selenium 2 and Selenium 3 with the following configurations:
-
-| OS | Browser |
-|----|---------|
-| Linux | Firefox |
-| Linux	| Chrome |
-| Windows 7	| Firefox |
-| Windows 7	| Chrome |
-
-Screenshots work better with Firefox.
-
-### Limitations
-No support for multi-threaded tests.
-
-### Precaution for building from source code
-If you want to modify the name of the target JAR file, modify the `jarfile` variable in both the `build.xml` ANT buildfile and the `/src/net/sourceforge/report4s/Report4s.java` Java file.
 
 ### Sample screenshots
 
 ##### Sample 1 :
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot1.png)
+![](docs/image-1.png)
 
 ##### Sample 2 :
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/image2.png)
+![](docs/image-2.png)
 
 ##### Sample 3 :
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot3.png)
-
-##### Sample 4 :
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/image4.png)
-
-##### Sample 5 :
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot5.png)
-
-##### Sample 6 :
-![](https://a.fsdn.com/con/app/proj/report4s/screenshots/screenshot4.png)
-
+![](docs/image-3.png)
