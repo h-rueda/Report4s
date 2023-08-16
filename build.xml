@@ -35,9 +35,12 @@
     </target>
 
     <!-- Generate the javadoc -->
-    <target name="javadoc" depends="compile">
+    <target name="javadoc">
         <javadoc destdir="${javadoc.dir}" classpathref="classpath" sourcepath="${src.dir}"
-          public="true" link="https://www.selenium.dev/selenium/docs/api/java/">
+          public="true">
+        	<link href="https://www.selenium.dev/selenium/docs/api/java/"/>
+        	<!--link href="https://www.javadoc.io/doc/org.seleniumhq.selenium/selenium-api/4.10.0/-->
+        	<link href="https://javadoc.io/doc/org.testng/testng/7.8.0/"/>
         </javadoc>
     </target>
     
