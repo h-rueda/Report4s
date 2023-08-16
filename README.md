@@ -5,7 +5,8 @@ Simple and yet elegant Selenium HTML report.
 
 Report4s is a Selenium HTML reporter for the TestNG framework.
 
-It is only compatible with Selenium 4.
+It is only compatible with Selenium 4 or later.
+
 
 ## Features
 
@@ -25,13 +26,14 @@ It is only compatible with Selenium 4.
     + `WebElement.click()`
     + `WebElement.sendKeys(CharSequence[])`
 
- + The stack trace of exceptions are also logged in order to facilitate the error analysis.
+ + The stack trace of exceptions are also logged in order to facilitate error analysis.
 
  + Different screenshot gathering modes are supported:
     + `all`     All screenshots for intercepted webdriver events.
     + `last`    The screenshot of the last step for each `@Test` annotated method.
     + `failed`  The last screenshot of each test failure.
     + `none`    Deactivation of automatic screenshot gathering.
+
 
 ## The ZIP file contents
 
@@ -45,6 +47,7 @@ report4.zip
     |---commons-lang3-3.12.0.jar
 ```
 
+
 ## Requirements
 Java 8 or later
 
@@ -52,13 +55,16 @@ testng 7.8.0 or later
 
 Selenium 4.10.0 or later
 
+
 ## Caution
 Do not rename the report4s JAR file.
+
 
 ## Installation
 Add the JAR files to the classpath.
 
 Add `report4s.properties` file in your project root folder (optional).
+
 
 ## TestNG XML file configuration
 Add the following lines before the closing `</suite>` tag in your testng XML file :
@@ -77,6 +83,7 @@ Add the following lines before the closing `</suite>` tag in your testng XML fil
 </suite> 
 ```
 
+
 ## The packages to import
 
 ```
@@ -90,6 +97,7 @@ import com.github.report4s.DriverListener;
 import com.github.report4s.Report4s;
 import com.github.report4s.Level;
 ```
+
 
 ## The test configuration
 
@@ -113,7 +121,7 @@ public class MyTest {
         this.driver.manage().window().maximize();
     }
 
-    // Your test methods go here.
+    // Your @Test annotated methods go here.
     
     @AfterSuite
     public void tearDown() {
@@ -122,6 +130,7 @@ public class MyTest {
     }   
 }
 ```
+
 
 ## How to log
 
@@ -157,7 +166,7 @@ Replace `*` by `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 The Report4s is able to log screenshots automatically upon webdriver events.
 
 If the screenshots gathering is deactivated, screenshots can still
-be taken by making explicit class to `Report4s.LogMessage` methods.
+be taken by making explicit calls to `Report4s.LogMessage` methods.
 
 ```
 @Test(description = "My test description")
@@ -181,7 +190,7 @@ public void test1() {
 }
 ```
 
-You are encouraged to use the description attribute of the `@test` annotation to verbose your reports.
+You are encouraged to use the description attribute of the `@Test` annotation to verbose your reports.
 
 A good tutorial on how to use testng with Selenium can be found here: http://testng.org/doc/selenium.html
 
@@ -208,11 +217,18 @@ deactivate the automatic screenshot gathering before the wait,
 then reactivate it after the wait.
 
 ```
+    // Deactivate automatic screenshots
     Report4s.screenshots = "none";
+
     WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
     wait.until(ExpectedConditions.presenceOfElementLocated(By.id("my-id")));
     this.driver.findElement(By.id("my-id")).click();
-    Report4s.screenshots = "all";   // or "last" or "failed".
+
+    // Manual log if you don't want to miss the screenshot of the last event right after the wait.
+    Report4s.logMessage(Level.PASSED, "Click on element id = 'my-id'", this.driver);
+
+    // Reactivate automatic screenshots
+    Report4s.screenshots = "all";    // or "last" or "failed".
 ```
 
 One annoying thing of unit test frameworks, is that tests are executed in random order.
