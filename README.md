@@ -212,7 +212,7 @@ Use the `description` attribute of the `@Test` annotation to verbose your report
 
 ` @Test(description = "Sign in")`
 
-To avoid several FAILED logs when using Waiting strategies,
+To avoid several `FAILED` logs when using Waiting strategies,
 deactivate the automatic screenshot gathering before the wait,
 then reactivate it after the wait.
 
