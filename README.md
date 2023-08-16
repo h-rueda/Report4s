@@ -208,7 +208,7 @@ No support for multi-threaded tests.
 
 ## Good Practices
 
-Use the description attribute of the `@Test` annotation to verbose your reports.
+Use the `description` attribute of the `@Test` annotation to verbose your reports.
 
 ` @Test(description = "Sign in")`
 
