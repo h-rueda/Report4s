@@ -190,7 +190,7 @@ public void test1() {
 }
 ```
 
-You are encouraged to use the description attribute of the `@Test` annotation to verbose your reports.
+You are encouraged to use the `description` attribute of the `@Test` annotation to verbose your reports.
 
 A good tutorial on how to use testng with Selenium can be found here: http://testng.org/doc/selenium.html
 
