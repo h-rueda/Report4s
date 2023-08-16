@@ -25,6 +25,7 @@
         <description>Tests Execution</description>
         <testng classpathref="classpath" useDefaultListeners="false">
             <xmlfileset file="testng.xml"/>
+            <xmlfileset file="suites/demo.xml"/>
         </testng>
     </target>
 

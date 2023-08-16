@@ -1,0 +1,16 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="My second test">
+	<test name="My second test" preserve-order="true">
+		<parameter name="keyword" value="blahblahblah"/>
+		<classes>
+			<class name="com.github.report4s.test.Demo">
+                <methods>
+                    <include name="getHomePage"/>
+                    <include name="search"/>
+                    <include name="verifyVerbDefinitionPage"/>
+                </methods>
+			</class>
+		</classes>
+	</test>
+</suite>

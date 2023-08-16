@@ -31,7 +31,7 @@ public class Web3 extends TemplateTest {
 
 	@Test(description = "Single select")
 	public void selectCar() {
-		Select sel = new Select(this.driver.findElement(By.name("car")));
+		Select sel = new Select(this.driver.findElement(By.name("carx")));
 		sel.selectByValue("xxxx");
 	}
 
