@@ -1,7 +1,5 @@
-file=report4s-4.0
+file=report4s-5.0
 rm ${file}.zip
-cd Report4s
 cp jar/${file}.jar lib/
-zip ../${file}.zip CHANGELOG LICENSE README report4s.properties lib/commons-io-*.jar lib/guava-*.jar lib/poi-*.jar lib/xmlbeans-*.jar lib/${file}.jar -r javadoc -0
+zip ${file}.zip CHANGELOG LICENSE README* report4s.properties lib/commons-io-*.jar lib/commons-lang3-*.jar lib/report4s-*.jar -r javadoc
 rm lib/${file}.jar
-
