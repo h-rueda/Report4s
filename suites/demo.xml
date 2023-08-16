@@ -6,11 +6,4 @@
 		<suite-file path="suites/demo-2.xml"/>
         <suite-file path="suites/demo-3.xml"/>
 	</suite-files>
-	
-	<listeners>
-		<listener class-name="com.github.report4s.TestListener" />
-		<listener class-name="com.github.report4s.SuiteListener" />
-		<listener class-name="com.github.report4s.ConfigurationListener" />
-		<listener class-name="com.github.report4s.Reporter" />
-	</listeners>
 </suite>
