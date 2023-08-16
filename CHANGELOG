@@ -10,7 +10,7 @@ New features:
     - sendKeys
 * User can decide which screenshots to gather:
     - screenshots for all intercepted events.
-    - last screenshot for all @Test annotated methods.
+    - last screenshot for each @Test annotated methods.
     - last screenshot of failed tests.
     - none (user can still gather screenshots manually)
 * Test results table can be filtered by test status.
