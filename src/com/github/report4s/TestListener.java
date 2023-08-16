@@ -26,6 +26,11 @@ public class TestListener extends TestListenerAdapter {
     protected static boolean printing;
 
     /**
+     * Whether an exception has been logged in the HTML test report.
+     */
+    protected static boolean exception_logged = false;
+
+    /**
      * Whether an HTML table has been opened in the HTML test report.
      */
     protected static boolean opened_table = false;
@@ -55,6 +60,7 @@ public class TestListener extends TestListenerAdapter {
         //Otherwise, start the test
         Logger.driver = null;
         SuiteListener.methodCount++;
+        TestListener.exception_logged = false;
         startTestReport(result);
     }
 
@@ -83,9 +89,11 @@ public class TestListener extends TestListenerAdapter {
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
             if (StringUtils.equals(Report4s.screenshots, "failed")
-            		|| StringUtils.equals(Report4s.screenshots, "last"))
-            	Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
-            Report4s.logTrace(result.getThrowable());
+                    || StringUtils.equals(Report4s.screenshots, "last"))
+    	        if( !exception_logged ) {
+                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+                    Report4s.logTrace(result.getThrowable());
+                }
         }
         SuiteListener.test_failure = true;
         endTestReport(result);

@@ -279,6 +279,7 @@ public class Report4s {
      */
     protected static void logTrace(Throwable error) {
         int traceCount = ++SuiteListener.traceCount;
+        TestListener.exception_logged = true;
         HtmlWriter.printTableRow(Utils.getTraceTag(error, traceCount));
     }
 
