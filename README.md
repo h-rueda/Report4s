@@ -28,7 +28,7 @@ It is only compatible with Selenium 4 or later.
 
  + The stack trace of exceptions are also logged in order to facilitate error analysis.
 
- + Different screenshot gathering modes are supported:
+ + Different screenshot gathering strategies are supported:
     + `all`     All screenshots for intercepted webdriver events.
     + `last`    The screenshot of the last step for each `@Test` annotated method.
     + `failed`  The last screenshot of each test failure.
@@ -165,7 +165,7 @@ Replace `*` by `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 
 The Report4s is able to log screenshots automatically upon webdriver events.
 
-If the screenshots gathering is deactivated, screenshots can still
+If screenshots gathering is deactivated, screenshots can still
 be taken by making explicit calls to `Report4s.LogMessage` methods.
 
 ```
