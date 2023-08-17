@@ -212,6 +212,8 @@ Use the `description` attribute of the `@Test` annotation to verbose your report
 
 ` @Test(description = "Sign in")`
 
+***
+
 To avoid several `FAILED` logs when using Waiting strategies,
 deactivate the automatic screenshot gathering before the wait,
 then reactivate it after the wait.
@@ -230,6 +232,8 @@ then reactivate it after the wait.
     // Reactivate automatic screenshots
     Report4s.screenshots = "all";    // or "last" or "failed".
 ```
+
+***
 
 One annoying thing of unit test frameworks, is that tests are executed in random order.
 Set the order of execution of methods directly in the testng XML files.
