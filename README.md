@@ -132,8 +132,20 @@ public class MyTest {
 ```
 
 
-## How to log
+## Screenshot gathering strategies
 
+There are four strategies:
++ `all` Gathers screenshots for all intercepted webdriver events. This is the default value.
++ `last` Gathers the screenshot of the last step for each `@Test` annotated method.
++ `failed`  Gathers the last screenshot of each test failure.
++ `none`    Deactivation of automatic screenshot gathering. Nevertheless, for test failures, the last screenshot will be logged.
+
+Regardless of the strategy, the user can also gather screenshots and add log messages manually (see next section).
+
+In practice, there is no difference between the `failed` and `none` strategies. Probably in a future release, the `none` strategy will be dropped, so please use `failed` instead.
+
+
+## How to log custom messages
 
 The log levels are :
 `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
@@ -275,7 +287,7 @@ Set the order of execution of methods directly in the testng XML files.
 #report4s.report.title=Test Execution Summary
 
 
-#The screenshots to gather.
+#The screenshot gathering strategy.
 #Values: all, last, failed or none.
 #report4s.screenshots.enabled=all
 
