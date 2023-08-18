@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="Web8 - Manual logs - Passed">
+<suite name="Web9 - Manual logs - Failed">
 	<test name="My test" preserve-order="true">
 		<classes>
-			<class name="com.github.report4s.test.Web8"/>
+			<class name="com.github.report4s.test.Web9"/>
 		</classes>
 	</test>
 </suite>

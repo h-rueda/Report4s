@@ -10,5 +10,6 @@
         <suite-file path="suites/suite-6.xml"/>
         <suite-file path="suites/suite-7.xml"/>
         <suite-file path="suites/suite-8.xml"/>
+        <suite-file path="suites/suite-9.xml"/>
 	</suite-files>
 </suite>
