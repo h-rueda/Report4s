@@ -11,7 +11,7 @@ import com.github.report4s.Report4s;
 
 public class Web9 extends TemplateTest {
 	
-	@Test(description = "Manual logs")
+	@Test(description = "Manual logs - Failed")
 	public void search() {
 		this.driver.get(this.page);
 		Report4s.logMessage(Level.INFO, "The web page", this.driver);

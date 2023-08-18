@@ -10,7 +10,7 @@ import com.github.report4s.Report4s;
 
 public class Web8 extends TemplateTest {
 	
-	@Test(description = "Manual logs")
+	@Test(description = "Manual logs - Passed")
 	public void search() {
 		this.driver.get(this.page);
 		Report4s.logMessage(Level.INFO, "The web page", this.driver);
