@@ -295,12 +295,10 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             //Print the exception trace in the standard error output device.
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
-            if (StringUtils.equals(Report4s.screenshots, "failed")
-                    || StringUtils.equals(Report4s.screenshots, "last"))
-    	        if( !exception_logged ) {
-                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
-                    Report4s.logTrace(result.getThrowable());
-                }
+   	        if( !exception_logged ) {
+                Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+                Report4s.logTrace(result.getThrowable());
+            }
         }
         Listeners.test_failure = true;
         endTestReport(result);
