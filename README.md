@@ -211,9 +211,9 @@ The example is for Selenium v1 but the same principles also apply to Selenium v4
 
 ## Limitations
 
-Several `FAILED` screenshots are logged when using Waiting strategies (implicit, explicit or fluent wait)
+Several `FAILED` messages are logged when using Waiting strategies (implicit, explicit or fluent wait)
 
-No support for HtmlUnitDriver webdriver.
+No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge, Safari).
 
 No support for multi-threaded tests.
 
