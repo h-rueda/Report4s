@@ -135,10 +135,10 @@ public class MyTest {
 ## Screenshot gathering strategies
 
 There are four strategies:
-+ `all`     Gathers screenshots for all intercepted webdriver events. This is the default value.
-+ `last`    Gathers the screenshot of the last step for each `@Test` annotated method.
-+ `failed`  Gathers the last screenshot of each test failure.
-+ `none`    Deactivation of automatic screenshot gathering. Nevertheless, for test failures, the last screenshot will be logged.
++ `all`     Screenshot for each intercepted webdriver event. This is the default value.
++ `last`    Screenshot of the last step for each `@Test` annotated method.
++ `failed`  Screenshot of the last step for each test failure.
++ `none`    Deactivation of automatic screenshot gathering. Nevertheless, for test failures, the last screenshot will be logged automatically.
 
 Regardless of the strategy, the user can also gather screenshots and log messages manually (see next section).
 
