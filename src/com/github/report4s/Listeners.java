@@ -36,10 +36,12 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
 
     /**
      * Whether the conditions are met before logging.
-     * @return
      */
-    private boolean verifyPrecondition() {
-        return Report4s.extracted && !Listeners.multi_threaded;
+    private boolean verifyPrecondition(Class listener) {
+        if ((listener == ITestListener.class) || (listener == IConfigurationListener.class))
+        	return Report4s.extracted && Listeners.registered && !Listeners.multi_threaded;
+        else
+        	return Report4s.extracted && Listeners.registered;
     }
 
     /************************************************************
@@ -92,7 +94,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onStart(ISuite suite) {
-        if(!verifyPrecondition())
+        if(!verifyPrecondition(ISuiteListener.class))
             return;
         //Create and initialize the html file
         setFilename();
@@ -123,7 +125,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onFinish(ISuite suite) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(ISuiteListener.class))
             return;
         this.endTime = Utils.getTimeInMillisec();
         HtmlWriter.printSuiteTail();
@@ -161,7 +163,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      * Invoked each time before a configuration method is invoked.
      */
     public void beforeConfiguration(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(IConfigurationListener.class))
             return;
         startConfigurationReport(result);
     }
@@ -171,7 +173,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onConfigurationSuccess(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(IConfigurationListener.class))
             return;
         endConfigurationReport(result);
     }
@@ -181,7 +183,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onConfigurationFailure(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(IConfigurationListener.class))
             return;
         Report4s.logTrace(result.getThrowable());
         endConfigurationReport(result);
@@ -194,7 +196,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onConfigurationSkip(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(IConfigurationListener.class))
             return;
         HtmlWriter.printConfigurationTitle(result);
         endConfigurationReport(result);
@@ -248,7 +250,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onTestStart(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(ITestListener.class))
             return;
 
         //Force the test to skip if the necessary conditions are met.
@@ -274,7 +276,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onTestSuccess(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(ITestListener.class))
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
         	Report4s.logMessage(Level.PASSED, "Last screenshot", Logger.driver);
@@ -286,7 +288,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onTestFailure(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(ITestListener.class))
             return;
         if (!(result.getThrowable() instanceof SkipSuiteException)
                 || (result.getThrowable() instanceof SkipException)) {
@@ -309,7 +311,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onTestSkipped(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(ITestListener.class))
             return;
         if (Logger.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
         	Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
@@ -321,7 +323,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(ITestListener.class))
             return;
         endTestReport(result);
     }
@@ -400,7 +402,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     @Override
     public void generateReport(List<XmlSuite> xmlSuites, List<ISuite> isuites, String outputDirectory) {
-        if (!verifyPrecondition())
+        if (!verifyPrecondition(IReporter.class))
             return;
         //Generate the HTML summary report
         HtmlWriter.openFile(Report4s.report_dir + File.separator + Report4s.report_homepage, false);
