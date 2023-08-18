@@ -37,7 +37,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     /**
      * Whether the conditions are met before logging.
      */
-    private boolean verifyPrecondition(Class listener) {
+    private boolean verifyPrecondition(Class<?> listener) {
         if ((listener == ITestListener.class) || (listener == IConfigurationListener.class))
         	return Report4s.extracted && Listeners.registered && !Listeners.multi_threaded;
         else
