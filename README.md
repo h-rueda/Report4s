@@ -267,7 +267,7 @@ By default, ``report4s.execution.skipSuiteAfterTestFailure`` is set to ``false``
 
 
 #The screenshot gathering strategy.
-#Values: all, last, or failed.
+#Values: all, last or failed.
 #report4s.screenshots.enabled=all
 
 
