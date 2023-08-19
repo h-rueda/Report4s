@@ -211,8 +211,6 @@ The example is for Selenium v1 but the same principles also apply to Selenium v4
 
 ## Limitations
 
-Several `FAILED` messages are logged when using Waiting strategies (implicit, explicit or fluent wait)
-
 No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge, Safari).
 
 No support for multi-threaded tests.
@@ -248,7 +246,7 @@ then reactivate it after the wait.
 ***
 
 One annoying thing of unit test frameworks, is that tests are executed in random order.
-Set the order of execution of methods directly in the testng XML files.
+Set the order of execution of methods directly in the testng XML files with the ``preserve-order`` attribute.
 
 ```
 <suite name="My test suite">
@@ -265,7 +263,11 @@ Set the order of execution of methods directly in the testng XML files.
     </test>
 </suite>
 ```
+In addition to that, you may also want to set the ``report4s.execution.skipSuiteAfterTestFailure`` property to ``true``.
 
+By doing so, if for example ``method1`` fails, then ``method2`` and ``method3`` will be skipped.
+
+By default, ``report4s.execution.skipSuiteAfterTestFailure`` is set to ``false``
 
 ## report4s.properties file
 
