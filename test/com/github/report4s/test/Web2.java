@@ -1,10 +1,8 @@
 package com.github.report4s.test;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
-import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import com.github.report4s.Report4s;
@@ -31,8 +29,7 @@ public class Web2 extends TemplateTest {
 	@Test(description = "Single select")
 	public void selectCar() {
 		Select sel = new Select(this.driver.findElement(By.name("car")));
-		sel.selectByValue("fiat");
-		Assert.fail();
+		sel.selectByValue("fiatxxx");
 	}
 
 	@Test(description = "Click checkbox")

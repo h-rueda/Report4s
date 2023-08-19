@@ -1,6 +1,5 @@
 package com.github.report4s.test;
 
-
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
@@ -30,9 +29,29 @@ public class Web3 extends TemplateTest {
 	}
 
 	@Test(description = "Single select")
-	public void selectCar() {
+	public void selectCar1() {
+		Select sel = new Select(this.driver.findElement(By.name("car")));
+		sel.selectByValue("fiatxxx");
+	}
+
+	@Test(description = "Single select")
+	public void selectCar2() {
 		Select sel = new Select(this.driver.findElement(By.name("carx")));
 		sel.selectByValue("xxxx");
+	}
+
+	@Test(description = "Single select")
+	public void selectCar3() {
+		Select sel = new Select(this.driver.findElement(By.name("car")));
+		sel.selectByValue("fiat");
+		Assert.assertEquals(1, 2);
+	}
+
+	@Test(description = "Single select")
+	public void selectCar4() {
+		Select sel = new Select(this.driver.findElement(By.name("car")));
+		sel.selectByValue("fiat");
+		Assert.fail("Failure");
 	}
 
 	@Test(description = "Click checkbox")
@@ -42,7 +61,7 @@ public class Web3 extends TemplateTest {
 		elem.click();
 	}
 
-	@Test(description = "Click radio-button", dependsOnMethods = {"selectCar"})
+	@Test(description = "depends on failed method", dependsOnMethods = {"selectCar1"})
 	public void setGender() {
 		WebElement elem;
 		elem = this.driver.findElement(By.id("gender2"));

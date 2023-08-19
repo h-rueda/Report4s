@@ -1,0 +1,13 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Deactivate &amp; reactive screenshots">
+	<test name="My test">
+		<classes>
+			<class name="com.github.report4s.test.Demo2">
+                <methods>
+                    <include name="getHomePage"/>
+                </methods>
+			</class>
+		</classes>
+	</test>
+</suite>

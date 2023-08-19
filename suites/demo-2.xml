@@ -1,6 +1,6 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="My second test">
+<suite name="Failed test without dependsOnMethods">
 	<test name="My second test" preserve-order="true">
 		<parameter name="keyword" value="blahblahblah"/>
 		<classes>

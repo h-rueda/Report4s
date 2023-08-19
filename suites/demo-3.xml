@@ -1,14 +1,14 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
-<suite name="My third test">
+<suite name="Failed test with skipped dependsOnMethods">
 	<test name="My test">
-		<parameter name="keyword" value="blahblahblah"/>
+		<parameter name="keyword" value="work"/>
 		<classes>
 			<class name="com.github.report4s.test.Demo">
                 <methods>
-                    <include name="search"/>
                     <include name="getHomePage"/>
-                    <include name="verifyVerbDefinitionPage"/>
+                    <include name="search2"/>
+                    <include name="verifyVerbDefinitionPage2"/>
                 </methods>
 			</class>
 		</classes>
