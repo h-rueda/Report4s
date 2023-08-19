@@ -237,7 +237,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot with padding.<br/>
+     * Log a message with a web element screenshot.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -248,7 +248,7 @@ public class Report4s {
     }
 
     /**
-     * Append a log to the test report.
+     * Log a message with a web element screenshot with padding.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
