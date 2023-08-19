@@ -2,6 +2,7 @@
 
 <suite name="Deactivate &amp; reactive screenshots">
 	<test name="My test">
+        <parameter name="keyword" value="work"/>
 		<classes>
 			<class name="com.github.report4s.test.Demo">
                 <methods>
