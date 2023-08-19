@@ -224,27 +224,6 @@ Use the `description` attribute of the `@Test` annotation to verbose your report
 
 ***
 
-To avoid several `FAILED` logs when using Waiting strategies,
-deactivate the automatic screenshot gathering before the wait,
-then reactivate it after the wait.
-
-```
-    // Deactivate automatic screenshots
-    Report4s.screenshots = "none";
-
-    WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("my-id")));
-    this.driver.findElement(By.id("my-id")).click();
-
-    // Manual log if you don't want to miss the screenshot of the last event right after the wait.
-    Report4s.logMessage(Level.PASSED, "Click on element id = 'my-id'", this.driver);
-
-    // Reactivate automatic screenshots
-    Report4s.screenshots = "all";    // or "last" or "failed".
-```
-
-***
-
 One annoying thing of unit test frameworks, is that tests are executed in random order.
 Set the order of execution of methods directly in the testng XML files with the ``preserve-order`` attribute.
 
