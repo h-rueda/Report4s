@@ -227,7 +227,7 @@ Use the `description` attribute of the `@Test` annotation to verbose your report
 ***
 
 One annoying thing of unit test frameworks, is that tests are executed in random order.
-Set the order of execution of methods directly in the testng XML files with the ``preserve-order`` attribute.
+Set the order of execution of methods directly in the testng XML files with the ``preserve-order`` attribute set to ``true``.
 
 ```
 <suite name="My test suite">
