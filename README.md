@@ -133,7 +133,7 @@ public class MyTest {
 
 ## Screenshot gathering strategies
 
-There are four strategies:
+There are three strategies:
 + `all`     Screenshot for each intercepted webdriver event. This is the default value.
 + `last`    Screenshot of the last step for each `@Test` annotated method.
 + `failed`  Screenshot of the last step for each test failure.
