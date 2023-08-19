@@ -211,9 +211,9 @@ The example is for Selenium v1 but the same principles also apply to Selenium v4
 
 ## Limitations
 
-Several `FAILED` messages are logged when using Waiting strategies (implicit, explicit or fluent wait)
+Several ``FAILED`` messages are logged when using Waiting strategies (implicit, explicit or fluent wait)
 
-No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge, Safari).
+No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge or Safari).
 
 No support for multi-threaded tests.
 
@@ -226,29 +226,8 @@ Use the `description` attribute of the `@Test` annotation to verbose your report
 
 ***
 
-To avoid several `FAILED` logs when using Waiting strategies,
-deactivate the automatic screenshot gathering before the wait,
-then reactivate it after the wait.
-
-```
-    // Deactivate automatic screenshots
-    Report4s.screenshots = "none";
-
-    WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
-    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("my-id")));
-    this.driver.findElement(By.id("my-id")).click();
-
-    // Manual log if you don't want to miss the screenshot of the last event right after the wait.
-    Report4s.logMessage(Level.PASSED, "Click on element id = 'my-id'", this.driver);
-
-    // Reactivate automatic screenshots
-    Report4s.screenshots = "all";    // or "last" or "failed".
-```
-
-***
-
 One annoying thing of unit test frameworks, is that tests are executed in random order.
-Set the order of execution of methods directly in the testng XML files.
+Set the order of execution of methods directly in the testng XML files with the ``preserve-order`` attribute set to ``true``.
 
 ```
 <suite name="My test suite">
@@ -265,7 +244,11 @@ Set the order of execution of methods directly in the testng XML files.
     </test>
 </suite>
 ```
+In addition to that, you may also want to set the ``report4s.execution.skipSuiteAfterTestFailure`` property to ``true``.
 
+By doing so, if for example ``method1`` fails, then ``method2`` and ``method3`` will be skipped.
+
+By default, ``report4s.execution.skipSuiteAfterTestFailure`` is set to ``false``.
 
 ## report4s.properties file
 
