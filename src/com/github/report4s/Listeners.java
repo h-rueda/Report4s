@@ -37,11 +37,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     /**
      * Whether the conditions are met before logging.
      */
-    private boolean verifyPrecondition(Class<?> listener) {
+    private boolean verifyPrecondition(Class listener) {
         if ((listener == ITestListener.class) || (listener == IConfigurationListener.class))
-        	return Report4s.extracted && Listeners.registered && !Listeners.multi_threaded;
+            return Report4s.extracted && Listeners.registered && !Listeners.multi_threaded;
         else
-        	return Report4s.extracted && Listeners.registered;
+            return Report4s.extracted && Listeners.registered;
     }
 
     /************************************************************
@@ -279,7 +279,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
-        	Report4s.logMessage(Level.PASSED, "Last screenshot", Logger.driver);
+            Report4s.logMessage(Level.PASSED, "Last screenshot", Logger.driver);
         endTestReport(result);
     }
 
@@ -295,8 +295,9 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             //Print the exception trace in the standard error output device.
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
-   	        if( !exception_logged ) {
-                Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+            if (!exception_logged) {
+                if (!StringUtils.equals(Report4s.screenshots, "all"))
+                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
                 Report4s.logTrace(result.getThrowable());
             }
         }
@@ -312,7 +313,9 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         if (Logger.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
-        	Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
+            Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
+        if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
+            Report4s.logTrace(result.getThrowable());           
         endTestReport(result);
     }
 
@@ -510,11 +513,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      * @param status The suite execution status.
      */
     private void print_suite_row(
-    		int order,
-    		String suite,
-    		String time,
-    		String file,
-    		Status status) {
+            int order,
+            String suite,
+            String time,
+            String file,
+            Status status) {
         //Parse status to determine row icon and CSS class name.
         String icon = Utils.getIconFilename(status);
         String class_name = Utils.appendStatusClassName("row_suite", status);
