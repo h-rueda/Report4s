@@ -158,7 +158,7 @@ public class DriverListener implements WebDriverListener {
             java.lang.Object[] args,
             java.lang.reflect.InvocationTargetException e) {
         if (this.finding)
-        	this.finding = false;
+            this.finding = false;
         Logger.logFailure(driver, e.getCause(), "Selenium Error");
     }
 
