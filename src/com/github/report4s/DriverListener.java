@@ -159,7 +159,7 @@ public class DriverListener implements WebDriverListener {
             java.lang.reflect.InvocationTargetException e) {
         if (this.finding)
         	this.finding = false;
-        Logger.logFailure(driver, e.getCause(), "Last screenshot before failure");
+        Logger.logFailure(driver, e.getCause(), "Selenium Error");
     }
 
 }
