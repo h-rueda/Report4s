@@ -231,9 +231,10 @@ public class Report4s {
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
      * @param element The {@link org.openqa.selenium.WebElement WebElement} object.
+     * @param padding The padding to be applied. Overrides the value defined in the <code>report4s.properties</code> file.
      */
-    protected static void log(Level level, String message, WebDriver driver, WebElement element) {
-        log(level, message, driver, element, Report4s.padding);
+    public static void logMessage(Level level, String message, WebDriver driver, WebElement element, int padding) {
+        log(level, message, driver, element, padding);
     }
 
     /**
@@ -242,10 +243,9 @@ public class Report4s {
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
      * @param element The {@link org.openqa.selenium.WebElement WebElement} object.
-     * @param padding The padding to be applied in addition. Overrides the value defined in the <code>report4s.properties</code> file.
      */
-    public static void logMessage(Level level, String message, WebDriver driver, WebElement element, int padding) {
-        log(level, message, driver, element, padding);
+    protected static void log(Level level, String message, WebDriver driver, WebElement element) {
+        log(level, message, driver, element, Report4s.padding);
     }
 
     /**
@@ -257,7 +257,7 @@ public class Report4s {
      * @param padding The padding to be applied.
      */
     protected static void log(Level level, String message, WebDriver driver, WebElement element, int padding) {
-        if (isMultiThreadedSuite() || !executingTest())
+        if (isMultiThreadedSuite() || !executingTest() || Report4s.screenshots == null)
             return;
         //Get the screenshot <a> tag
         String link = Utils.getScreenshotTag(level, driver, element, padding);
