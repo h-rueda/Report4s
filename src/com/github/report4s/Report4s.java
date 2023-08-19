@@ -128,8 +128,7 @@ public class Report4s {
             if(parameter != null
                     && (parameter.equalsIgnoreCase("all")
                         || parameter.equalsIgnoreCase("failed")
-                        || parameter.equalsIgnoreCase("last")
-                        || parameter.equalsIgnoreCase("none")))
+                        || parameter.equalsIgnoreCase("last")))
                 screenshots = parameter.toLowerCase();
 
             parameter = prop.getProperty("report4s.screenshots.target");
