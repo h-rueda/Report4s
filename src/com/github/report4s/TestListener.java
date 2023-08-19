@@ -94,7 +94,7 @@ public class TestListener extends TestListenerAdapter {
             //Print the exception trace in the test report.
    	        if (!exception_logged) {
    	            if (!StringUtils.equals(Report4s.screenshots, "all"))
-   	        	    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+   	                Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
                 Report4s.logTrace(result.getThrowable());
             }
         }
@@ -110,7 +110,7 @@ public class TestListener extends TestListenerAdapter {
         if (!verifyPrecondition())
             return;
         if (Logger.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
-        	Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
+            Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
             Report4s.logTrace(result.getThrowable());        	
         endTestReport(result);
