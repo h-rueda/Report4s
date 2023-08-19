@@ -92,9 +92,9 @@ public class TestListener extends TestListenerAdapter {
             //Print the exception trace in the standard error output device.
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
-   	        if (!exception_logged) {
-   	            if (!StringUtils.equals(Report4s.screenshots, "all"))
-   	                Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+            if (!exception_logged) {
+                if (!StringUtils.equals(Report4s.screenshots, "all"))
+                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
                 Report4s.logTrace(result.getThrowable());
             }
         }
