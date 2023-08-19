@@ -25,11 +25,10 @@ public class Demo extends TemplateTest {
 	@Test(description = "Get homepage")
 	public void getHomePage2() {
 		this.driver.get("http://www.oxfordlearnersdictionaries.com/");
-		Report4s.screenshots = "none";
+		Report4s.screenshots = null;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("onetrust-accept-btn-handler")));
 		this.driver.findElement(By.id("onetrust-accept-btn-handler")).click();
-		Report4s.screenshots = "all";
 		this.driver.navigate().refresh();
 	}
 
@@ -38,7 +37,8 @@ public class Demo extends TemplateTest {
 	public void search(String keyword) {
 		this.driver.findElement(By.id("q")).sendKeys(keyword);
 		try { Thread.sleep(3000); } catch (InterruptedException e) { }
-		this.driver.findElement(By.linkText(keyword)).click();
+        Report4s.screenshots = "all";
+        this.driver.findElement(By.linkText(keyword)).click();
 	}
 
 	@Test(description = "Look up a word definition")
