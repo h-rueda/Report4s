@@ -211,7 +211,9 @@ The example is for Selenium v1 but the same principles also apply to Selenium v4
 
 ## Limitations
 
-No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge, Safari).
+Several FAILED messages are logged when using Waiting strategies (implicit, explicit or fluent wait)
+
+No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge or Safari).
 
 No support for multi-threaded tests.
 
@@ -246,7 +248,7 @@ In addition to that, you may also want to set the ``report4s.execution.skipSuite
 
 By doing so, if for example ``method1`` fails, then ``method2`` and ``method3`` will be skipped.
 
-By default, ``report4s.execution.skipSuiteAfterTestFailure`` is set to ``false``
+By default, ``report4s.execution.skipSuiteAfterTestFailure`` is set to ``false``.
 
 ## report4s.properties file
 
