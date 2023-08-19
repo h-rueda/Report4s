@@ -231,7 +231,18 @@ public class Report4s {
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
      * @param element The {@link org.openqa.selenium.WebElement WebElement} object.
-     * @param padding The extra padding to be applied in addition to the global padding value defined in the <code>report4s.properties</code> file.
+     */
+    protected static void log(Level level, String message, WebDriver driver, WebElement element) {
+        log(level, message, driver, element, Report4s.padding);
+    }
+
+    /**
+     * Log a message with a web element screenshot with padding.<br/>
+     * @param level The log level.
+     * @param message The message to log.
+     * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
+     * @param element The {@link org.openqa.selenium.WebElement WebElement} object.
+     * @param padding The padding to be applied in addition. Overrides the value defined in the <code>report4s.properties</code> file.
      */
     public static void logMessage(Level level, String message, WebDriver driver, WebElement element, int padding) {
         log(level, message, driver, element, padding);
@@ -241,21 +252,9 @@ public class Report4s {
      * Append a log to the test report.
      * @param level The log level.
      * @param message The message to log.
-     * @param driver The WebDriver object.
-     * @param element The WebElement object.
-     * @param padding The extra padding to be applied in addition to the global padding value defined in the <code>report4s.properties</code> file.
-     */
-    protected static void log(Level level, String message, WebDriver driver, WebElement element) {
-        log(level, message, driver, element, Report4s.padding);
-    }    
-
-    /**
-     * Append a log to the test report.
-     * @param level The log level.
-     * @param message The message to log.
-     * @param driver The WebDriver object.
-     * @param element The WebElement object.
-     * @param padding The extra padding to be applied in addition to the global padding value defined in the <code>report4s.properties</code> file.
+     * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
+     * @param element The {@link org.openqa.selenium.WebElement WebElement} object.
+     * @param padding The padding to be applied.
      */
     protected static void log(Level level, String message, WebDriver driver, WebElement element, int padding) {
         if (isMultiThreadedSuite() || !executingTest())
