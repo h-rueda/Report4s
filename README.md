@@ -1,4 +1,4 @@
-
+If you like this software, consider making a contribution though [buy me a coffee](https://www.buymeacoffee.com/harmin)
 # Report4s
 
 Simple and yet elegant Selenium HTML report.
