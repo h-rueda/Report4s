@@ -138,7 +138,7 @@ There are three strategies:
 + `last`    Screenshot of the last step for each `@Test` annotated method.
 + `failed`  Screenshot of the last step for each test failure.
 
-Regardless of the strategy, the user can also gather screenshots and log messages manually (see next section).
+Regardless of the strategy, the user can gather additional screenshots and log messages manually (see next section).
 
 
 ## How to log custom messages
