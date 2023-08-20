@@ -246,6 +246,25 @@ By doing so, if for example ``method1`` fails, then ``method2`` and ``method3`` 
 
 By default, ``report4s.execution.skipSuiteAfterTestFailure`` is set to ``false``.
 
+***
+
+To avoid several `FAILED` logs when using Waiting strategies,
+deactivate the automatic screenshot gathering before the wait,
+then reactivate it after the wait.
+
+```
+    // Deactivate automatic screenshots
+    Report4s.screenshots = null;
+
+    WebDriverWait wait = new WebDriverWait(this.driver, Duration.ofSeconds(10));
+    wait.until(ExpectedConditions.presenceOfElementLocated(By.id("my-id")));
+    this.driver.findElement(By.id("my-id")).click();
+
+    // Reactivate automatic screenshots
+    Report4s.screenshots = "all";    // or "last", "failed" or "manual".
+```
+
+
 ## report4s.properties file
 
 ```
