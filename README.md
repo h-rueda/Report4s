@@ -261,7 +261,7 @@ then reactivate it after the wait.
     this.driver.findElement(By.id("my-id")).click();
 
     // Reactivate automatic screenshots
-    Report4s.screenshots = "all";    // or "last", "failed" or "manual".
+    Report4s.screenshots = "all";    // or "last", "failed".
 ```
 
 
