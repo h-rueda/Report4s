@@ -315,7 +315,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (Logger.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
             Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
-            Report4s.logTrace(result.getThrowable());           
+            Report4s.logTrace(result.getThrowable());
         endTestReport(result);
     }
 
