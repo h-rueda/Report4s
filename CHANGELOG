@@ -1,3 +1,12 @@
+v5.1
+====
+* Bugfix: Some exceptions are logged twice on failed tests.
+* Bugfix: minor incoherence in a CSS file.
+* Improvement: SkipException trace is logged for skipped tests thrown that exception.
+* Change: TestNG listeners have been merged in a single java class.
+* Change: Removal of the "none" screenshot gathering strategy, as it was identical to the "failed" strategy.
+
+
 v5.0
 ====
 New features:
@@ -100,6 +109,7 @@ v1.2
 v1.1
 ====
 * Improvements in the validation of integer property values that are read from the report4s.properties file.
+
 
 v1.0
 ====
