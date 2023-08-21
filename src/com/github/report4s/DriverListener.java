@@ -12,8 +12,6 @@ import org.apache.commons.lang3.StringUtils;
 public class DriverListener implements WebDriverListener {
 
     private WebDriver driver = null;
-    private By locator = null;
-    private boolean finding = false;
     private String currentUrl = null;
     
 
@@ -52,14 +50,14 @@ public class DriverListener implements WebDriverListener {
 
     public void afterClear(WebElement element) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
-            Logger.logEvent("Clear " + this.locator, true);
+            Logger.logEvent("Clear element", true);
             Logger.logSuccess(this.driver, element);
         }
     }
 
     public void afterClick​(WebElement element) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
-            Logger.logEvent("Click " + this.locator, true);
+            Logger.logEvent("Click element", true);
             if (!StringUtils.equals(driver.getCurrentUrl(), this.currentUrl)) {
                 this.currentUrl = driver.getCurrentUrl();
                 Logger.logSuccess(this.driver, null);
@@ -68,33 +66,13 @@ public class DriverListener implements WebDriverListener {
         }
     }
 
-    public void afterFindElement​(WebDriver driver, By locator, WebElement result) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.locator = locator;
-            this.finding = false;
-        }
-    }
+    public void afterFindElement​(WebDriver driver, By locator, WebElement result) { }
     
-    public void afterFindElement​(WebElement element, By locator, WebElement result) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.locator = locator;
-            this.finding = false;
-        }
-    }
+    public void afterFindElement​(WebElement element, By locator, WebElement result) { }
 
-    public void afterFindElements​(WebDriver driver, By locator, WebElement result) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.locator = locator;
-            this.finding = false;
-        }
-    }
+    public void afterFindElements​(WebDriver driver, By locator, WebElement result) { }
 
-    public void afterFindElement​s(WebElement element, By locator, WebElement result) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.locator = locator;
-            this.finding = false;
-        }
-    }
+    public void afterFindElement​s(WebElement element, By locator, WebElement result) { }
 
     public void afterSendKeys​(WebElement element, java.lang.CharSequence... args) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
@@ -105,8 +83,6 @@ public class DriverListener implements WebDriverListener {
 
     public void afterClose​(WebDriver driver) {
         this.driver = null;
-        this.locator = null;
-        this.finding = false;
         Logger.driver = null;
     }
 
@@ -114,37 +90,13 @@ public class DriverListener implements WebDriverListener {
         this.afterClose(driver);
     }
 
-    public void beforeFindElement​(WebDriver driver, By locator) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-           this.finding = true;
-           this.locator = locator;
-           Logger.logEvent("FindElement " + this.locator);
-        }
-    }
+    public void beforeFindElement​(WebDriver driver, By locator) { }
 
-    public void beforeFindElement​(WebElement element, By locator) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.finding = true;
-            this.locator = locator;
-            Logger.logEvent("FindElement " + this.locator);
-        }
-    }
+    public void beforeFindElement​(WebElement element, By locator) { }
 
-    public void beforeFindElements​(WebDriver driver, By locator) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.finding = true;
-            this.locator = locator;
-            Logger.logEvent("FindElements " + this.locator);
-        }
-    }
+    public void beforeFindElements​(WebDriver driver, By locator) { }
 
-    public void beforeFindElements​(WebElement element, By locator) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.finding = true;
-            this.locator = locator;
-            Logger.logEvent("FindElements " + this.locator);
-        }
-    }
+    public void beforeFindElements​(WebElement element, By locator) { }
 
     public void beforeGet​(WebDriver driver, java.lang.String url) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
@@ -157,8 +109,6 @@ public class DriverListener implements WebDriverListener {
             java.lang.reflect.Method method,
             java.lang.Object[] args,
             java.lang.reflect.InvocationTargetException e) {
-        if (this.finding)
-            this.finding = false;
         Logger.logFailure(driver, e.getCause(), "Selenium Error");
     }
 
