@@ -2,6 +2,7 @@ v5.1
 ====
 * Bugfix: Some exceptions are logged twice on failed tests.
 * Bugfix: minor incoherence in a CSS file.
+* Bugfix: remove locator information from logs as they weren't always accurate.
 * Improvement: SkipException trace is logged for skipped tests thrown that exception.
 * Change: TestNG listeners have been merged in a single java class.
 * Change: Removal of the "none" screenshot gathering strategy, as it was identical to the "failed" strategy.
