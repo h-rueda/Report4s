@@ -38,11 +38,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     /**
      * Whether the conditions are met before logging.
      */
-    private boolean verifyPrecondition(Class listener) {
+    private boolean verifyPrecondition(Class<?> listener) {
         if ((listener == ITestListener.class) || (listener == IConfigurationListener.class))
-            return Report4s.extracted && Listeners.registered && !Listeners.multi_threaded;
+            return Report4s.extracted && registered && !multi_threaded;
         else
-            return Report4s.extracted && Listeners.registered;
+            return Report4s.extracted && registered;
     }
 
     /************************************************************
@@ -52,17 +52,17 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     /**
      * Start and end execution time of a suite.
      */
-    private long startTime, endTime;
+    private static long startTime, endTime;
 
     /**
      * The html filename of the suite report.
      */
-    private String filename;
+    private static String filename;
 
     /**
      * Counter used in order to name the suite report files.
      */
-    private int suiteCount = 1;
+    private static int suiteCount = 1;
 
     /**
      * Counter used to build internal html <a> references.
@@ -108,7 +108,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         HtmlWriter.printSuiteHead(suiteCount);
         if (suite.getName() != null)
             HtmlWriter.printSuiteName(suite.getName());
-        this.startTime = Utils.getTimeInMillisec();
+        startTime = Utils.getTimeInMillisec();
         methodCount = 0;
         traceCount = 0;
         test_failure = false;
@@ -134,16 +134,16 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     public void onFinish(ISuite suite) {
         if (!verifyPrecondition(ISuiteListener.class))
             return;
-        this.endTime = Utils.getTimeInMillisec();
+        endTime = Utils.getTimeInMillisec();
         HtmlWriter.printSuiteTail();
-        this.suiteCount++;
+        suiteCount++;
         //Update and add the suite metadata for the report index.
         Metadata.setName(suite);
         Metadata.setFilename(filename);
         Metadata.setExecTime(endTime - startTime);
         Metadata.calculateAggregations(suite);
         Metadata.addSuite();
-        this.driver = null;
+        driver = null;
     }
 
     /**
@@ -196,7 +196,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         Report4s.logTrace(result.getThrowable());
         endConfigurationReport(result);
         Metadata.addConfigurationFailed();
-        Listeners.conf_failure = true;
+        conf_failure = true;
     }
 
     /**
@@ -267,7 +267,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             return;
 
         //Force the test to skip if the necessary conditions are met.
-        if (Listeners.test_failure && Report4s.skipSuiteAfterTestFailure) {
+        if (test_failure && Report4s.skipSuiteAfterTestFailure) {
             if (Utils.getDependencies(result).length > 0) {
                 startTestReport(result);
                 return;
@@ -278,9 +278,9 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             throw new SkipSuiteException();
         }
         //Otherwise, start the test
-        Listeners.methodCount++;
-        Listeners.exception_logged = false;
-        this.event_logged = false;
+        methodCount++;
+        exception_logged = false;
+        event_logged = false;
         startTestReport(result);
     }
 
@@ -292,8 +292,8 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
-            Report4s.logMessage(Level.PASSED, "Last screenshot", this.driver);
-        this.event_logged = false;
+            Report4s.logMessage(Level.PASSED, "Last screenshot", driver);
+        event_logged = false;
         endTestReport(result);
     }
 
@@ -311,12 +311,12 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             //Print the exception trace in the test report.
             if (!exception_logged) {
                 if (!StringUtils.equals(Report4s.screenshots, "all"))
-                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", this.driver);
+                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", driver);
                 Report4s.logTrace(result.getThrowable());
             }
         }
-        this.event_logged = false;
-        Listeners.test_failure = true;
+        event_logged = false;
+        test_failure = true;
         endTestReport(result);
     }
 
@@ -327,11 +327,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     public void onTestSkipped(ITestResult result) {
         if (!verifyPrecondition(ITestListener.class))
             return;
-        if (this.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
-            Report4s.logMessage(Level.INFO, "Last screenshot before skip", this.driver);
+        if (driver != null && StringUtils.equals(Report4s.screenshots, "last"))
+            Report4s.logMessage(Level.INFO, "Last screenshot before skip", driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
             Report4s.logTrace(result.getThrowable());
-        this.event_logged = false;
+        event_logged = false;
         endTestReport(result);
     }
 
@@ -343,7 +343,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         endTestReport(result);
-        this.event_logged = false;
+        event_logged = false;
     }
 
     /**
@@ -406,7 +406,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
                 break;
         }
         long time = result.getEndMillis() - result.getStartMillis();
-        int order = Listeners.methodCount;
+        int order = methodCount;
         Metadata.addMethod(method_name, method_parameters, status, time, order);
     }
 
