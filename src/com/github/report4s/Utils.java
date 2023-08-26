@@ -290,6 +290,8 @@ class Utils {
                 tag = "<a href=\"" + file2 + "\" target=\"_blank\"><img src=\"" + file2 + "\" class=\"screenshot\"></a>";
             } catch (Exception e) {
                 System.err.println("Failed to take and save screenshot");
+                String error = "assets/img/error.png";
+                tag = "<a href=\"" + error + "\" target=\"_blank\"><img src=\"" + error + "\" class=\"screenshot\"></a>";
             }
         }
         return tag;
@@ -307,11 +309,7 @@ class Utils {
         File screen = null;
         if (element != null) {
             try {
-                //Take screenshot of a HtmlUnitWebElement instance
-                //if ( element instanceof HtmlUnitWebElement )
-                    //screen = ((TakesScreenshot)(element)).getScreenshotAs(OutputType.FILE);
-                //Take screenshot for other WebElement instances
-                if (driver != null) { //&& !(element instanceof HtmlUnitWebElement) ) {
+                if (driver != null) {
                     //Get the page screenshot
                     screen = ((TakesScreenshot)(driver)).getScreenshotAs(OutputType.FILE);
                     BufferedImage  img = ImageIO.read(screen);
@@ -334,9 +332,11 @@ class Utils {
                 FileUtils.copyFile(screen, new File(folder + file));
                 //Set the <a> html tag
                 String file2 = "screenshots/" + file;
-                tag = "<a href='" + file2 + "' target='_blank'><img src='" + file2 + "' class='screenshot'></a>";
+                tag = "<a href=\"" + file2 + "\" target=\"_blank\"><img src=\"" + file2 + "\" class=\"screenshot\"></a>";
             } catch (Exception e) {
                 System.err.println("Failed to capture screenshot");
+                String error = "assets/img/error.png";
+                tag = "<a href=\"" + error + "\" target=\"_blank\"><img src=\"" + error + "\" class=\"screenshot\"></a>";
             }
         }
 
