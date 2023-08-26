@@ -22,10 +22,9 @@ public class DriverListener implements WebDriverListener {
                                        java.lang.Object result) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
             if (StringUtils.equals(method.getName(), "to"))
-                Logger.logEvent(decorate("Navigate " + method.getName(), "action") + " " + decorate((String)args[0], "target"));
+                Logger.logSuccess(decorate("Navigate " + method.getName(), "action") + " " + decorate((String)args[0], "target"), driver);
             else
-                Logger.logEvent(decorate("Navigate " + method.getName(), "action"));
-            Logger.logSuccess(this.driver);
+                Logger.logSuccess(decorate("Navigate " + method.getName(), "action"), driver);
         }
     }
 
@@ -34,7 +33,7 @@ public class DriverListener implements WebDriverListener {
                                       java.lang.Object[] args,
                                       java.lang.Object result) {
         this.driver = driver;
-        Logger.driver = driver;
+        TestListener.driver = driver;
         if (driver != null
                 && !StringUtils.equals(method.getName(), "close")
                 && !StringUtils.equals(method.getName(), "quit"))
@@ -45,26 +44,23 @@ public class DriverListener implements WebDriverListener {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
             this.driver = driver;
             this.currentUrl = driver.getCurrentUrl();
-            Logger.logSuccess(this.driver);
+            Logger.logSuccess(decorate("Get", "action") + " " + decorate(url, "target"), driver, null);
         }
     }
 
     public void afterClear(WebElement element) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
-            Logger.logEvent(decorate("Clear", "action") + " element " + getWebElementAttributes(element));
-            Logger.logSuccess(this.driver, element);
+            Logger.logSuccess(decorate("Clear", "action") + " element " + getWebElementAttributes(element), driver, element);
         }
     }
 
     public void afterClick​(WebElement element) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
             if (!StringUtils.equals(driver.getCurrentUrl(), this.currentUrl)) {
-                Logger.logEvent(decorate("Click", "action") + " element " + this.elem_tag);
-                Logger.logSuccess(this.driver, null);
+                Logger.logSuccess(decorate("Click", "action") + " element " + this.elem_tag, driver, null);
                 this.currentUrl = driver.getCurrentUrl();
             } else
-                Logger.logEvent(decorate("Click", "action") + " element " + getWebElementAttributes(element));
-                Logger.logSuccess(this.driver, element);
+                Logger.logSuccess(decorate("Click", "action") + " element " + getWebElementAttributes(element), driver, element);
             this.elem_tag = null;
         }
     }
@@ -79,18 +75,24 @@ public class DriverListener implements WebDriverListener {
 
     public void afterSendKeys​(WebElement element, java.lang.CharSequence... args) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
-            Logger.logEvent(decorate("SendKeys", "action") + " " + getQuotation() + args[0] + getQuotation() + " to element " + getWebElementAttributes(element));
-            Logger.logSuccess(this.driver, element);
+            Logger.logSuccess(decorate("SendKeys", "action") + " " + getQuotation() + args[0] + getQuotation() + " to element " + getWebElementAttributes(element), driver, element);
         }
     }
 
     public void afterClose​(WebDriver driver) {
         this.driver = null;
-        Logger.driver = null;
+        TestListener.driver = null;
     }
 
     public void afterQuit(WebDriver driver) {
         this.afterClose(driver);
+    }
+
+    public void beforeAnyWebDriverCall​(WebDriver driver,
+            java.lang.reflect.Method method,
+            java.lang.Object[] args,
+            java.lang.Object result) {
+        this.driver = driver;
     }
 
     public void beforeClick(WebElement element) {
@@ -108,7 +110,6 @@ public class DriverListener implements WebDriverListener {
     public void beforeGet​(WebDriver driver, java.lang.String url) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
             this.driver = driver;
-            Logger.logEvent(decorate("Get", "action") + " " + decorate(url, "target"));
         }
     }
 
@@ -116,7 +117,7 @@ public class DriverListener implements WebDriverListener {
             java.lang.reflect.Method method,
             java.lang.Object[] args,
             java.lang.reflect.InvocationTargetException e) {
-        Logger.logFailure(driver, e.getCause(), "Selenium Error");
+        //Logger.logFailure(driver, e.getCause(), "Selenium Error");
     }
     
     private String getWebElementAttributes(WebElement element) {

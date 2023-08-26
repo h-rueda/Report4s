@@ -91,6 +91,7 @@ public class SuiteListener implements ISuiteListener {
             HtmlWriter.printMultiThreadMessage();
             Metadata.setMultiThreaded();
         }
+        TestListener.driver = null;
     }
 
     /**
@@ -110,6 +111,7 @@ public class SuiteListener implements ISuiteListener {
         Metadata.setExecTime(endTime - startTime);
         Metadata.calculateAggregations(suite);
         Metadata.addSuite();
+        TestListener.driver = null;
     }
 
     /**

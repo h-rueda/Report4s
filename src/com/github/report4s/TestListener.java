@@ -1,6 +1,7 @@
 package com.github.report4s;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebDriver;
 import org.testng.ITestResult;
 import org.testng.SkipException;
 import org.testng.TestListenerAdapter;
@@ -31,9 +32,19 @@ public class TestListener extends TestListenerAdapter {
     protected static boolean exception_logged = false;
 
     /**
+     * Whether an event has been logged in the HTML test report.
+     */
+    protected static boolean event_logged = false;
+
+    /**
      * Whether an HTML table has been opened in the HTML test report.
      */
     protected static boolean opened_table = false;
+    
+    /**
+     * The WebDriver being used during the test execution.
+     */
+    protected static WebDriver driver = null;
 
     /**
      * An instantiation indicates that the listener was added in the testng xml file.
@@ -62,9 +73,9 @@ public class TestListener extends TestListenerAdapter {
             throw new SkipSuiteException();
         }
         //Otherwise, start the test
-        Logger.driver = null;
         SuiteListener.methodCount++;
         TestListener.exception_logged = false;
+        TestListener.event_logged = false;
         startTestReport(result);
     }
 
@@ -76,7 +87,8 @@ public class TestListener extends TestListenerAdapter {
         if (!verifyPrecondition())
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
-        	Report4s.logMessage(Level.PASSED, "Last screenshot", Logger.driver);
+        	Report4s.logMessage(Level.PASSED, "Last screenshot", TestListener.driver);
+        TestListener.event_logged = false;
         endTestReport(result);
     }
 
@@ -92,12 +104,12 @@ public class TestListener extends TestListenerAdapter {
             //Print the exception trace in the standard error output device.
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
-            if (!exception_logged) {
-                if (!StringUtils.equals(Report4s.screenshots, "all"))
-                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+            if (!TestListener.event_logged)
+                Report4s.logMessage(Level.FAILED, "Last screenshot before failure", TestListener.driver);
+            if (!TestListener.exception_logged)
                 Report4s.logTrace(result.getThrowable());
-            }
         }
+        TestListener.event_logged = false;
         SuiteListener.test_failure = true;
         endTestReport(result);
     }
@@ -109,10 +121,11 @@ public class TestListener extends TestListenerAdapter {
     public void onTestSkipped(ITestResult result) {
         if (!verifyPrecondition())
             return;
-        if (Logger.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
-            Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
+        if (StringUtils.equals(Report4s.screenshots, "last"))
+            Report4s.logMessage(Level.INFO, "Last screenshot before skip", TestListener.driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
-            Report4s.logTrace(result.getThrowable());        	
+            Report4s.logTrace(result.getThrowable());
+        TestListener.event_logged = false;
         endTestReport(result);
     }
 
@@ -123,6 +136,7 @@ public class TestListener extends TestListenerAdapter {
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         if (!verifyPrecondition())
             return;
+        TestListener.event_logged = false;
         endTestReport(result);
     }
 

@@ -29,36 +29,22 @@ import org.openqa.selenium.WebElement;
  */
 class Logger {
 
-    protected static boolean logging = false;
-    protected static WebDriver driver = null;
-    private static String description = "";
-
     /**
-     * Log an event.
-     * @param description The description to log.
+     * Log a successful event as a PASSED level type.
+     * @param driver The webdriver.
      */
-    protected static void logEvent(String description) {
-        logging = true;
-        Logger.description = description;
+    protected static void logSuccess(String description, WebDriver driver) {
+        logSuccess(description, driver, null);
     }
 
     /**
      * Log a successful event as a PASSED level type.
      * @param driver The webdriver.
      */
-    protected static void logSuccess(WebDriver driver) {
-        logSuccess(driver, null);
-    }
-
-    /**
-     * Log a successful event as a PASSED level type.
-     * @param driver The webdriver.
-     */
-    protected static void logSuccess(WebDriver driver, WebElement elem) {
-        if (Logger.logging)
-            Report4s.log(Level.PASSED, Logger.description, driver, elem);
-        Logger.description = "";
-        Logger.logging = false;
+    protected static void logSuccess(String description, WebDriver driver, WebElement elem) {
+        Report4s.log(Level.PASSED, description, driver, elem);
+        TestListener.event_logged = true;
+        TestListener.driver = driver;
     }
 
     /**
@@ -66,13 +52,8 @@ class Logger {
      * @param error The exception trace.
      */
     protected static void logFailure(WebDriver driver, Throwable error, String message){
-        if (Logger.logging)
-            Report4s.log(Level.FAILED, Logger.description, driver, null);
-        else
-            Report4s.logMessage(Level.FAILED, message, driver, null);
+        Report4s.logMessage(Level.FAILED, message, driver, null);
         Report4s.logTrace(error);
-        Logger.description = "";
-        Logger.logging = false;
     }
 
 }
