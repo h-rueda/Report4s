@@ -85,11 +85,6 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     protected static boolean conf_failure;
 
     /**
-     * The WebDriver being used during the test execution.
-     */
-    protected static WebDriver driver = null;
-
-    /**
      * Whether the suite under execution contains multi-threaded tests.
      */
     protected static boolean multi_threaded;
@@ -246,17 +241,22 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     /**
      * Whether an event has been logged in the HTML test report.
      */
-    protected static boolean event_logged = false;
+    protected static boolean event_logged;
 
     /**
      * Whether an exception has been logged in the HTML test report.
      */
-    protected static boolean exception_logged = false;
+    protected static boolean exception_logged;
+
+    /**
+     * The WebDriver being used during the test execution.
+     */
+    protected static WebDriver driver;
 
     /**
      * Whether an HTML table has been opened in the HTML test report.
      */
-    protected static boolean opened_table = false;
+    protected static boolean opened_table;
 
     /**
      * Invoked each time before a test method is invoked.
