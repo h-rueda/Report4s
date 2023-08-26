@@ -1,11 +1,12 @@
 v5.1
 ====
-* Bugfix: Some exceptions are logged twice on failed tests.
-* Bugfix: minor incoherence in a CSS file.
-* Bugfix: remove locator information from logs as they weren't always accurate.
-* Improvement: SkipException trace is logged for skipped tests thrown that exception.
+* New feature: Users can provide custom CSS file to override CSS styles.
+* Improvement: SkipException trace is logged for skipped tests throwing that exception.
+* Improvement: WebElement attributes are logged alongside the screenshots.
 * Change: TestNG listeners have been merged in a single java class.
-* Change: Removal of the "none" screenshot gathering strategy, as it was identical to the "failed" strategy.
+* Bugfix: Some exceptions are logged twice on failed tests.
+* Bugfix: Minor incoherence in a CSS file.
+* Bugfix: Remove locator information from logs as they weren't always accurate.
 
 
 v5.0
