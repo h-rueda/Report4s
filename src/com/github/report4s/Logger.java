@@ -43,16 +43,6 @@ class Logger {
     }
 
     /**
-     * Log an event.
-     * @param description The description to log.
-     * @param screenshot Whether to include a full web page screenshot.
-     */
-    protected static void logEvent(String description, boolean screenshot) {
-        logging = true;
-        Logger.description = description;
-    }
-
-    /**
      * Log a successful event as a PASSED level type.
      * @param driver The webdriver.
      */
