@@ -4,6 +4,7 @@ import java.io.File;
 import java.util.List;
 
 import org.apache.commons.lang3.StringUtils;
+import org.openqa.selenium.WebDriver;
 import org.testng.IConfigurationListener;
 import org.testng.IReporter;
 import org.testng.ISuite;
@@ -84,6 +85,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     protected static boolean conf_failure;
 
     /**
+     * The WebDriver being used during the test execution.
+     */
+    protected static WebDriver driver = null;
+
+    /**
      * Whether the suite under execution contains multi-threaded tests.
      */
     protected static boolean multi_threaded;
@@ -117,6 +123,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             HtmlWriter.printMultiThreadMessage();
             Metadata.setMultiThreaded();
         }
+        driver = null;
     }
 
     /**
@@ -136,6 +143,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         Metadata.setExecTime(endTime - startTime);
         Metadata.calculateAggregations(suite);
         Metadata.addSuite();
+        this.driver = null;
     }
 
     /**
@@ -153,7 +161,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      * Whether a configuration method is running.
      */
     protected static boolean running_configuration;
-    
+
     /**
      * Whether a log has been added to the HTML test report.
      */
@@ -204,7 +212,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     }
 
     /**
-     * Print the table header of a configuration method report. 
+     * Print the table header of a configuration method report.
      */
     private void startConfigurationReport(ITestResult result) {
         HtmlWriter.printConfigurationTitle(result);
@@ -236,6 +244,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     protected static boolean printing_test;
 
     /**
+     * Whether an event has been logged in the HTML test report.
+     */
+    protected static boolean event_logged = false;
+
+    /**
      * Whether an exception has been logged in the HTML test report.
      */
     protected static boolean exception_logged = false;
@@ -265,9 +278,9 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             throw new SkipSuiteException();
         }
         //Otherwise, start the test
-        Logger.driver = null;
         Listeners.methodCount++;
         Listeners.exception_logged = false;
+        this.event_logged = false;
         startTestReport(result);
     }
 
@@ -279,7 +292,8 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
-            Report4s.logMessage(Level.PASSED, "Last screenshot", Logger.driver);
+            Report4s.logMessage(Level.PASSED, "Last screenshot", this.driver);
+        this.event_logged = false;
         endTestReport(result);
     }
 
@@ -297,10 +311,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             //Print the exception trace in the test report.
             if (!exception_logged) {
                 if (!StringUtils.equals(Report4s.screenshots, "all"))
-                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", Logger.driver);
+                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", this.driver);
                 Report4s.logTrace(result.getThrowable());
             }
         }
+        this.event_logged = false;
         Listeners.test_failure = true;
         endTestReport(result);
     }
@@ -312,10 +327,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     public void onTestSkipped(ITestResult result) {
         if (!verifyPrecondition(ITestListener.class))
             return;
-        if (Logger.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
-            Report4s.logMessage(Level.INFO, "Last screenshot before skip", Logger.driver);
+        if (this.driver != null && StringUtils.equals(Report4s.screenshots, "last"))
+            Report4s.logMessage(Level.INFO, "Last screenshot before skip", this.driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
             Report4s.logTrace(result.getThrowable());
+        this.event_logged = false;
         endTestReport(result);
     }
 
@@ -327,6 +343,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         endTestReport(result);
+        this.event_logged = false;
     }
 
     /**
@@ -485,7 +502,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     private void print_rows() {
         //Iterating over the suites metadata
         for (int i = 0; i != Metadata.size(); i++) {
-            SuiteMetadata suite_md = Metadata.get(i);            
+            SuiteMetadata suite_md = Metadata.get(i);
             //print the suite result table row
             print_suite_row(i+1, suite_md.name, suite_md.time, suite_md.filename, suite_md.status);
             //Iterating over the test methods metadata
@@ -579,7 +596,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
      */
     private void print_tail() {
         HtmlWriter.println(
-            "        </table>" + "\n\n" + 
+            "        </table>" + "\n\n" +
             "        <br><br><br>" + "\n\n" +
             "    </body>" + "\n" +
             "</html>" + "\n");
@@ -597,7 +614,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         HtmlWriter.println(content);
         HtmlWriter.closeFile();
     }
-    
+
     /**
      * Print the tooltips data in a separate JavaScript file.
      */

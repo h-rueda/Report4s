@@ -46,7 +46,8 @@ public class Reporter implements IReporter {
             "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui-override.css\" />" + "\n";
         if (Report4s.report_css != null)
             content +=
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/" + Report4s.report_css + "\" />" + "\n" +
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/" + Report4s.report_css + "\" />" + "\n";
+        content +=
             "        <script src=\"assets/js/jquery.js\"></script>" + "\n" +
             "        <script src=\"assets/js/jquery-ui.js\"></script>" + "\n" +
             "        <script src=\"assets/js/events.js\"></script>" + "\n";
@@ -102,7 +103,7 @@ public class Reporter implements IReporter {
     private void print_rows() {
         //Iterating over the suites metadata
         for (int i = 0; i != Metadata.size(); i++) {
-            SuiteMetadata suite_md = Metadata.get(i);            
+            SuiteMetadata suite_md = Metadata.get(i);
             //print the suite result table row
             print_suite_row(i+1, suite_md.name, suite_md.time, suite_md.filename, suite_md.status);
             //Iterating over the test methods metadata
@@ -196,7 +197,7 @@ public class Reporter implements IReporter {
      */
     private void print_tail() {
         HtmlWriter.println(
-            "        </table>" + "\n\n" + 
+            "        </table>" + "\n\n" +
             "        <br><br><br>" + "\n\n" +
             "    </body>" + "\n" +
             "</html>" + "\n");
@@ -214,7 +215,7 @@ public class Reporter implements IReporter {
         HtmlWriter.println(content);
         HtmlWriter.closeFile();
     }
-    
+
     /**
      * Print the tooltips data in a separate JavaScript file.
      */
