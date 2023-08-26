@@ -5,8 +5,10 @@ import org.openqa.selenium.support.ui.Select;
 import org.testng.SkipException;
 import org.testng.annotations.*;
 
+import com.github.report4s.Report4s;
+
 public class Web4 extends TemplateTest {
-	
+    
 	@Test(description = "Write input element")
 	public void search() {
 		driver.get(this.page);

@@ -3,6 +3,7 @@ package com.github.report4s.test;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.Select;
+import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import com.github.report4s.Report4s;
@@ -45,5 +46,10 @@ public class Web2 extends TemplateTest {
 		elem = this.driver.findElement(By.id("gender2"));
 		elem.click();
 	}
+
+    @AfterSuite(alwaysRun=true)
+    public void suiteTearDoan() {
+        Report4s.skipSuiteAfterTestFailure = false;
+    }
 
 }

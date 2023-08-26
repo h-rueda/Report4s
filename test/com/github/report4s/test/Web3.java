@@ -13,7 +13,7 @@ public class Web3 extends TemplateTest {
 	
 	@BeforeSuite(alwaysRun=true)
 	public void suiteSetUp() {
-		Report4s.skipSuiteAfterTestFailure = false;
+		//Report4s.skipSuiteAfterTestFailure = false;
 	}
 	
 	@Test(description = "Write input element")
@@ -31,12 +31,12 @@ public class Web3 extends TemplateTest {
 	@Test(description = "Single select")
 	public void selectCar1() {
 		Select sel = new Select(this.driver.findElement(By.name("car")));
-		sel.selectByValue("fiatxxx");
+		sel.selectByValue("xxxx");
 	}
 
 	@Test(description = "Single select")
 	public void selectCar2() {
-		Select sel = new Select(this.driver.findElement(By.name("carx")));
+		Select sel = new Select(this.driver.findElement(By.name("xxxx")));
 		sel.selectByValue("xxxx");
 	}
 
@@ -70,7 +70,7 @@ public class Web3 extends TemplateTest {
 
 	@AfterSuite(alwaysRun=true)
 	public void suiteTearDoan() {
-		Report4s.skipSuiteAfterTestFailure = true;
+		//Report4s.skipSuiteAfterTestFailure = true;
 	}
 
 }

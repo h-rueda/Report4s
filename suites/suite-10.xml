@@ -1,0 +1,9 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
+
+<suite name="Web10 - Failed Find Elements without screenshot">
+	<test name="My test" preserve-order="true">
+		<classes>
+			<class name="com.github.report4s.test.Web10"/>
+		</classes>
+	</test>
+</suite>

@@ -6,8 +6,11 @@ import java.nio.file.FileSystems;
 import java.util.Properties;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.openqa.selenium.support.events.*;
 import org.testng.annotations.*;
 
@@ -46,13 +49,19 @@ public class TemplateTest {
 			}
 		}
 		if(browser.equals("firefox")) {
-			raw_driver = new FirefoxDriver();
+		    FirefoxOptions options = new FirefoxOptions();
+		    options.addArguments("--headless");
+			raw_driver = new FirefoxDriver(options);
 		}
 		if(browser.equals("edge")) {
-			raw_driver = new EdgeDriver();
+            EdgeOptions options = new EdgeOptions();
+            options.addArguments("--headless");
+			raw_driver = new EdgeDriver(options);
 		}
 		if(browser.equals("chrome")) {
-			raw_driver = new ChromeDriver();
+            ChromeOptions options = new ChromeOptions();
+            options.addArguments("--headless");
+			raw_driver = new ChromeDriver(options);
 		}
 		DriverListener listener = new DriverListener();
 		this.driver = new EventFiringDecorator<WebDriver>(listener).decorate(raw_driver);
