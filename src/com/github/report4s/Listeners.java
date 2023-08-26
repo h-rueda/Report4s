@@ -2,7 +2,6 @@ package com.github.report4s;
 
 import java.io.File;
 import java.util.List;
-
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.IConfigurationListener;
