@@ -41,13 +41,12 @@ public class Reporter implements IReporter {
             "    <head>" + "\n" +
             "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + "\n" +
             "        <title>" + Report4s.report_title + "</title>" + "\n" +
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/design.css\" />" + "\n";
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/design.css\" />" + "\n" +
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui.css\" />" + "\n" +
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui-override.css\" />" + "\n";
         if (Report4s.report_css != null)
             content +=
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/" + Report4s.report_css + "\" />" + "\n";
-        content +=
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui.css\" />" + "\n" +
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui-override.css\" />" + "\n" +
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/" + Report4s.report_css + "\" />" + "\n" +
             "        <script src=\"assets/js/jquery.js\"></script>" + "\n" +
             "        <script src=\"assets/js/jquery-ui.js\"></script>" + "\n" +
             "        <script src=\"assets/js/events.js\"></script>" + "\n";
