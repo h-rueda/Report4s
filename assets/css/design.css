@@ -41,6 +41,19 @@ a {
     font-family: monospace;
     color: dimgray;
 }
+.action {
+    font-weight: bold;
+    color: black;
+}
+.target {
+    font-family: monospace;
+    color: blue;
+}
+.quotation{
+    font-family: monospace;
+    font-weight: bold;
+    color: black;
+}
 .test_failed {
     color: red;
 }
