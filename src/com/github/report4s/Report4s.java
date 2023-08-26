@@ -322,7 +322,7 @@ public class Report4s {
                 JarEntry file = enumEntries.nextElement();
                 if (!file.getName().startsWith("assets"))
                     continue;
-                File f = new File(Report4s.report_dir + File.separator + file.getName());
+                File f = new File(report_dir + File.separator + file.getName());
                 if (file.isDirectory()) {
                     f.mkdir();
                     continue;
