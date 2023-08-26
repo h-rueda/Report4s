@@ -10,6 +10,9 @@
 	</suite-files>
 	
 	<listeners>
+<!--
+        <listener class-name="com.github.report4s.Listeners" />
+-->
 		<listener class-name="com.github.report4s.ConfigurationListener" />
 		<listener class-name="com.github.report4s.TestListener" />
 		<listener class-name="com.github.report4s.SuiteListener" />
