@@ -190,7 +190,7 @@ public class Report4s {
         if (SuiteListener.registered && TestListener.registered) {
             new File(report_dir).mkdir();
             extractResourcesFromJAR();
-            if (Report4s.report_css != null)
+            if (report_css != null)
                 copyCssFile();
         }
     }    
@@ -321,7 +321,7 @@ public class Report4s {
                 JarEntry file = enumEntries.nextElement();
                 if (!file.getName().startsWith("assets"))
                     continue;
-                File f = new File(report_dir + File.separator + file.getName());
+                File f = new File(Report4s.report_dir + File.separator + file.getName());
                 if (file.isDirectory()) {
                     f.mkdir();
                     continue;
@@ -348,7 +348,7 @@ public class Report4s {
         try {
             FileUtils.copyFile(
                 new File(Report4s.report_css),
-                new File(report_dir + File.separator + "assets" + File.separator + "css" + File.separator + "design-override.css")
+                new File(Report4s.report_dir + File.separator + "assets" + File.separator + "css" + File.separator + "design-override.css")
             );
             Report4s.report_css = "design-override.css";
         } catch (IOException e) {
