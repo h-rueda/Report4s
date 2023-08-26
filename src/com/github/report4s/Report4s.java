@@ -114,7 +114,7 @@ public class Report4s {
         padding = 10;
         time_precision = 0;
         suite_tooltips = true;
-        skipSuiteAfterTestFailure = true;
+        skipSuiteAfterTestFailure = false;
 
         //Read and load the properties file.
         Properties prop= new Properties();
