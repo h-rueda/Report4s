@@ -7,7 +7,7 @@ enum Status {
     PASSED,
     FAILED,
     SKIPPED,
-    PASSED_WITH_WARNING, 
+    PASSED_WITH_WARNING,
     FAILED_WITHIN_PERCENTAGE,
     UNKNOWN,
     EMPTY,    //for multi-threaded tests

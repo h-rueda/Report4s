@@ -190,7 +190,7 @@ class HtmlWriter {
             println("        </table>");
         table_header = null;
     }
-    
+
     /**
      * Print the annotation and name of a configuration method.
      * @param result The configuration under execution.
@@ -243,7 +243,7 @@ class HtmlWriter {
         if (link == null)
             link = "";
 
-        String log = 
+        String log =
             "            <tr>" + "\n" +
             "                <td>" + icon + "</td>" + "\n" +
             "                <td>" + message + "</td>" + "\n" +

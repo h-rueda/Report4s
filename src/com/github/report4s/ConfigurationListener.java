@@ -12,12 +12,12 @@ public class ConfigurationListener implements IConfigurationListener {
      * Whether this listener has been registered in the testng xml file.
      */
     protected static boolean registered;
-    
+
     /**
      * Whether a configuration method is running.
      */
     protected static boolean running;
-    
+
     /**
      * Whether a log has been added to the HTML test report.
      */
@@ -75,7 +75,7 @@ public class ConfigurationListener implements IConfigurationListener {
     }
 
     /**
-     * Print the table header of a configuration method report. 
+     * Print the table header of a configuration method report.
      */
     private void startConfigurationReport(ITestResult result) {
         HtmlWriter.printConfigurationTitle(result);
@@ -99,5 +99,5 @@ public class ConfigurationListener implements IConfigurationListener {
     private boolean verifyPrecondition() {
         return Report4s.extracted && !SuiteListener.multi_threaded;
     }
-    
+
 }

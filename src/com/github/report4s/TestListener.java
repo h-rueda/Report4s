@@ -40,7 +40,7 @@ public class TestListener extends TestListenerAdapter {
      * Whether an HTML table has been opened in the HTML test report.
      */
     protected static boolean opened_table = false;
-    
+
     /**
      * The WebDriver being used during the test execution.
      */

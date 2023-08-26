@@ -46,13 +46,13 @@ class Metadata {
     /**
      * Set the report filename of the current suite being executed.
      * @param filename The filename.
-     */    
+     */
     protected static void setFilename(String filename) {
         currentSuite.filename = filename;
     }
 
     /**
-     * Set the execution time of the current suite being executed. 
+     * Set the execution time of the current suite being executed.
      * @param time The execution time.
      */
     protected static void setExecTime(long time) {
@@ -152,9 +152,6 @@ class Metadata {
  * Meta-data is information needed in order to build the report homepage (index) html file.
  * @author Harmin Parra Rueda
  */
-/**
- * 
- */
 class SuiteMetadata {
     protected String name;      //The suite name
     protected String filename;  //The filename of the suite's report
@@ -165,12 +162,12 @@ class SuiteMetadata {
      * Whether this suite has multi-threaded tests.
      */
     protected boolean hasMutiThreads;
-    
+
     /**
      * Counters of passed, failed and skipped tests.
      */
     protected int tests_passed, tests_failed, tests_skipped, tests_failed_pct;
-    
+
     /**
      * Counter of failed and skipped configurations.
      */
@@ -218,7 +215,7 @@ class SuiteMetadata {
                 Metadata.suites_passed++;
             } else {
                 this.status = Status.PASSED_WITH_WARNING;
-                Metadata.suites_passed_warning++;                
+                Metadata.suites_passed_warning++;
             }
         }
         else if (this.tests_skipped > 0 && this.tests_passed == 0 && this.tests_failed_pct == 0) {

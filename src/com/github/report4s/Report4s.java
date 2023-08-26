@@ -40,7 +40,7 @@ public class Report4s {
      * The filename of the report homepage.<br/>
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
      * The default values is "index.html".
-     */    
+     */
     protected static String report_homepage;
 
     /**
@@ -194,7 +194,7 @@ public class Report4s {
             if (report_css != null)
                 copyCssFile();
         }
-    }    
+    }
 
     /**
      * Whether the current suite is multi-threaded.
@@ -284,7 +284,7 @@ public class Report4s {
         String icon = Utils.getIconTag(level);
         //Print the log
         HtmlWriter.printTableRow(Utils.getLogTag(icon, message, link));
-    }    
+    }
 
     /**
      * Append an exception to the test report.<br/>
@@ -344,7 +344,7 @@ public class Report4s {
             e.printStackTrace();
         }
     }
-    
+
     private static void copyCssFile() {
         try {
             FileUtils.copyFile(

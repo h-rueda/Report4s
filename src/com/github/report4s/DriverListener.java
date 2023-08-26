@@ -66,7 +66,7 @@ public class DriverListener implements WebDriverListener {
     }
 
     public void afterFindElement​(WebDriver driver, By locator, WebElement result) { }
-    
+
     public void afterFindElement​(WebElement element, By locator, WebElement result) { }
 
     public void afterFindElements​(WebDriver driver, By locator, WebElement result) { }
@@ -119,7 +119,7 @@ public class DriverListener implements WebDriverListener {
             java.lang.reflect.InvocationTargetException e) {
         //Logger.logFailure(driver, e.getCause(), "Selenium Error");
     }
-    
+
     private String getWebElementAttributes(WebElement element) {
         String tag = element.getTagName();
         String id = element.getDomAttribute("id");
@@ -130,7 +130,7 @@ public class DriverListener implements WebDriverListener {
         String classes = element.getDomAttribute("class");
         String href = element.getDomAttribute("href");
         String text = element.getText();
-        
+
         String result = "&lt;";
         if (tag != null)
             result += tag;
@@ -154,11 +154,11 @@ public class DriverListener implements WebDriverListener {
         result += "&gt;";
         return decorate(result, "target");
     }
-    
+
     private String decorate(String label, String cssclass) {
         return "<span class=\"" + cssclass + "\">" + label + "</span>";
     }
-    
+
     private String getQuotation() {
         return decorate("\"", "quotation");
     }

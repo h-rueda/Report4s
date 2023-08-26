@@ -209,8 +209,8 @@ class Utils {
     protected static String getLogTag(String icon, String message, String link) {
         if (link == null)
             link = "";
-        
-        String log = 
+
+        String log =
             "            <tr>" + "\n" +
             "                <td>" + icon + "</td>" + "\n" +
             "                <td>" + message + "</td>" + "\n" +
@@ -245,7 +245,7 @@ class Utils {
             "                    </span>" + "\n" +
             "                </td>" + "\n" +
             "            <tr>" + "\n";
-        
+
         return log;
     }
 
@@ -342,7 +342,7 @@ class Utils {
 
         if (element == null || driver == null)
             System.err.println("Failed to take screenshot because either the webdriver or webelement is null");
-        
+
         return tag;
     }
 
