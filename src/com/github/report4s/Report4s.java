@@ -1,8 +1,15 @@
 package com.github.report4s;
 
-import java.io.*;
-import java.util.*;
-import java.util.jar.*;
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
+import java.util.Enumeration;
+import java.util.Properties;
+import java.util.jar.JarEntry;
+import java.util.jar.JarFile;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.lang3.StringUtils;
 import org.openqa.selenium.WebDriver;
@@ -35,6 +42,12 @@ public class Report4s {
      * The default values is "index.html".
      */    
     protected static String report_homepage;
+
+    /**
+     * Path of custom CSS file to add to the report.<br/>
+     * This parameter is read from the <code>report4s.properties</code> file.<br/>
+     */
+    protected static String report_css;
 
     /**
      * The screenshots to gather.<br/>
@@ -124,6 +137,10 @@ public class Report4s {
             if (parameter != null && !parameter.isEmpty())
                 report_title = parameter;
 
+            parameter = prop.getProperty("report4s.report.css");
+            if (parameter != null && !parameter.isEmpty())
+                report_css = parameter;
+
             parameter = prop.getProperty("report4s.screenshots.enabled");
             if(parameter != null
                     && (parameter.equalsIgnoreCase("all")
@@ -173,6 +190,8 @@ public class Report4s {
         if (SuiteListener.registered && TestListener.registered) {
             new File(report_dir).mkdir();
             extractResourcesFromJAR();
+            if (Report4s.report_css != null)
+                copyCssFile();
         }
     }    
 
@@ -321,6 +340,21 @@ public class Report4s {
                 System.err.println("FATAL ERROR: Failed to locate report4s JAR file");
             else
                 System.err.println("FATAL ERROR: Failed to extract assets from report4s JAR file");
+            e.printStackTrace();
+        }
+    }
+    
+    private static void copyCssFile() {
+        try {
+            FileUtils.copyFile(
+                new File(Report4s.report_css),
+                new File(report_dir + File.separator + "assets" + File.separator + "css" + File.separator + "design-override.css")
+            );
+            Report4s.report_css = "design-override.css";
+        } catch (IOException e) {
+            Report4s.report_css = null;
+            System.err.println("ERROR: Failed to copy custom CSS file");
+            e.printStackTrace();
         }
     }
 

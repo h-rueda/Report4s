@@ -70,15 +70,20 @@ class HtmlWriter {
      * @param count The counter of the suite.
      */
     protected static void printSuiteHead(int count) {
-        println(
+        String header =
             "<html>" + "\n" +
             "    <head>" + "\n" +
             "        <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\" />" + "\n" +
             "        <title>Suite-" + count + "</title>" + "\n" +
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/design.css\" />" + "\n" +
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/design.css\" />" + "\n";
+        if (Report4s.report_css != null)
+            header +=
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/" + Report4s.report_css + "\" />" + "\n";
+            header +=
             "        <script src=\"assets/js/events.js\"></script>" + "\n" +
             "    </head>" + "\n\n" +
-            "    <body>");
+            "    <body>";
+            println(header);
     }
 
     /**
