@@ -2,6 +2,7 @@ package com.github.report4s.test;
 
 import java.io.*;
 import java.net.*;
+import java.nio.file.FileSystems;
 import java.util.Properties;
 import org.openqa.selenium.*;
 import org.openqa.selenium.edge.EdgeDriver;
@@ -15,7 +16,12 @@ import com.github.report4s.DriverListener;
 public class TemplateTest {
 
 	protected WebDriver driver;
-	protected String page = "file:///home/harmin/.eclipse-workspace2/report4s/test/page.html";
+	//protected String page = "file:///home/harmin/.eclipse-workspace2/report4s/test/page.html";
+	protected String page = "file://" +
+	            FileSystems.getDefault()
+	            .getPath("test", "page.html")
+	            .toAbsolutePath()
+	            .toString();
 
 	@BeforeSuite(alwaysRun=true)
 	public void setUp() throws MalformedURLException {
