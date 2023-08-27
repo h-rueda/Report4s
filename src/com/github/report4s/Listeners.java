@@ -51,17 +51,17 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     /**
      * Start and end execution time of a suite.
      */
-    private static long startTime, endTime;
+    protected static long startTime, endTime;
 
     /**
      * The html filename of the suite report.
      */
-    private static String filename;
+    protected static String filename;
 
     /**
      * Counter used in order to name the suite report files.
      */
-    private static int suiteCount = 1;
+    protected static int suiteCount = 1;
 
     /**
      * Counter used to build internal html <a> references.
