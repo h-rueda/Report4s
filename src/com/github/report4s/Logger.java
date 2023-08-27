@@ -54,6 +54,7 @@ class Logger {
     protected static void logFailure(WebDriver driver, Throwable error, String message){
         Report4s.logMessage(Level.FAILED, message, driver, null);
         Report4s.logTrace(error);
+        //TestListener.exception_logged = true;
     }
 
 }

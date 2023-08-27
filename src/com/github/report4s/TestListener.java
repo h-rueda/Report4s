@@ -88,7 +88,6 @@ public class TestListener extends TestListenerAdapter {
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
         	Report4s.logMessage(Level.PASSED, "Last screenshot", TestListener.driver);
-        TestListener.event_logged = false;
         endTestReport(result);
     }
 
@@ -104,12 +103,12 @@ public class TestListener extends TestListenerAdapter {
             //Print the exception trace in the standard error output device.
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
-            if (!TestListener.event_logged)
+            if (!StringUtils.equals(Report4s.screenshots, "all")
+                    && !TestListener.event_logged)
                 Report4s.logMessage(Level.FAILED, "Last screenshot before failure", TestListener.driver);
             if (!TestListener.exception_logged)
                 Report4s.logTrace(result.getThrowable());
         }
-        TestListener.event_logged = false;
         SuiteListener.test_failure = true;
         endTestReport(result);
     }
@@ -125,7 +124,6 @@ public class TestListener extends TestListenerAdapter {
             Report4s.logMessage(Level.INFO, "Last screenshot before skip", TestListener.driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
             Report4s.logTrace(result.getThrowable());
-        TestListener.event_logged = false;
         endTestReport(result);
     }
 
@@ -136,7 +134,6 @@ public class TestListener extends TestListenerAdapter {
     public void onTestFailedButWithinSuccessPercentage(ITestResult result) {
         if (!verifyPrecondition())
             return;
-        TestListener.event_logged = false;
         endTestReport(result);
     }
 
