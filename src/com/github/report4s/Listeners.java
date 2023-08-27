@@ -308,13 +308,12 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             //Print the exception trace in the standard error output device.
             result.getThrowable().printStackTrace();
             //Print the exception trace in the test report.
-            if (!exception_logged) {
-                if (!StringUtils.equals(Report4s.screenshots, "all"))
-                    Report4s.logMessage(Level.FAILED, "Last screenshot before failure", driver);
+            if (!StringUtils.equals(Report4s.screenshots, "all")
+                    && event_logged)
+                Report4s.logMessage(Level.FAILED, "Last screenshot before failure", TestListener.driver);
+            if (!exception_logged)
                 Report4s.logTrace(result.getThrowable());
-            }
         }
-        event_logged = false;
         test_failure = true;
         endTestReport(result);
     }
@@ -326,11 +325,10 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
     public void onTestSkipped(ITestResult result) {
         if (!verifyPrecondition(ITestListener.class))
             return;
-        if (driver != null && StringUtils.equals(Report4s.screenshots, "last"))
+        if (StringUtils.equals(Report4s.screenshots, "last"))
             Report4s.logMessage(Level.INFO, "Last screenshot before skip", driver);
         if (result.getThrowable() != null && result.getThrowable() instanceof SkipException)
             Report4s.logTrace(result.getThrowable());
-        event_logged = false;
         endTestReport(result);
     }
 
@@ -342,7 +340,6 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
         if (!verifyPrecondition(ITestListener.class))
             return;
         endTestReport(result);
-        event_logged = false;
     }
 
     /**
@@ -445,7 +442,11 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             "        <title>" + Report4s.report_title + "</title>" + "\n" +
             "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/design.css\" />" + "\n" +
             "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui.css\" />" + "\n" +
-            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui-override.css\" />" + "\n" +
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/jquery-ui-override.css\" />" + "\n";
+        if (Report4s.report_css != null)
+            content +=
+            "        <link rel=\"stylesheet\" type=\"text/css\" href=\"assets/css/" + Report4s.report_css + "\" />" + "\n";
+        content +=
             "        <script src=\"assets/js/jquery.js\"></script>" + "\n" +
             "        <script src=\"assets/js/jquery-ui.js\"></script>" + "\n" +
             "        <script src=\"assets/js/events.js\"></script>" + "\n";
