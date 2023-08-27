@@ -146,7 +146,7 @@ public class Report4s {
                     && (parameter.equalsIgnoreCase("all")
                         || parameter.equalsIgnoreCase("failed")
                         || parameter.equalsIgnoreCase("last")
-                        || parameter.equalsIgnoreCase("none")))
+                        || parameter.equalsIgnoreCase("manual")))
                 screenshots = parameter.toLowerCase();
 
             parameter = prop.getProperty("report4s.screenshots.target");
@@ -293,7 +293,6 @@ public class Report4s {
      */
     protected static void logTrace(Throwable error) {
         int traceCount = ++SuiteListener.traceCount;
-        TestListener.exception_logged = true;
         HtmlWriter.printTableRow(Utils.getTraceTag(error, traceCount));
     }
 

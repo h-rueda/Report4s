@@ -33,7 +33,7 @@ It is only compatible with Selenium 4 or later.
     + `all`     All screenshots for intercepted webdriver events.
     + `last`    The screenshot of the last step for each `@Test` annotated method.
     + `failed`  The last screenshot of each test failure.
-    + `none`    Deactivation of automatic screenshot except for the last step of failed tests.
+    + `manual`  Deactivation of automatic screenshot except for the last step of failed tests.
 
 
 ## The ZIP file contents
@@ -139,11 +139,11 @@ There are three strategies:
 + `all`     Screenshot for each intercepted webdriver event. This is the default value.
 + `last`    Screenshot of the last step for each `@Test` annotated method.
 + `failed`  Screenshot of the last step for each failed test.
-+ `none`    Deactivation of automatic screenshot gathering except for the last step of failed tests. 
++ `manual`  Deactivation of automatic screenshot gathering except for the last step of failed tests. 
 
 Regardless of the strategy, the user can gather additional screenshots and log messages manually (see next section).
 
-In practical terms, the `failed` and `none` strategies behave the same.
+In practical terms, the `failed` and `manual` strategies behave the same.
 
 
 ## How to log custom messages
@@ -295,7 +295,7 @@ then reactivate it after the wait.
 
 
 #The screenshot gathering strategy.
-#Values: all, last or failed.
+#Values: all, last, failed or manual.
 #report4s.screenshots.enabled=all
 
 
