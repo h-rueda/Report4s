@@ -30,7 +30,8 @@ public class Web2 extends TemplateTest {
 	@Test(description = "Single select")
 	public void selectCar() {
 		Select sel = new Select(this.driver.findElement(By.name("car")));
-		sel.selectByValue("fiatxxx");
+        sel.selectByValue("fiat");
+		sel.selectByValue("xxxx");
 	}
 
 	@Test(description = "Click checkbox")

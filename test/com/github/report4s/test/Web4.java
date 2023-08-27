@@ -23,14 +23,14 @@ public class Web4 extends TemplateTest {
 
 	@Test(description = "Click checkbox")
 	public void setGender() {
-		throw new SkipException("Skipping");
+		throw new SkipException("Skipping setGender");
 	}
 
 	@Test(description = "Single select")
 	public void selectCar() {
 		Select sel = new Select(driver.findElement(By.name("car")));
 		sel.selectByValue("fiat");
-		throw new SkipException("Skipping");
+		throw new SkipException("Skipping selectCar");
 	}
 
 	@Test(description = "Multiple select")

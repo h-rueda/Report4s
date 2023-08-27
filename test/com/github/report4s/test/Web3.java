@@ -31,6 +31,7 @@ public class Web3 extends TemplateTest {
 	@Test(description = "Single select")
 	public void selectCar1() {
 		Select sel = new Select(this.driver.findElement(By.name("car")));
+        sel.selectByValue("fiat");
 		sel.selectByValue("xxxx");
 	}
 
@@ -45,13 +46,6 @@ public class Web3 extends TemplateTest {
 		Select sel = new Select(this.driver.findElement(By.name("car")));
 		sel.selectByValue("fiat");
 		Assert.assertEquals(1, 2);
-	}
-
-	@Test(description = "Single select")
-	public void selectCar4() {
-		Select sel = new Select(this.driver.findElement(By.name("car")));
-		sel.selectByValue("fiat");
-		Assert.fail("Failure");
 	}
 
 	@Test(description = "Click checkbox")
