@@ -76,7 +76,7 @@ public class SuiteListener implements ISuiteListener {
         HtmlWriter.printSuiteHead(suiteCount);
         if (suite.getName() != null)
             HtmlWriter.printSuiteName(suite.getName());
-        this.startTime = Utils.getTimeInMillisec();
+        startTime = Utils.getTimeInMillisec();
         methodCount = 0;
         traceCount = 0;
         test_failure = false;
@@ -102,9 +102,9 @@ public class SuiteListener implements ISuiteListener {
     public void onFinish(ISuite suite) {
         if (!verifyPrecondition())
             return;
-        this.endTime = Utils.getTimeInMillisec();
+        endTime = Utils.getTimeInMillisec();
         HtmlWriter.printSuiteTail();
-        this.suiteCount++;
+        suiteCount++;
         //Update and add the suite metadata for the report index.
         Metadata.setName(suite);
         Metadata.setFilename(filename);
