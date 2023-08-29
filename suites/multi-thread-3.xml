@@ -1,9 +1,0 @@
-<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
-
-<suite name="MultiThread3 - Passed + skipped test" parallel="methods" thread-count="5">
-    <test name="Test">
-        <classes>
-            <class name="com.github.report4s.test.MultiThread3"/>
-        </classes>
-    </test>
-</suite>
