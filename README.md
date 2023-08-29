@@ -76,10 +76,7 @@ Add the following lines before the closing `</suite>` tag in your testng XML fil
     ...
     ...
     <listeners>
-        <listener class-name="net.sourceforge.report4s.ReportIndex" />
-        <listener class-name="net.sourceforge.report4s.TestListener" />
-        <listener class-name="net.sourceforge.report4s.SuiteListener" />
-        <listener class-name="net.sourceforge.report4s.ConfigurationListener" />
+        <listener class-name="net.sourceforge.report4s.Listeners" />
     </listeners>
 </suite> 
 ```
@@ -141,7 +138,7 @@ There are three strategies:
 + `failed`  Screenshot of the last step for each failed test.
 + `manual`  Deactivation of automatic screenshot gathering except for the last step of failed tests. 
 
-Regardless of the strategy, the user can gather additional screenshots and log messages manually (see next section).
+Regardless of the strategy, additional screenshots can be loggged manually alongside a description (see next section).
 
 In practical terms, the `failed` and `manual` strategies behave the same.
 
