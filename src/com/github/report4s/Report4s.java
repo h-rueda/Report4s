@@ -188,7 +188,7 @@ public class Report4s {
         catch (IOException e) { System.err.println("Failed to delete existing report directory"); }
 
         //Re-create a new report directory with its assets files
-        if (SuiteListener.registered && TestListener.registered) {
+        if (Listeners.registered) {
             new File(report_dir).mkdir();
             extractResourcesFromJAR();
             if (report_css != null)
@@ -201,7 +201,7 @@ public class Report4s {
      * @return Whether the current suite is multi-threaded.
      */
     private static boolean isMultiThreadedSuite() {
-        return SuiteListener.multi_threaded;
+        return Listeners.multi_threaded;
     }
 
     /**
@@ -209,9 +209,8 @@ public class Report4s {
      * @return Whether a {test|configuration} method is running.
      */
     private static boolean executingTest() {
-        return (SuiteListener.registered
-                && ((TestListener.registered && TestListener.running)
-                        || (ConfigurationListener.registered && ConfigurationListener.running)));
+        return (Listeners.registered
+                && (Listeners.running_test || Listeners.running_configuration));
     }
 
     /**
@@ -292,7 +291,7 @@ public class Report4s {
      * @param error The exception trace to log.
      */
     protected static void logTrace(Throwable error) {
-        int traceCount = ++SuiteListener.traceCount;
+        int traceCount = ++Listeners.traceCount;
         HtmlWriter.printTableRow(Utils.getTraceTag(error, traceCount));
     }
 

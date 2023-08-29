@@ -43,8 +43,8 @@ class Logger {
      */
     protected static void logSuccess(String description, WebDriver driver, WebElement elem) {
         Report4s.log(Level.PASSED, description, driver, elem);
-        TestListener.event_logged = true;
-        TestListener.driver = driver;
+        Listeners.event_logged = true;
+        Listeners.driver = driver;
     }
 
     /**
@@ -54,7 +54,7 @@ class Logger {
     protected static void logFailure(WebDriver driver, Throwable error, String message){
         Report4s.logMessage(Level.FAILED, message, driver, null);
         Report4s.logTrace(error);
-        //TestListener.exception_logged = true;
+        //Listeners.exception_logged = true;
     }
 
 }

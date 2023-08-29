@@ -113,7 +113,7 @@ class HtmlWriter {
         String method = Utils.getMethod(result);
         String parameters = Utils.getParameters(result);
 
-        println("        <a name=\"test_" + SuiteListener.methodCount + "\"></a>");
+        println("        <a name=\"test_" + Listeners.methodCount + "\"></a>");
         if (description != null && !description.isEmpty())
             println("        <span class=\"description\">" + "Description: " + description + "</span><br>");
         println("        <span class=\"method\">Method: " + clazz + "." + "<span class=\"method_name\">" + method + "</span></span><br>");
@@ -169,7 +169,7 @@ class HtmlWriter {
             "            <tr>" + "\n" +
             "                <th style=\"width:100px\">Status</th>" + "\n" +
             "                <th>Description</th>" + "\n" +
-            "                <th style=\"width:130px\" name=\"screenshot_test_" + SuiteListener.methodCount + "\">Screenshot</th>" + "\n" +
+            "                <th style=\"width:130px\" name=\"screenshot_test_" + Listeners.methodCount + "\">Screenshot</th>" + "\n" +
             "            </tr>";
     }
 
@@ -186,7 +186,7 @@ class HtmlWriter {
      * Print the end of the table of a {test|configuration} execution report.
      */
     protected static void closeTable() {
-        if (TestListener.printing || ConfigurationListener.printing)
+        if (Listeners.printing_test || Listeners.printing_configuration)
             println("        </table>");
         table_header = null;
     }
@@ -222,7 +222,7 @@ class HtmlWriter {
                 printLineBreak();
                 break;
             case PASSED:
-                if(ConfigurationListener.printing) {
+                if(Listeners.printing_configuration) {
                     closeTable();
                     printLineBreak();
                 }
@@ -257,10 +257,10 @@ class HtmlWriter {
      * @param log The html <tr> tag to append.
      */
     protected static void printTableRow(String log) {
-        if (TestListener.running)
-            TestListener.printing = true;
-        else if (ConfigurationListener.running)
-            ConfigurationListener.printing = true;
+        if (Listeners.running_test)
+            Listeners.printing_test = true;
+        else if (Listeners.running_configuration)
+            Listeners.printing_configuration = true;
         HtmlWriter.printTableHead();
         HtmlWriter.println(log);
     }

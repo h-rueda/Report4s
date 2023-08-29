@@ -32,7 +32,7 @@ public class DriverListener implements WebDriverListener {
                                       java.lang.Object[] args,
                                       java.lang.Object result) {
         this.driver = driver;
-        TestListener.driver = driver;
+        Listeners.driver = driver;
         if (driver != null
                 && !StringUtils.equals(method.getName(), "close")
                 && !StringUtils.equals(method.getName(), "quit"))
@@ -83,7 +83,7 @@ public class DriverListener implements WebDriverListener {
 
     public void afterClose​(WebDriver driver) {
         this.driver = null;
-        TestListener.driver = null;
+        Listeners.driver = null;
     }
 
     public void afterQuit(WebDriver driver) {
