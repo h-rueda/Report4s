@@ -1,7 +1,7 @@
 v5.1
 ====
 New feature:
-* External custom CSS file can be provided to override CSS styles.
+* External CSS file can be added to the report.
 
 Improvements:
 * SkipException trace is logged for skipped tests throwing that exception.
