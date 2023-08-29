@@ -7,7 +7,7 @@ Improvements:
 * SkipException trace is logged for skipped tests throwing that exception.
 * WebElement attributes are logged alongside the screenshots.
 
-Bugfixes:
+Bug fixes:
 * Some exceptions are logged twice on failed tests.
 * Minor incoherence in a CSS file.
 * Remove locator information from logs as they weren't always accurate.
