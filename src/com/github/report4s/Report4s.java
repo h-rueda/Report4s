@@ -71,7 +71,7 @@ public class Report4s {
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
      * The default value is 10.
      */
-    public static int padding;
+    protected static int padding;
 
     /**
      * The number of decimals of precision to format execution time labels.<br/>
@@ -79,7 +79,7 @@ public class Report4s {
      * The value should be between 0 and 3.<br/>
      * The default value is 0.
      */
-    public static int time_precision;
+    protected static int time_precision;
 
     /**
      * Whether to display tooltips with the execution result for each individual suite.<br/>
