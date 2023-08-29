@@ -7,13 +7,13 @@ Improvements:
 * SkipException trace is logged for skipped tests throwing that exception.
 * WebElement attributes are logged alongside the screenshots.
 
-Change:
-* TestNG listeners have been merged in a single java class.
-
 Bugfixes:
 * Some exceptions are logged twice on failed tests.
 * Minor incoherence in a CSS file.
 * Remove locator information from logs as they weren't always accurate.
+
+Change:
+* TestNG listeners have been merged in a single java class.
 
 
 v5.0
