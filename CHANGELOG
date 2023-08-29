@@ -1,12 +1,16 @@
 v5.1
 ====
-* New feature: Users can provide custom CSS file to override CSS styles.
-* Improvement: SkipException trace is logged for skipped tests throwing that exception.
-* Improvement: WebElement attributes are logged alongside the screenshots.
-* Change: TestNG listeners have been merged in a single java class.
-* Bugfix: Some exceptions are logged twice on failed tests.
-* Bugfix: Minor incoherence in a CSS file.
-* Bugfix: Remove locator information from logs as they weren't always accurate.
+New feature:
+* Users can provide custom CSS file to override CSS styles.
+Improvements
+* SkipException trace is logged for skipped tests throwing that exception.
+* WebElement attributes are logged alongside the screenshots.
+Change:
+* TestNG listeners have been merged in a single java class.
+Bugfixes:
+* Some exceptions are logged twice on failed tests.
+* Minor incoherence in a CSS file.
+* Remove locator information from logs as they weren't always accurate.
 
 
 v5.0
