@@ -87,7 +87,7 @@ public class TestListener extends TestListenerAdapter {
         if (!verifyPrecondition())
             return;
         if (StringUtils.equals(Report4s.screenshots, "last"))
-        	Report4s.logMessage(Level.PASSED, "Last screenshot", TestListener.driver);
+            Report4s.logMessage(Level.PASSED, "Last screenshot", TestListener.driver);
         endTestReport(result);
     }
 

@@ -131,11 +131,11 @@ public class Reporter implements IReporter {
      * @param status The suite execution status.
      */
     private void print_suite_row(
-    		int order,
-    		String suite,
-    		String time,
-    		String file,
-    		Status status) {
+            int order,
+            String suite,
+            String time,
+            String file,
+            Status status) {
         //Parse status to determine row icon and CSS class name.
         String icon = Utils.getIconFilename(status);
         String class_name = Utils.appendStatusClassName("row_suite", status);
