@@ -148,15 +148,11 @@ In practical terms, the `failed` and `manual` strategies behave the same.
 The log levels are :
 `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 
-* To log a web browser event :
+* To log a custom message without screenshot:
 
-  `Report4s.logEvent(String description, boolean screenshot);`
+  `Report4s.logMessage(Level.*, description);`
 
-* To log a custom message :
-
-  `Report4s.logMessage(Level.*, String description);`
-
-* To log a custom message with a full page screenshot :
+* To log a custom message with a page screenshot :
 
   `Report4s.logMessage(Level.*, description, webdriver);`
 
@@ -164,7 +160,7 @@ The log levels are :
 
   `Report4s.logMessage(Level.*, description, webdriver, webelement);`
 
-* For WebElement screenshots you have the possibility to apply an extra padding :
+* For WebElement screenshots an extra padding can be added :
 
   `Report4s.logMessage(Level.*, description, webdriver, webelement, padding);`
 
