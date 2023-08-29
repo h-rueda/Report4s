@@ -245,7 +245,6 @@ class Utils {
             "                    </span>" + "\n" +
             "                </td>" + "\n" +
             "            <tr>" + "\n";
-
         return log;
     }
 
