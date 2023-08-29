@@ -6,7 +6,6 @@ import com.github.report4s.Report4s;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-
 public class Config3 {
 	
 	@BeforeSuite(alwaysRun=true)

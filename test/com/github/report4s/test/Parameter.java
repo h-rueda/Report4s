@@ -5,7 +5,6 @@ import org.testng.annotations.*;
 import com.github.report4s.Level;
 import com.github.report4s.Report4s;
 
-
 public class Parameter {
 	
 	@Test(description = "Test with parameter")

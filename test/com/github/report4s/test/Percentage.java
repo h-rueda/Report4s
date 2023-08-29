@@ -3,7 +3,6 @@ package com.github.report4s.test;
 import org.testng.Assert;
 import org.testng.annotations.*;
 
-
 public class Percentage {
 
 	static int i = 0;

@@ -19,7 +19,6 @@ import com.github.report4s.DriverListener;
 public class TemplateTest {
 
 	protected WebDriver driver;
-	//protected String page = "file:///home/harmin/.eclipse-workspace2/report4s/test/page.html";
 	protected String page = "file://" +
 	            FileSystems.getDefault()
 	            .getPath("test", "page.html")

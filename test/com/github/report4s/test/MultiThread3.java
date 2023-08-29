@@ -2,10 +2,8 @@ package com.github.report4s.test;
 
 import com.github.report4s.Level;
 import com.github.report4s.Report4s;
-import org.testng.Assert;
 import org.testng.SkipException;
 import org.testng.annotations.*;
-
 
 public class MultiThread3 {
 

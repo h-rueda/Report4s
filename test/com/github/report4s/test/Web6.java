@@ -1,7 +1,7 @@
 package com.github.report4s.test;
 
-
-import org.openqa.selenium.*;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 import org.testng.annotations.*;
 
 public class Web6 extends TemplateTest {

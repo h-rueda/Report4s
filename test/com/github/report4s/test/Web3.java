@@ -7,7 +7,6 @@ import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
-import com.github.report4s.Report4s;
 
 public class Web3 extends TemplateTest {
 	
