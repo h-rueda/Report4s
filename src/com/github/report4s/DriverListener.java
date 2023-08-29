@@ -40,6 +40,13 @@ public class DriverListener implements WebDriverListener {
             this.currentUrl = driver.getCurrentUrl();
     }
 
+    public void beforeAnyWebDriverCall​(WebDriver driver,
+            java.lang.reflect.Method method,
+            java.lang.Object[] args,
+            java.lang.Object result) {
+        this.driver = driver;
+    }
+
     public void afterGet​(WebDriver driver, java.lang.String url) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
             this.driver = driver;
@@ -65,13 +72,9 @@ public class DriverListener implements WebDriverListener {
         }
     }
 
-    public void afterFindElement​(WebDriver driver, By locator, WebElement result) { }
-
-    public void afterFindElement​(WebElement element, By locator, WebElement result) { }
-
-    public void afterFindElements​(WebDriver driver, By locator, WebElement result) { }
-
-    public void afterFindElement​s(WebElement element, By locator, WebElement result) { }
+    public void beforeClick(WebElement element) {
+        this.elem_tag = getWebElementAttributes(element);
+    }
 
     public void afterSendKeys​(WebElement element, java.lang.CharSequence... args) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
@@ -86,31 +89,6 @@ public class DriverListener implements WebDriverListener {
 
     public void afterQuit(WebDriver driver) {
         this.afterClose(driver);
-    }
-
-    public void beforeAnyWebDriverCall​(WebDriver driver,
-            java.lang.reflect.Method method,
-            java.lang.Object[] args,
-            java.lang.Object result) {
-        this.driver = driver;
-    }
-
-    public void beforeClick(WebElement element) {
-        this.elem_tag = getWebElementAttributes(element);
-    }
-
-    public void beforeFindElement​(WebDriver driver, By locator) { }
-
-    public void beforeFindElement​(WebElement element, By locator) { }
-
-    public void beforeFindElements​(WebDriver driver, By locator) { }
-
-    public void beforeFindElements​(WebElement element, By locator) { }
-
-    public void beforeGet​(WebDriver driver, java.lang.String url) {
-        if (StringUtils.equals(Report4s.screenshots, "all")) {
-            this.driver = driver;
-        }
     }
 
     public void onError​(java.lang.Object target,
