@@ -15,12 +15,13 @@ import com.github.report4s.Report4s;
 public class Demo extends TemplateTest {
 
     
-    @Test(description = "Get homepage")
+    @Test(description = "Get login page")
     public void loginPage() {
         this.driver.get("https://www.selenium.dev/selenium/web/web-form.html");
         driver.findElement(By.id("my-text-id")).sendKeys("login");
         driver.findElement(By.name("my-password")).sendKeys("password");
         driver.findElement(By.xpath("//button[@type='submit']")).click();
+        driver.findElement(By.name("xxxx")).click();
     }
     
 	@Test(description = "Get homepage")
