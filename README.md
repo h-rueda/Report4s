@@ -322,7 +322,7 @@ then reactivate it after the wait.
 ![](docs/image-1.png)
 
 ##### Sample 2 :
-![](docs/image-2.png)
+![](docs/image-4.png)
 
 ##### Sample 3 :
 ![](docs/image-3.png)
