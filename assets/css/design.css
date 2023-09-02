@@ -92,6 +92,11 @@ a {
     color: red;
 }
 
+.error {
+    font-family: monospace;
+    color: red;
+}
+
 /****************/
 /* Table styles */
 /****************/
