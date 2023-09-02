@@ -52,7 +52,7 @@ public class Report4s {
     /**
      * The screenshots to gather.<br/>
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
-     * Values: "all", "last", "failed" or "none".<br/>
+     * Values: "all", "last", "failed" or "manual".<br/>
      * The default value is "all".
      */
     public static String screenshots;
