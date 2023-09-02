@@ -12,7 +12,7 @@ public class DriverListener implements WebDriverListener {
 
     private WebDriver driver = null;
     private String currentUrl = null;
-    private String elem_tag = null;
+    private String attributes = null;
 
 
     public void afterAnyNavigationCall​(WebDriver.Navigation navigation,
@@ -63,16 +63,16 @@ public class DriverListener implements WebDriverListener {
     public void afterClick​(WebElement element) {
         if (StringUtils.equals(Report4s.screenshots, "all")) {
             if (!StringUtils.equals(driver.getCurrentUrl(), this.currentUrl)) {
-                Logger.logSuccess(decorate("Click", "action") + " element " + this.elem_tag, driver, null);
+                Logger.logSuccess(decorate("Click", "action") + " element " + this.attributes, driver, null);
                 this.currentUrl = driver.getCurrentUrl();
             } else
                 Logger.logSuccess(decorate("Click", "action") + " element " + getWebElementAttributes(element), driver, element);
-            this.elem_tag = null;
+            this.attributes = null;
         }
     }
 
     public void beforeClick(WebElement element) {
-        this.elem_tag = getWebElementAttributes(element);
+        this.attributes = getWebElementAttributes(element);
     }
 
     public void afterSendKeys​(WebElement element, java.lang.CharSequence... args) {
@@ -98,38 +98,42 @@ public class DriverListener implements WebDriverListener {
     }
 
     private String getWebElementAttributes(WebElement element) {
-        String tag = element.getTagName();
-        String id = element.getDomAttribute("id");
-        String name = element.getDomAttribute("name");
-        String type = element.getDomAttribute("type");
-        String value = element.getDomAttribute("value");
-        String checked = element.getAttribute("checked");
-        String classes = element.getDomAttribute("class");
-        String href = element.getDomAttribute("href");
-        String text = element.getText();
+        try {
+            String tag = element.getTagName();
+            String id = element.getDomAttribute("id");
+            String name = element.getDomAttribute("name");
+            String type = element.getDomAttribute("type");
+            String value = element.getDomAttribute("value");
+            String checked = element.getAttribute("checked");
+            String classes = element.getDomAttribute("class");
+            String href = element.getDomAttribute("href");
+            String text = element.getText();
 
-        String result = "&lt;";
-        if (tag != null)
-            result += tag;
-        if (!StringUtils.isEmpty(href))
-            result += " href=\"" + href + "\"";
-        if (!StringUtils.isEmpty(type))
-            result += " type=\"" + type + "\"";
-        if (!StringUtils.isEmpty(id))
-            result += " id=\"" + id + "\"";
-        if (!StringUtils.isEmpty(name))
-            result += " name=\"" + name + "\"";
-        if (!StringUtils.isEmpty(value) &&
-                !(StringUtils.equals(type, "text") || (StringUtils.equals(type, "textarea"))))
-            result += " value=\"" + value + "\"";
-        if (!StringUtils.isEmpty(classes))
-            result += " class=\"" + classes + "\"";
-        if (!StringUtils.isEmpty(text))
-            result += " text=\"" + text + "\"";
-        if (StringUtils.equals(checked, "true"))
-            result += " checked";
-        result += "&gt;";
-        return decorate(result, "target");
+            String result = "&lt;";
+            if (tag != null)
+                result += tag;
+            if (!StringUtils.isEmpty(href))
+                result += " href=\"" + href + "\"";
+            if (!StringUtils.isEmpty(type))
+                result += " type=\"" + type + "\"";
+            if (!StringUtils.isEmpty(id))
+                result += " id=\"" + id + "\"";
+            if (!StringUtils.isEmpty(name))
+                result += " name=\"" + name + "\"";
+            if (!StringUtils.isEmpty(value) &&
+                    !(StringUtils.equals(type, "text") || (StringUtils.equals(type, "textarea"))))
+                result += " value=\"" + value + "\"";
+            if (!StringUtils.isEmpty(classes))
+                result += " class=\"" + classes + "\"";
+            if (!StringUtils.isEmpty(text))
+                result += " text=\"" + text + "\"";
+            if (StringUtils.equals(checked, "true"))
+                result += " checked";
+            result += "&gt;";
+            return decorate(result, "target");
+        } catch (Exception e) {
+            return this.decorate("Undetermined WebElement", "error");
+        }
     }
 
     private String decorate(String label, String cssclass) {
