@@ -6,6 +6,7 @@
 		<classes>
 			<class name="com.github.report4s.test.Demo">
                 <methods>
+                    <include name="loginPage"/>
                     <include name="getHomePage"/>
                     <include name="search"/>
                     <include name="verifyVerbDefinitionPage"/>
