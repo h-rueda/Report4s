@@ -76,7 +76,7 @@ Add the following lines before the closing `</suite>` tag in your testng XML fil
     ...
     ...
     <listeners>
-        <listener class-name="net.sourceforge.report4s.Listeners" />
+        <listener class-name="com.github.report4s.Listeners" />
     </listeners>
 </suite> 
 ```
