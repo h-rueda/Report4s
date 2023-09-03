@@ -171,8 +171,7 @@ Replace `*` by `PASSED`, `FAILED`, `INFO`, `WARNING` `ERROR` and `DEBUG`
 
 The Report4s is able to log screenshots automatically upon webdriver events.
 
-If screenshots gathering is deactivated, screenshots can still
-be taken by making explicit calls to `Report4s.LogMessage` methods.
+Screenshots can alos be logged manually by making explicit calls to `Report4s.LogMessage` methods.
 
 ```
 @Test(description = "My test description")
