@@ -317,11 +317,8 @@ then reactivate it after the wait.
 
 ## Sample screenshots
 
-##### Sample 1 :
 ![](docs/image-1.png)
 
-##### Sample 2 :
 ![](docs/image-2.png)
 
-##### Sample 3 :
 ![](docs/image-3.png)
