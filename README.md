@@ -204,7 +204,7 @@ The example is for Selenium v1 but the same principles also apply to Selenium v4
 
 ## Limitations
 
-* No support of any kind of parallel tests execution (multi-treads, multi-tabs or multi-windows).
+* No support for any kind of parallel tests execution (multi-treads, multi-tabs or multi-windows).
 
 * No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge or Safari).
 
