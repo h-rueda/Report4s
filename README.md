@@ -50,7 +50,7 @@ report4.zip
 
 
 ## Requirements
-Java 8 or later
+Java 11 or 17
 
 testng 7.8.0 or later
 
@@ -204,7 +204,7 @@ The example is for Selenium v1 but the same principles also apply to Selenium v4
 
 ## Limitations
 
-* No support of any kind of parallel tests execution (multi-treads, multi-tabs or multi-windows).
+* No support for any kind of parallel tests execution (multi-treads, multi-tabs or multi-windows).
 
 * No support for HtmlUnitDriver webdriver (Please use the standard webdrivers: Firefox, Chrome, Chromium, Edge or Safari).
 
@@ -317,11 +317,8 @@ then reactivate it after the wait.
 
 ## Sample screenshots
 
-##### Sample 1 :
 ![](docs/image-1.png)
 
-##### Sample 2 :
 ![](docs/image-2.png)
 
-##### Sample 3 :
 ![](docs/image-3.png)
