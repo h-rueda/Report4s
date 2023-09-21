@@ -50,7 +50,7 @@ report4.zip
 
 
 ## Requirements
-Java 8 or later
+Java 11 or 17
 
 testng 7.8.0 or later
 
