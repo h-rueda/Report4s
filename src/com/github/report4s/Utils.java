@@ -1,7 +1,10 @@
 package com.github.report4s;
 
 import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
 import java.io.File;
+import java.io.IOException;
+import java.io.InputStream;
 import java.util.Calendar;
 import javax.imageio.ImageIO;
 import org.apache.commons.io.FileUtils;
@@ -26,6 +29,11 @@ class Utils {
      * Counter used in order to name screenshot files.
      */
     private static int screenshotCount = 1;
+
+    /**
+     * Counter used in order to save page source files.
+     */
+    private static int pagesourceCount = 1;
 
     /**
      * Return the current time in milliseconds.
@@ -203,18 +211,30 @@ class Utils {
      * Get the html <tr> tag of a log.
      * @param icon The content of the html <td> tag of the icon cell.
      * @param message The message to be logged.
-     * @param link The html <img> tag of the screenshot.
+     * @param screenshot The content of the html <td> tag of the screenshot cell.
+     * @param source The content of the html <td> tag of the source cell. 
      * @return The html <tr> tag of the log.
      */
-    protected static String getLogTag(String icon, String message, String link) {
-        if (link == null)
-            link = "";
-
+    protected static String getLogTag(String icon, String message, String screenshot, String source) {
+        if (screenshot == null)
+            screenshot = "";
+        if (source == null)
+            source = "";
+        int cols = 1;
+        if (Listeners.running_configuration)
+            cols = Report4s.pagesource ? 3 : 2;
         String log =
             "            <tr>" + "\n" +
             "                <td>" + icon + "</td>" + "\n" +
-            "                <td>" + message + "</td>" + "\n" +
-            "                <td style=\"text-align:center\">" + link + "</td>" + "\n" +
+            "                <td colspan=\"" + cols + "\">" + message + "</td>" + "\n";
+        if (Listeners.running_test) {
+            log +=
+            "                <td style=\"text-align:center\">" + screenshot + "</td>" + "\n";
+            if (Report4s.pagesource)
+                log +=
+                "                <td style=\"text-align:center\">" + source + "</td>" + "\n";
+        }
+        log +=
             "            </tr>";
         return log;
     }
@@ -226,6 +246,7 @@ class Utils {
      * @return The html <tr> tag of the exception trace.
      */
     protected static String getTraceTag(Throwable error, int traceCount) {
+        int cols = Report4s.pagesource ? 3 : 2;
         String log =
             "            <tr>" + "\n" +
             "                <td style=\"vertical-align:top\">" + "\n" +
@@ -233,7 +254,7 @@ class Utils {
             "                    <img src=\"assets/img/expand.png\" class=\"plusminus\" id=\"expand_trace_" + traceCount + "\" onclick=\"expand_trace(" + traceCount + ")\">" + "\n" +
             "                    <img src=\"assets/img/collapse.png\" class=\"plusminus\" id=\"collapse_trace_" + traceCount + "\" onclick=\"collapse_trace(" + traceCount + ")\" style=\"display:none\">" + "\n" +
             "                </td>" + "\n" +
-            "                <td colspan=\"2\">" + "\n" +
+            "                <td colspan=\"" + cols + "\">" + "\n" +
             "                    <span class=\"trace\">" + "\n" +
             "                        " + Utils.getMessage(error) + "<br>" + "\n" +
             "                        <div id=\"trace_" + traceCount + "\" style=\"display:none\">" + "\n";
@@ -259,7 +280,7 @@ class Utils {
      * @return The html <a> tag of the screenshot.
      */
     protected static String getScreenshotTag(Level level, WebDriver driver, WebElement element, int padding) {
-    	String link = "";
+        String link = "";
         if (driver != null) {
             if (StringUtils.equals(Report4s.target, "element") && element != null)
                 link = Utils.getWebElementScreenshotTag(driver, element, padding);
@@ -332,7 +353,7 @@ class Utils {
                 //Set the <a> html tag
                 String file2 = "screenshots/" + file;
                 tag = "<a href=\"" + file2 + "\" target=\"_blank\"><img src=\"" + file2 + "\" class=\"screenshot\"></a>";
-            } catch (Exception e) {
+             } catch (Exception e) {
                 System.err.println("Failed to capture screenshot");
                 String error = "assets/img/error.png";
                 tag = "<a href=\"" + error + "\" target=\"_blank\"><img src=\"" + error + "\" class=\"screenshot\"></a>";
@@ -343,6 +364,28 @@ class Utils {
             System.err.println("Failed to take screenshot because either the webdriver or webelement is null");
 
         return tag;
+    }
+
+    /**
+     * Return the html <a> tag of a page source.
+     * @param driver The WebDriver object.
+     * @return The html <a> tag of the page source.
+     */
+    public static String getPageSourceTag(WebDriver driver) {
+        if (driver == null || !Report4s.pagesource)
+            return null;
+        String folder = Report4s.report_dir + File.separator + "sources" + File.separator;
+        String file = "source-" + pagesourceCount++ + ".txt";
+        String file2 = "sources/" + file;
+        String source = driver.getPageSource();
+        InputStream input = new ByteArrayInputStream(source.getBytes());
+        try {
+            FileUtils.copyToFile(input, new File(folder + file));
+        } catch (IOException e) {
+            e.printStackTrace();
+            return null;
+        }
+        return "<a href=\"" + file2 + "\" target=\"_blank\"><img src=\"assets/img/pagesource.png\" class=\"pagesource\"></a>";
     }
 
     /**
@@ -362,7 +405,7 @@ class Utils {
         XmlSuite xml_suite = suite.getXmlSuite();
         //Let's check the <suite> tag attributes
         if (xml_suite.getThreadCount() > 1 && xml_suite.getParallel() != ParallelMode.NONE)
-        	return true;
+            return true;
 
         //Now let's check the nested <test> tag attributes
         for (XmlTest xml_test : xml_suite.getTests())
@@ -393,10 +436,10 @@ class Utils {
                 icon = "skip.png";
                 break;
             case PASSED_WITH_WARNING:
-            	icon = "incomplete.png";
+                icon = "incomplete.png";
                 break;
             case EMPTY:
-            	// For multi-threaded tests
+                // For multi-threaded tests
                 break;
             default:
                 // Should never happen!

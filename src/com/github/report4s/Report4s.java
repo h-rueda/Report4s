@@ -58,6 +58,13 @@ public class Report4s {
     public static String screenshots;
 
     /**
+     * Whether to log web page sources.<br/>
+     * This parameter is read from the <code>report4s.properties</code> file.<br/>
+     * The default value is <code>false</code>.
+     */
+    public static boolean pagesource;
+
+    /**
      * Whether the target for screenshots are pages or WebElements.<br/>
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
      * Values: "page" or "element".<br/>
@@ -110,6 +117,7 @@ public class Report4s {
         report_homepage = "index.html";
         report_title = "Test Execution Summary";
         screenshots = "all";
+        pagesource = false;
         target = "page";
         padding = 10;
         time_precision = 0;
@@ -143,10 +151,10 @@ public class Report4s {
 
             parameter = prop.getProperty("report4s.screenshots.enabled");
             if(parameter != null
-                    && (parameter.equalsIgnoreCase("all")
-                        || parameter.equalsIgnoreCase("failed")
-                        || parameter.equalsIgnoreCase("last")
-                        || parameter.equalsIgnoreCase("manual")))
+                && (parameter.equalsIgnoreCase("all")
+                    || parameter.equalsIgnoreCase("failed")
+                    || parameter.equalsIgnoreCase("last")
+                    || parameter.equalsIgnoreCase("manual")))
                 screenshots = parameter.toLowerCase();
 
             parameter = prop.getProperty("report4s.screenshots.target");
@@ -159,6 +167,10 @@ public class Report4s {
                 catch (NumberFormatException e) { }
                 padding = padding >= 0 ? padding : 10;
             }
+
+            parameter = prop.getProperty("report4s.pagesource");
+            if (parameter != null && (parameter.equalsIgnoreCase("true") || parameter.equalsIgnoreCase("false")))
+                pagesource = Boolean.parseBoolean(parameter);
 
             parameter = prop.getProperty("report4s.time.precision");
             if (parameter != null) {
@@ -214,7 +226,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message without screenshot.<br/>
+     * Log a message without screenshot or web page source.<br/>
      * @param level The log level.
      * @param message The message to log.
      */
@@ -223,7 +235,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web page screenshot.<br/>
+     * Log a message with a web page screenshot and the web page source.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -233,7 +245,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot.<br/>
+     * Log a message with a web element screenshot and the web page source.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -244,7 +256,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot with padding.<br/>
+     * Log a message with a web element screenshot with padding and the web page source.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -256,7 +268,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot.<br/>
+     * Log a message with a web element screenshot and the web page source.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -267,7 +279,7 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot with padding.<br/>
+     * Log a message with a web element screenshot with padding and the web page source.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -278,11 +290,13 @@ public class Report4s {
         if (isMultiThreadedSuite() || !executingTest() || Report4s.screenshots == null)
             return;
         //Get the screenshot <a> tag
-        String link = Utils.getScreenshotTag(level, driver, element, padding);
+        String screenshot = Utils.getScreenshotTag(level, driver, element, padding);
         //Get the icon <img> tag and label
         String icon = Utils.getIconTag(level);
+        //Get web page source <a> tag
+        String source = Utils.getPageSourceTag(driver);
         //Print the log
-        HtmlWriter.printTableRow(Utils.getLogTag(icon, message, link));
+        HtmlWriter.printTableRow(Utils.getLogTag(icon, message, screenshot, source));
     }
 
     /**

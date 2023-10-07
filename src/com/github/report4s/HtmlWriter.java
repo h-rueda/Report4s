@@ -169,7 +169,11 @@ class HtmlWriter {
             "            <tr>" + "\n" +
             "                <th style=\"width:100px\">Status</th>" + "\n" +
             "                <th>Description</th>" + "\n" +
-            "                <th style=\"width:130px\" name=\"screenshot_test_" + Listeners.methodCount + "\">Screenshot</th>" + "\n" +
+            "                <th style=\"width:90px\" name=\"screenshot_test_" + Listeners.methodCount + "\">Screenshot</th>" + "\n";
+        if (Report4s.pagesource)
+            table_header += 
+            "                <th style=\"width:60px\">Source</th>" + "\n";
+        table_header +=
             "            </tr>";
     }
 
