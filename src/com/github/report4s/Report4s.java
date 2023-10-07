@@ -58,7 +58,7 @@ public class Report4s {
     public static String screenshots;
 
     /**
-     * Whether to log web page sources.<br/>
+     * Whether to gather web page sources.<br/>
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
      * The default value is <code>false</code>.
      */

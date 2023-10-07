@@ -301,6 +301,10 @@ then reactivate it after the wait.
 #report4s.screenshots.padding=10
 
 
+#Whether to gather web page sources.
+#report4s.pagesources.enabled=false
+
+
 #The number of decimals of precision to be displayed in execution time labels.
 #The value should be an integer between 0 and 3.
 #report4s.time.precision=0
