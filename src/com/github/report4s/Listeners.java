@@ -517,7 +517,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
                                 suite_md.status);
             }
             if (suite_md.hasMutiThreads)
-                print_method_row(i+1, 0, "<span class=\"multiThread\">No support for multi-threaded tests</span>", null, "", suite_md.filename, Status.EMPTY, suite_md.status);
+                print_method_row(i+1, 0, "<span class=\"multiThread\">No support for multi-threaded tests</span>", null, "", suite_md.filename, Status.UNKNOWN, suite_md.status);
         }
     }
 
@@ -536,7 +536,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             String file,
             Status status) {
         //Parse status to determine row icon and CSS class name.
-        String icon = Utils.getIconFilename(status);
+        String icon = Utils.getStatusIconFilename(status);
         String class_name = Utils.appendStatusClassName("row_suite", status);
         HtmlWriter.println(
             "            <tr class=\"" + class_name + "\">" + "\n" +
@@ -571,7 +571,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             Status status,
             Status suite_status) {
         String class_name = Utils.appendStatusClassName("row_test", suite_status);
-        String icon = Utils.getIconFilename(status);
+        String icon = Utils.getStatusIconFilename(status);
         name = (parameteres == null) ? name : name + "(" + parameteres + ")";
         name = (name.length() > 90) ? name.substring(0, 90) + "..." : name;
         file += "#test_" + order;
@@ -580,14 +580,8 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             "                <td></td>" + "\n" +
             "                <td>" + name + "</td>" + "\n" +
             "                <td style=\"text-align:right\">" + time + "</td>" + "\n" +
-            "                <td style=\"text-align:center\"><a target=\"_blank\" href=\"" + file + "\">details</a></td>" + "\n");
-        if (status == Status.EMPTY)
-            HtmlWriter.println(
-            "                <td align=\"center\"></td>" + "\n");
-        else
-            HtmlWriter.println(
-            "                <td align=\"center\"><img src=\"assets/img/" + icon + "\" class=\"icon\"></td>" + "\n");
-            HtmlWriter.println(
+            "                <td style=\"text-align:center\"><a target=\"_blank\" href=\"" + file + "\">details</a></td>" + "\n" +
+            "                <td align=\"center\"><img src=\"assets/img/" + icon + "\" class=\"icon\"></td>" + "\n" +
             "            </tr>");
     }
 

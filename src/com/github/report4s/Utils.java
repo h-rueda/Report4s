@@ -137,7 +137,7 @@ class Utils {
             case ITestResult.SUCCESS_PERCENTAGE_FAILURE:
                 return Status.FAILED_WITHIN_PERCENTAGE;
             default:
-                return null;
+                return Status.UNKNOWN;
         }
     }
 
@@ -199,9 +199,6 @@ class Utils {
                 break;
             case TRACE:
                 tag = "<img src=\"assets/img/loupe.png\" class=\"icon\">&nbsp;<i>TRACE</i>";
-                break;
-            case UNKNOWN:
-                tag = "<img src=\"assets/img/unknown.png\" class=\"icon\">&nbsp;<i>UNKNOWN</i>";
                 break;
         }
         return tag;
@@ -421,7 +418,7 @@ class Utils {
      * @param status The status of the suite or test execution.
      * @return The status icon file name.
      */
-    protected static String getIconFilename(Status status) {
+    protected static String getStatusIconFilename(Status status) {
         String icon = "";
         switch(status) {
             case PASSED:
@@ -438,9 +435,6 @@ class Utils {
                 break;
             case PASSED_WITH_WARNING:
                 icon = "incomplete.png";
-                break;
-            case EMPTY:
-                // For multi-threaded tests
                 break;
             default:
                 // Should never happen!

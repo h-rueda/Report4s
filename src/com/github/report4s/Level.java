@@ -11,8 +11,4 @@ public enum Level {
     DEBUG,
     TRACE,
     ERROR,
-    /**
-     * Used to display the status of multi-threaded tests (not supported by Report4s).
-     */
-    UNKNOWN,
 }
