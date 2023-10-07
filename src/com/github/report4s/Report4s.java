@@ -52,8 +52,8 @@ public class Report4s {
     /**
      * The screenshots to gather.<br/>
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
-     * Values: "all", "last", "failed" or "manual".<br/>
-     * The default value is "all".
+     * Values: "<code>all</code>", "<code>last</code>", "<code>failed</code>" or "<code>manual</code>".<br/>
+     * The default value is "<code>all</code>".
      */
     public static String screenshots;
 
@@ -67,8 +67,8 @@ public class Report4s {
     /**
      * Whether the target for screenshots are pages or WebElements.<br/>
      * This parameter is read from the <code>report4s.properties</code> file.<br/>
-     * Values: "page" or "element".<br/>
-     * The default value is "page".
+     * Values: "<code>page</code>" or "<code>element</code>".<br/>
+     * The default value is "<code>page</code>".
      */
     public static String target;
 
@@ -235,7 +235,9 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web page screenshot and the web page source.<br/>
+     * Log a message with:<br/>
+     * * web page screenshot.<br/>
+     * * web page source if <code>report4s.pagesources.enabled = true</code>.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -245,7 +247,9 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot and the web page source.<br/>
+     * Log a message with:<br/>
+     * * web element.<br/>
+     * * web page source if <code>report4s.pagesources.enabled = true</code>.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
@@ -256,7 +260,9 @@ public class Report4s {
     }
 
     /**
-     * Log a message with a web element screenshot with padding and the web page source.<br/>
+     * Log a message with:<br/>
+     * * web element with extra padding.<br/>
+     * * web page source if <code>report4s.pagesources.enabled = true</code>.<br/>
      * @param level The log level.
      * @param message The message to log.
      * @param driver The {@link org.openqa.selenium.WebDriver WebDriver} object.
