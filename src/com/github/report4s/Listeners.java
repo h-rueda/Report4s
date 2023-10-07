@@ -634,7 +634,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             if (tests_failed > 0)
                 content += "<td><div class=\\\"ttp ttp_failed\\\"></div></td><td class=\\\"ttp_text\\\">Failed: " + tests_failed + "</td>";
             if (tests_failed_pct > 0)
-                content += "<td><div class=\\\"ttp ttp_failed_pct\\\"></div></td><td class=\\\"ttp_text\\\">Failed w/n %: " + tests_failed_pct + "</td>";
+                content += "<td><div class=\\\"ttp ttp_failed_pct\\\"></div></td><td class=\\\"ttp_text\\\">Failed w/n success %: " + tests_failed_pct + "</td>";
             if (tests_skipped > 0)
                 content += "<td><div class=\\\"ttp ttp_skipped\\\"></div></td><td class=\\\"ttp_text\\\">Skipped: " + tests_skipped + "</td>";
 
