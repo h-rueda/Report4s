@@ -385,7 +385,8 @@ class Utils {
             e.printStackTrace();
             return null;
         }
-        return "<a href=\"" + file2 + "\" target=\"_blank\"><img src=\"assets/img/pagesource.png\" class=\"pagesource\"></a>";
+        //return "<a href=\"" + file2 + "\" target=\"_blank\"><img src=\"assets/img/pagesource.png\" class=\"pagesource\"></a>";
+        return "<a href=\"" + file2 + "\" target=\"_blank\">source</a>";
     }
 
     /**
