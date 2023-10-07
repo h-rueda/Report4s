@@ -365,9 +365,9 @@ public class Report4s {
             );
             Report4s.report_css = "design-override.css";
         } catch (IOException e) {
-            Report4s.report_css = null;
-            System.err.println("ERROR: Failed to copy custom CSS file");
+            System.err.println("ERROR: Failed to copy custom CSS file '" + Report4s.report_css + "'");
             e.printStackTrace();
+            Report4s.report_css = null;
         }
     }
 
