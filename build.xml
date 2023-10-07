@@ -8,7 +8,6 @@
     <property name="assets.dir"  location="assets" />
     <property name="jarfile"  value="report4s" />
     <property name="version"  value="5.2" />
-    <property name="package"  value="com/github/report4s" />
 
     <path id="classpath">
         <fileset dir="${lib.dir}" includes="**/*.jar" />
