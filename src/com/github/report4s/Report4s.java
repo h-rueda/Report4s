@@ -168,7 +168,7 @@ public class Report4s {
                 padding = padding >= 0 ? padding : 10;
             }
 
-            parameter = prop.getProperty("report4s.pagesource");
+            parameter = prop.getProperty("report4s.pagesources.enabled");
             if (parameter != null && (parameter.equalsIgnoreCase("true") || parameter.equalsIgnoreCase("false")))
                 pagesource = Boolean.parseBoolean(parameter);
 
