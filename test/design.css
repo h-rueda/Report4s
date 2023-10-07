@@ -1,31 +1,5 @@
 /* Text styles */
 
-.title {
-    color: black;
-}
-
-.description {
-    color: green;
-}
-
-.method {
-    color: maroon;
-}
-
-.method_name {
-    color: black;
-}
-
-.parameters {
-    color: maroon;
-}
-
-.annotation {
-    font-size: 12px;
-    font-family: monospace;
-    color: dimgray;
-}
-
 .action {
     font-weight: bold;
     color: red;
@@ -34,30 +8,4 @@
 .target {
     font-family: monospace;
     color: cyan;
-}
-
-.quotation{
-    font-family: monospace;
-    font-weight: bold;
-    color: black;
-}
-
-.test_failed {
-    color: red;
-}
-
-.test_failed_pct {
-    color: #FF6600;
-}
-
-.test_skipped {
-    color: #00A2E8;
-}
-
-.execution_time {
-    font-size: 15px;
-}
-
-.multithread {
-    color: red;
 }
