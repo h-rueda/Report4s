@@ -239,25 +239,6 @@ class HtmlWriter {
 
     /**
      * Append a log to the {test|configuration} execution report.
-     * @param icon The content of the html <td> tag of the icon cell.
-     * @param message The message to log.
-     * @param link The content of the html <td> tag of the screenshot cell.
-     */
-    protected static void printLog(String icon, String message, String link) {
-        if (link == null)
-            link = "";
-
-        String log =
-            "            <tr>" + "\n" +
-            "                <td>" + icon + "</td>" + "\n" +
-            "                <td>" + message + "</td>" + "\n" +
-            "                <td style=\"text-align:center\">" + link + "</td>" + "\n" +
-            "            </tr>";
-        printTableRow(log);
-    }
-
-    /**
-     * Append a log to the {test|configuration} execution report.
      * @param log The html <tr> tag to append.
      */
     protected static void printTableRow(String log) {
