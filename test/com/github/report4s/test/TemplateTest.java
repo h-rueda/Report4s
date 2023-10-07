@@ -1,5 +1,6 @@
 package com.github.report4s.test;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
@@ -19,13 +20,13 @@ import org.openqa.selenium.support.events.EventFiringDecorator;
 import org.testng.annotations.*;
 import com.github.report4s.DriverListener;
 
-
 public class TemplateTest {
 
 	protected WebDriver driver;
 	protected String page = "file://" + FileSystems.getDefault()
 	            .getPath("test", "page.html").toAbsolutePath().toString();
 	private String logs_dir = FileSystems.getDefault().getPath("logs").toAbsolutePath().toString();
+	final String folder = FileSystems.getDefault().getPath("webdrivers").toAbsolutePath().toString();
 
 	
 	@BeforeSuite(alwaysRun=true)
@@ -33,12 +34,12 @@ public class TemplateTest {
 		WebDriver raw_driver = null;
 		String browser = null;
 		FileInputStream input = null;
-  		System.setProperty("webdriver.gecko.driver", "/home/harmin/eclipse/webdrivers/geckodriver");
-		System.setProperty("webdriver.chrome.driver", "/home/harmin/eclipse/webdrivers/chromedriver");
-  		System.setProperty("webdriver.edge.driver", "/home/harmin/eclipse/webdrivers/msedgedriver");
-  		System.setProperty("webdriver.firefox.logfile", this.logs_dir + "/geckodriver.log");
-        System.setProperty("webdriver.chrome.logfile", this.logs_dir + "/chromedriver.log");
-        System.setProperty("webdriver.edge.logfile", this.logs_dir + "/msedgedriver.log");
+  		System.setProperty("webdriver.gecko.driver", this.folder + File.separator + "geckodriver");
+		System.setProperty("webdriver.chrome.driver", this.folder + File.separator + "chromedriver");
+  		System.setProperty("webdriver.edge.driver", this.folder + File.separator + "msedgedriver");
+  		System.setProperty("webdriver.firefox.logfile", this.logs_dir + File.separator + "geckodriver.log");
+        System.setProperty("webdriver.chrome.logfile", this.logs_dir + File.separator + "chromedriver.log");
+        System.setProperty("webdriver.edge.logfile", this.logs_dir + File.separator + "msedgedriver.log");
 		try {
 			input = new FileInputStream("browser.properties");
 			Properties prop = new Properties();
