@@ -485,13 +485,13 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
 
             "        <table id=\"tableStyle\" class=\"width_index\">" + "\n" +
             "            <tr>" + "\n" +
-            "                <th style=\"width:20px\">" + "\n" +
+            "                <th class=\"width_plusminus\">" + "\n" +
             "                    <img src=\"assets/img/expand.png\" class=\"plusminus\" id=\"expand_all_suites\" onclick=\"expand_suites()\">" + "\n" +
             "                    <img src=\"assets/img/collapse.png\" class=\"plusminus\" id=\"collapse_all_suites\" onclick=\"collapse_suites()\" style=\"display:none\"></th>" + "\n" +
             "                <th>Suite</th>" + "\n" +
-            "                <th style=\"width:12%\">Execution time</th>" + "\n" +
-            "                <th style=\"width:8%\">Details</th>" + "\n" +
-            "                <th style=\"width:8%\">Status</th>" + "\n" +
+            "                <th class=\"width_exectime\">Execution time</th>" + "\n" +
+            "                <th class=\"width_details\">Details</th>" + "\n" +
+            "                <th class=\"width_status_suite\">Status</th>" + "\n" +
             "            </tr>";
         HtmlWriter.println(content);
     }

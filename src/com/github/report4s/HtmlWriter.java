@@ -167,12 +167,12 @@ class HtmlWriter {
         table_header +=
             "        <table id=\"tableStyle\" class=\"width_suite row_test\">" + "\n" +
             "            <tr>" + "\n" +
-            "                <th style=\"width:100px\">Status</th>" + "\n" +
+            "                <th class=\"width_status_test\">Status</th>" + "\n" +
             "                <th>Description</th>" + "\n" +
-            "                <th style=\"width:90px\">Screenshot</th>" + "\n";
+            "                <th class=\"width_screenshot\">Screenshot</th>" + "\n";
         if (Report4s.pagesource)
             table_header += 
-            "                <th style=\"width:60px\">Source</th>" + "\n";
+            "                <th class=\"width_pagesource\">Source</th>" + "\n";
         table_header +=
             "            </tr>";
     }
