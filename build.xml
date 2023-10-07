@@ -7,7 +7,7 @@
     <property name="javadoc.dir" location="javadoc" />
     <property name="assets.dir"  location="assets" />
     <property name="jarfile"  value="report4s" />
-    <property name="version"  value="5.1" />
+    <property name="version"  value="5.2" />
     <property name="package"  value="com/github/report4s" />
 
     <path id="classpath">
