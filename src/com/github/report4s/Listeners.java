@@ -517,7 +517,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
                                 suite_md.status);
             }
             if (suite_md.hasMutiThreads)
-                print_method_row(i+1, 0, "<span class=\"multiThread\">No support for multi-threaded tests</span>", null, "", suite_md.filename, Status.UNKNOWN, suite_md.status);
+                print_method_row(i+1, 0, "<span class=\"multiThread\">No support for multi-threaded tests</span>", null, "", suite_md.filename, Status.EMPTY, suite_md.status);
         }
     }
 
@@ -580,8 +580,14 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             "                <td></td>" + "\n" +
             "                <td>" + name + "</td>" + "\n" +
             "                <td style=\"text-align:right\">" + time + "</td>" + "\n" +
-            "                <td style=\"text-align:center\"><a target=\"_blank\" href=\"" + file + "\">details</a></td>" + "\n" +
-            "                <td align=\"center\"><img src=\"assets/img/" + icon + "\" class=\"icon\"></td>" + "\n" +
+            "                <td style=\"text-align:center\"><a target=\"_blank\" href=\"" + file + "\">details</a></td>" + "\n");
+        if (status == Status.EMPTY)
+            HtmlWriter.println(
+            "                <td align=\"center\"></td>" + "\n");
+        else
+            HtmlWriter.println(
+            "                <td align=\"center\"><img src=\"assets/img/" + icon + "\" class=\"icon\"></td>" + "\n");
+        HtmlWriter.println(
             "            </tr>");
     }
 

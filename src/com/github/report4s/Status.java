@@ -10,4 +10,5 @@ enum Status {
     PASSED_WITH_WARNING,
     FAILED_WITHIN_PERCENTAGE,
     UNKNOWN,
+    EMPTY,    //for multi-threaded tests
 }

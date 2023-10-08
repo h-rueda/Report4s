@@ -436,6 +436,10 @@ class Utils {
             case PASSED_WITH_WARNING:
                 icon = "incomplete.png";
                 break;
+            case EMPTY:
+                // For multi-threaded tests
+                icon = "";
+                break;
             default:
                 // Should never happen!
                 icon = "unknown.png";
