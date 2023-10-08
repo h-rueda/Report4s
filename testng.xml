@@ -3,10 +3,10 @@
 <suite name="All Tests">
 
     <suite-files>
-        <suite-file path="suites/test-web.xml"/>
-        <suite-file path="suites/test-config.xml"/>
-        <suite-file path="suites/test-others.xml"/>
-        <suite-file path="suites/demo.xml"/>
+        <suite-file path="test/suites/test-web.xml"/>
+        <suite-file path="test/suites/test-config.xml"/>
+        <suite-file path="test/suites/test-others.xml"/>
+        <suite-file path="test/suites/demo.xml"/>
     </suite-files>
 	
     <listeners>
