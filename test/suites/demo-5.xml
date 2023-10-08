@@ -1,16 +1,16 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Deactivate &amp; reactive screenshots">
-	<test name="My test">
+    <test name="My test">
         <parameter name="keyword" value="work"/>
-		<classes>
-			<class name="com.github.report4s.test.Demo">
+        <classes>
+            <class name="com.github.report4s.test.Demo">
                 <methods>
                     <include name="getHomePage2"/>
                     <include name="search"/>
                     <include name="verifyVerbDefinitionPage"/>
                 </methods>
-			</class>
-		</classes>
-	</test>
+            </class>
+        </classes>
+    </test>
 </suite>

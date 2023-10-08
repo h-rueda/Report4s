@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Web6 - Setup failure">
-	<test name="My test" preserve-order="true">
-		<classes>
-			<class name="com.github.report4s.test.Web6"/>
-		</classes>
-	</test>
+    <test name="My test" preserve-order="true">
+        <classes>
+            <class name="com.github.report4s.test.Web6"/>
+        </classes>
+    </test>
 </suite>

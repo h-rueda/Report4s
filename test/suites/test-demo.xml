@@ -1,11 +1,11 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Demo suites">
-	<suite-files>
-		<suite-file path="test/suites/demo-1.xml"/>
-		<suite-file path="test/suites/demo-2.xml"/>
+    <suite-files>
+        <suite-file path="test/suites/demo-1.xml"/>
+        <suite-file path="test/suites/demo-2.xml"/>
         <suite-file path="test/suites/demo-3.xml"/>
         <suite-file path="test/suites/demo-4.xml"/>
         <suite-file path="test/suites/demo-5.xml"/>
-	</suite-files>
+    </suite-files>
 </suite>

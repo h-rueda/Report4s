@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Success with Percentage failure">
-	<test name="Test" preserve-order="true">
-		<classes>
-			<class name="com.github.report4s.test.Percentage"/>
-		</classes>
-	</test>
+    <test name="Test" preserve-order="true">
+        <classes>
+            <class name="com.github.report4s.test.Percentage"/>
+        </classes>
+    </test>
 </suite>

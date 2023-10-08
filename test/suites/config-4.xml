@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Config4 - Failed TearDown">
-	<test name="My test" preserve-order="true">
-		<classes>
-			<class name="com.github.report4s.test.Config4"/>
-		</classes>
-	</test>
+    <test name="My test" preserve-order="true">
+        <classes>
+            <class name="com.github.report4s.test.Config4"/>
+        </classes>
+    </test>
 </suite>

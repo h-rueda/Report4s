@@ -6,7 +6,7 @@
         <suite-file path="test/suites/test-web.xml"/>
         <suite-file path="test/suites/test-config.xml"/>
         <suite-file path="test/suites/test-others.xml"/>
-        <suite-file path="test/suites/demo.xml"/>
+        <suite-file path="test/suites/test-demo.xml"/>
     </suite-files>
 	
     <listeners>

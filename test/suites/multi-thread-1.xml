@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="MultiThread1 - Passed" parallel="methods">
-	<test name="Test">
-		<classes>
-			<class name="com.github.report4s.test.MultiThread1"/>
-		</classes>
-	</test>
+    <test name="Test">
+        <classes>
+            <class name="com.github.report4s.test.MultiThread1"/>
+        </classes>
+    </test>
 </suite>

@@ -1,9 +1,9 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="Web1 - Passed test">
-	<test name="Test" preserve-order="true">
-		<classes>
-			<class name="com.github.report4s.test.Web1"/>
+    <test name="Test" preserve-order="true">
+        <classes>
+            <class name="com.github.report4s.test.Web1"/>
                 <!--methods>
                     <include name="search"/>
                     <include name="setGender"/>
@@ -14,6 +14,6 @@
                     <include name="Navigations"/>
                 </methods>
             </class-->
-		</classes>
-	</test>
+        </classes>
+    </test>
 </suite>

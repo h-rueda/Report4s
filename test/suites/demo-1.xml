@@ -1,10 +1,10 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd" >
 
 <suite name="My awesome demo test">
- 	<parameter name="keyword" value="work"/>
-	<test name="test"> <!--preserve-order="true"-->
-		<classes>
-			<class name="com.github.report4s.test.Demo">
+     <parameter name="keyword" value="work"/>
+    <test name="test"> <!--preserve-order="true"-->
+        <classes>
+            <class name="com.github.report4s.test.Demo">
                 <methods>
                     <include name="loginPage"/>
                     <include name="getHomePage"/>
@@ -12,6 +12,6 @@
                     <include name="verifyVerbDefinitionPage"/>
                 </methods>
             </class>
-		</classes>
-	</test>
+        </classes>
+    </test>
 </suite>
