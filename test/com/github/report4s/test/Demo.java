@@ -34,12 +34,14 @@ public class Demo extends TemplateTest {
 
 	@Test(description = "Get homepage")
 	public void getHomePage2() {
+        String old = Report4s.screenshots;
 		this.driver.get("http://www.oxfordlearnersdictionaries.com/");
 		Report4s.screenshots = null;
 		WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 		wait.until(ExpectedConditions.presenceOfElementLocated(By.id("onetrust-accept-btn-handler")));
 		this.driver.findElement(By.id("onetrust-accept-btn-handler")).click();
 		this.driver.navigate().refresh();
+		Report4s.screenshots = old;
 	}
 
 	@Test(description = "Look up a word definition")
