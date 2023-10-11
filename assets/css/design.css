@@ -97,6 +97,14 @@ a {
     color: red;
 }
 
+/***********
+ * Summary *
+ ***********/
+ 
+.summary {
+    margin-left: 7%;
+}
+
 /****************/
 /* Table styles */
 /****************/

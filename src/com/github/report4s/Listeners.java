@@ -458,7 +458,7 @@ public class Listeners implements IReporter, ISuiteListener, ITestListener, ICon
             "    <body>" + "\n" +
             "        <h1 style=\"text-align:center\">" + Report4s.report_title + "</h1>" + "\n\n" +
 
-            "        <div style=\"margin-left: 7%\">\n" +
+            "        <div class=\"summary\">\n" +
             "            <p>" + "\n" +
             "                <strong>Summary</strong>" + "\n" +
             "                <br/>" + "\n" +
