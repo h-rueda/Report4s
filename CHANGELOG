@@ -18,7 +18,8 @@ Bug fixes:
 * Minor incoherence in a CSS file.
 * Remove locator information from logs as they weren't always accurate.
 
-Change:
+Changes:
+* Screenshot gathering strategy 'none' has been renamed to 'manual'.
 * TestNG listeners have been merged in a single java class.
 
 
