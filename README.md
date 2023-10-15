@@ -30,10 +30,10 @@ It is only compatible with Selenium 4 or later.
  + The stack trace of exceptions are also logged in order to facilitate error analysis.
 
  + Different screenshot gathering strategies are supported:
-    + `all`     All screenshots for intercepted webdriver events.
-    + `last`    The screenshot of the last step for each `@Test` annotated method.
+    + `all`     Screenshot of all intercepted webdriver events.
+    + `last`    The last screenshot of each @Test annotated methods.
     + `failed`  The last screenshot of each test failure.
-    + `manual`  Deactivation of automatic screenshot except for the last step of failed tests.
+    + `manual`  Deactivation of automatic screenshot gathering except for the last step of failed tests.
 
 
 ## The ZIP file contents
