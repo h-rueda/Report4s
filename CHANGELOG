@@ -34,10 +34,10 @@ New features:
     - navigate back, forward, to & refresh
     - sendKeys
 * User can decide which screenshots to gather:
-    - 'all': screenshots for all intercepted events.
-    - 'last': last screenshot for each @Test annotated methods.
-    - 'failed': last screenshot of failed tests.
-    - 'none': no automatic screenshot gathering (user can still gather screenshots manually)
+    - 'all': Screenshot of all intercepted events.
+    - 'last': The last screenshot of each @Test annotated methods.
+    - 'failed': The last screenshot of failed tests.
+    - 'none': Deactivation of automatic screenshot gathering (user can still gather screenshots manually)
 * Test results table can be filtered by test status.
 * Addition of a brief summary in the test report.
 
